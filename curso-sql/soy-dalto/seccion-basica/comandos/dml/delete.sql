@@ -1,0 +1,1 @@
+delete from usuarios; -- Eliminar todos los registros de una tabla

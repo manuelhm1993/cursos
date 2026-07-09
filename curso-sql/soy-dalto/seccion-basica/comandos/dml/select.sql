@@ -1,0 +1,1 @@
+select * from usuarios; -- Consulta básica, traer todos los registros de una tabla
