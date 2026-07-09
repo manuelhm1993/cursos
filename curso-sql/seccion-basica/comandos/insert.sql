@@ -1,4 +1,4 @@
-insert into usuarios (nombre, apellido, edad) 
+insert into usuarios (nombre, apellido, edad) -- Insertar múltiples registros en una tabla
 values 
 	('Manuel', 'Henriquez', 32),
 	('Sugey', 'Godoy', 22),
