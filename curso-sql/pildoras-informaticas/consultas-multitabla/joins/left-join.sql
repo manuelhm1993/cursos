@@ -1,0 +1,8 @@
+-- Mostrar los clientes de Madrid que han hecho pedidos y los que no
+-- Left join
+SELECT c.CODIGOCLIENTE, c.EMPRESA, c.DIRECCION, c.POBLACION, c.TELEFONO, c.RESPONSABLE, p.*
+FROM clientes c
+LEFT JOIN pedidos p
+ON c.CODIGOCLIENTE = p.CODIGOCLIENTE
+WHERE c.POBLACION LIKE 'MADRID'
+ORDER BY p.CODIGOCLIENTE ASC, p.NUMERODEPEDIDO ASC;
