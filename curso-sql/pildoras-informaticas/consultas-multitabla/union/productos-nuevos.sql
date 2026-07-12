@@ -1,0 +1,37 @@
+CREATE TABLE IF NOT EXISTS productos_nuevos (
+	codigo_articulo VARCHAR(10)  NOT NULL, 
+	seccion 			 VARCHAR(10)  DEFAULT NULL, 
+	nombre_articulo VARCHAR(20)  DEFAULT NULL,
+	precio			 DOUBLE(16,2) DEFAULT 0.00,
+	fecha				 DATE 		  DEFAULT NULL,
+	importado		 BIT 			  DEFAULT 0,
+	pais_origen 	 VARCHAR(10)  DEFAULT NULL,
+	foto				 BLOB 		  DEFAULT NULL,
+	PRIMARY KEY(codigo_articulo)
+);
+
+INSERT INTO productos_nuevos (codigo_articulo, seccion, nombre_articulo, precio, fecha, importado, pais_origen)
+VALUES
+('AR50', 'ALTA COSTURA',       'TRAJE CABALLERO',    1284.58, '2002-03-11', 1, 'ITALIA'),
+('AR51', 'DEPORTES DE RIESGO', 'RAQUETA TENIS',      1093.47, '2000-03-20', 1, 'USA'),
+('AR52', 'DEPORTES DE RIESGO', 'MANCUERNAS',         1060.00, '2000-09-13', 1, 'USA'),
+('AR53', 'ALTA COSTURA',       'SERRUCHO',           1030.20, '2001-03-23', 1, 'FRANCIA'),
+('AR54', 'ALTA COSTURA',       'PANTALÓN SEÑORA',    1174.23, '2000-01-10', 1, 'MARRUECOS'),
+('AR55', 'ALTA COSTURA',       'CAMISA CABALLERO',   1067.13, '2002-08-11', 0, 'ESPAÑA'),
+('AR56', 'DEPORTES DE RIESGO', 'PISTOLA OLÍMPICA',   1046.73, '2001-02-02', 1, 'SUECIA'),
+('AR57', 'ALTA COSTURA',       'BLUSA SRA.',         1101.06, '2000-03-18', 1, 'CHINA'),
+('AR58', 'ALTA COSTURA',       'CAZADORA DE PIEL',   1522.69, '2001-07-10', 1, 'ITALIA'),
+('AR59', 'DEPORTES DE RIESGO', 'BALÓN RUGBY',        1111.64, '2000-11-11', 1, 'USA'),
+('AR60', 'DEPORTES DE RIESGO', 'BALÓN BALONCESTO',   1075.27, '2001-06-25', 1, 'JAPPÓN'),
+('AR61', 'ALTA COSTURA',       'ABRIGO CABALLERO',   1500.00, '2002-04-05', 1, 'ITALIA'),
+('AR62', 'DEPORTES DE RIESGO', 'BALÓN FÚTBOL',       1043.91, '2002-07-04', 0, 'ESPAÑA'),
+('AR63', 'ALTA COSTURA',       'ABRIGO SRA',         1360.07, '2001-05-03', 1, 'MARRUECOS'),
+('AR64', 'DEPORTES DE RIESGO', 'CRONÓMETRO',         1439.18, '2002-01-03', 1, 'USA'),
+('AR65', 'ALTA COSTURA',       'CINTURÓN DE PIEL',   1004.33, '2002-05-12', 0, 'ESPAÑA'),
+('AR66', 'DEPORTES DE RIESGO', 'CAÑA DE PESCA',      1270.00, '2000-02-14', 1, 'USA'),
+('AR67', 'DEPORTES DE RIESGO', 'BOTA ALPINISMO',     1144.00, '2002-05-05', 0, 'ESPAÑA'),
+('AR68', 'DEPORTES DE RIESGO', 'PALAS DE PING PONG', 1021.60, '2002-02-02', 0, 'ESPAÑA');
+
+SELECT * FROM productos_nuevos;
+
+-- DELETE FROM productos_nuevos;

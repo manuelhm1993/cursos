@@ -1,0 +1,6 @@
+-- Modificar una vista
+ALTER VIEW art_deportes
+AS 
+	SELECT p.NOMBREARTICULO, p.SECCION, p.PAISDEORIGEN 
+	FROM productos p
+	WHERE p.PAISDEORIGEN LIKE 'ESPA_A';
