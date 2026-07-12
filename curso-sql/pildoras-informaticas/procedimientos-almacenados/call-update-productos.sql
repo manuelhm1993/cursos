@@ -1,0 +1,1 @@
+CALL update_precio_productos(60, 'AR22');
