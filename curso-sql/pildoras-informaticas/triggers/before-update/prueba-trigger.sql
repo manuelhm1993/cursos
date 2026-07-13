@@ -1,0 +1,9 @@
+SELECT * FROM productos WHERE CODIGOARTICULO = 'AR07';
+
+UPDATE productos p 
+SET p.PRECIO = p.PRECIO + 20 
+WHERE p.CODIGOARTICULO = 'AR07';
+
+SELECT * FROM productos WHERE CODIGOARTICULO = 'AR07';
+
+SELECT * FROM productos_actualizados;
