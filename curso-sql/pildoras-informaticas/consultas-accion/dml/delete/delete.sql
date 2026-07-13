@@ -1,0 +1,5 @@
+BEGIN; 
+	DELETE FROM clientes c WHERE c.POBLACION LIKE 'MADRID';
+ROLLBACK;
+	
+SELECT * FROM clientes;
