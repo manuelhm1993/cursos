@@ -8,27 +8,15 @@ DB_PATH = Path(__file__).parent.parent.parent / "resources" / "databases" / "nor
 
 square = lambda n: n * n
 
-conn = sqlite3.connect(DB_PATH)
+# Administrador de contexto with
+with sqlite3.connect(DB_PATH) as conn:
+    conn.create_function("square", 1, square)
+    
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Products")
+    
+    results = cursor.fetchall()
+    results_df = pd.DataFrame(results)
 
-# Crear una UDF: nombre, número de argumentos, función python
-conn.create_function("square", 1, square)
-
-# Crear un cursor para ejecutar consultas
-cursor = conn.cursor()
-cursor.execute(
-    """
-    SELECT * FROM Products
-    """
-)
-
-result = cursor.fetchall()
-result_df = pd.DataFrame(result)
-
-# Confirmar los cambios en la db, aunque en este caso no es necesario
-conn.commit()
-
-# Cerrar el cursor y la conexión
-cursor.close()
-conn.close()
-
-print(result_df)
+# with cierra automáticamente la conexión y el cursor
+print(results_df)
