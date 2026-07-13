@@ -13,7 +13,7 @@ with sqlite3.connect(DB_PATH) as conn:
     conn.create_function("square", 1, square)
     
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Products")
+    cursor.execute("SELECT *, square(Price) as precio_cuadrado FROM Products WHERE Price > 0")
     
     results = cursor.fetchall()
     results_df = pd.DataFrame(results)
