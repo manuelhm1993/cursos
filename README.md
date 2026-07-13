@@ -41,7 +41,7 @@ cursos/
 │       ├── seccion-intermedia/
 │       └── seccion-avanzada/
 │           └── python/     → SQL + Python + pandas + matplotlib
-└── curso-python/           → rama: curso-python  (en preparación)
+└── curso-python/           → rama: curso-python  (en proceso)
 ```
 
 > El detalle operativo del progreso vive en Trello (espacio *Aprendizaje*).
@@ -57,15 +57,22 @@ cursos/
 | **VSCode** | [Curso de VSCode](https://www.youtube.com/watch?v=TbzrOz8HbFM) | [Soy Dalto](https://www.youtube.com/@soydalto) | ✅ Terminado |
 | **Hosting** | [Curso de Hosting desde Cero](https://www.youtube.com/watch?v=hikoV1Q9EzY) | [Soy Dalto](https://www.youtube.com/@soydalto) | ✅ Terminado |
 | **SQL** | [Curso de SQL](https://www.youtube.com/watch?v=DFg1V-rO6Pg) | [Soy Dalto](https://www.youtube.com/@soydalto) | ✅ Terminado |
-| **SQL** | [Curso de MySQL](https://www.youtube.com/watch?v=iOiyJgnN71c&list=PLU8oAlHdN5Bmx-LChV4K3MbHrpZKefNwn) | [Píldoras Informáticas](https://www.youtube.com/@pildorasinformaticas) | 🔄 En proceso (triggers) |
-| **UML** | _por definir_ | — | 🔄 En paralelo |
-| **Python** | _múltiples subcursos — se detalla al progresar_ | — | ⏳ Pendiente |
+| **SQL** | [Curso de MySQL](https://www.youtube.com/watch?v=iOiyJgnN71c&list=PLU8oAlHdN5Bmx-LChV4K3MbHrpZKefNwn) | [Píldoras Informáticas](https://www.youtube.com/@pildorasinformaticas) | ✅ Terminado |
+| **Python** | [Curso de Python](https://www.youtube.com/watch?v=nKPbfIU442g) | [Soy Dalto](https://www.youtube.com/@soydalto) | 🔄 En proceso |
+| **Python** | [Curso de Python](https://www.youtube.com/watch?v=tDYr14IIu_4&list=PLU8oAlHdN5BlvPxziopYZRd55pdqFwkeS) | [Píldoras Informáticas](https://www.youtube.com/@pildorasinformaticas) | 🔄 En proceso |
+| **UML** | _por definir_ | — | ⏳ Pendiente |
 
 **Leyenda:** ✅ Terminado · 🔄 En proceso · ⏳ Pendiente
 
-> **SQL** se cursa con dos fuentes complementarias: la base ágil de **Soy Dalto** (terminado)
-> y la profundización de **Píldoras Informáticas**, que se sigue hasta cerrar cada sección
-> (pendiente solo el módulo de triggers).
+> **SQL** se cursó con dos fuentes complementarias: la base ágil de **Soy Dalto**
+> y la profundización de **Píldoras Informáticas** — ambas completadas.
+>
+> **Python** sigue el mismo esquema de dos fuentes (**Soy Dalto** + **Píldoras Informáticas**)
+> para la base del lenguaje. La ruta prevista continúa con **POO** (Soy Dalto) y luego
+> **Django** y **automatizaciones** (Píldoras Informáticas). Cada etapa se detalla en la
+> tabla al arrancar formalmente.
+>
+> **UML** y **desarrollo web frontend** quedan encolados tras cerrar Python, Django y automatizaciones.
 
 ---
 
@@ -74,7 +81,7 @@ cursos/
 - **Una rama por curso** (`curso-git`, `curso-vscode`, `curso-hosting`, `curso-sql`, `curso-python`…).
 - Ramas de sección para cursos largos (SQL: `seccion-basica`, `seccion-intermedia`, `seccion-avanzada`, `consultas-accion`, `ddl`, `triggers`; Python: prefijo `cpy-`).
 - Merge `--no-ff` a la rama del curso al cerrar un hito, y de ahí a `master` → la carpeta del curso queda incorporada.
-- Tags versionados por cierre de curso (`v1.0.0` hosting, `v2.0.0` git, `v3.0.0` vscode…).
+- Tags versionados por cierre de curso (`v1.0.0` hosting, `v2.0.0` git, `v3.0.0` vscode, `v4.0.0` sql…).
 - Commits semánticos en español.
 
 ---
@@ -94,14 +101,17 @@ Sin build step — material de estudio, scripts y esquemas planos.
 
 Los ejercicios de Python (curso SQL avanzado y curso Python) usan librerías externas
 (`pandas`, `matplotlib`). A partir del curso de Python se estandariza el uso de
-**entornos virtuales** (`venv`) por proyecto — equivalente conceptual a `vendor/` (Composer)
-o `node_modules/` (npm). El `.gitignore` ya excluye `venv/`.
+**entornos virtuales** (`.venv`) por proyecto — equivalente conceptual a `vendor/` (Composer)
+o `node_modules/` (npm). El `.gitignore` ya excluye `.venv/`.
 
 ```bash
-py -m venv .venv
-source .venv/Scripts/activate    # Git Bash en Windows
-py -m pip install -r requirements.txt
+py -m venv .venv                  # crear el entorno con Python 3.14 (launcher py)
+source .venv/Scripts/activate     # activar — Git Bash en Windows
+pip install -r requirements.txt   # ya dentro del venv, pip pelado es el correcto
 ```
+
+> Fuera del `.venv` usar siempre `py` (nunca `python`/`pip` pelados, que resolverían
+> al Python 3.13 de Laragon). Dentro del `.venv`, `python` y `pip` ya apuntan al entorno.
 
 ---
 
@@ -110,7 +120,7 @@ py -m pip install -r requirements.txt
 - Estructura resultado de varias iteraciones prueba-error hasta llegar a la arquitectura actual (rama + carpeta por curso).
 - Repo en cuenta **personal** (`manuelhm1993`), no en la organización MHenriquezCA.
 - Resolución de rutas en scripts Python: `Path(__file__).parent` para referenciar la BD relativa al script, no al directorio de ejecución.
-- Python se detallará (subcursos, ramas, carpetas) cuando arranque formalmente, tras cerrar los triggers de SQL.
+- Python se detallará (subcursos, ramas, carpetas) conforme avance cada etapa del plan.
 
 ---
 
