@@ -1,0 +1,75 @@
+═══════════════════════════════════════════════════════════
+VENV EN GIT BASH (Windows) — GUÍA DE BOLSILLO
+Python 3.14 · Curso Python · MHenriquez
+═══════════════════════════════════════════════════════════
+
+REGLA MADRE:
+  - Fuera del .venv  → siempre `py` (nunca python/pip pelados → darían el 3.13 de Laragon)
+  - Dentro del .venv → python y pip pelados YA son los correctos
+
+CONVENCIÓN: el entorno se llama `.venv` (con punto).
+  - VSCode lo detecta automáticamente y ofrece el intérprete solo.
+  - Al ser oculto, no estorba entre las carpetas de trabajo.
+
+───────────────────────────────────────────────────────────
+1. Entrar a la carpeta del curso
+───────────────────────────────────────────────────────────
+  cd /c/Users/manue/Documents/Devs/cursos/curso-python
+
+  (En Git Bash las rutas van con / y la unidad es /c/ en vez de C:\)
+
+───────────────────────────────────────────────────────────
+2. Crear el .venv CON py (garantiza Python 3.14)
+───────────────────────────────────────────────────────────
+  py -m venv .venv
+
+  → ".venv" (segundo) es el nombre de la carpeta. Se crea una sola vez.
+
+───────────────────────────────────────────────────────────
+3. Activar la burbuja
+───────────────────────────────────────────────────────────
+  source .venv/Scripts/activate
+
+  → El prompt cambia a: (.venv) usuario@maquina ...
+  → Esa es tu señal de que estás DENTRO.
+
+───────────────────────────────────────────────────────────
+4. Verificar que estás en el Python correcto
+───────────────────────────────────────────────────────────
+  python --version        # → 3.14.x
+  which python            # → .../curso-python/.venv/Scripts/python
+
+───────────────────────────────────────────────────────────
+5. Instalar dependencias del proyecto (aquí SÍ pip pelado)
+───────────────────────────────────────────────────────────
+  pip install pandas matplotlib
+
+  → Se instalan DENTRO del .venv, no contaminan Windows.
+
+───────────────────────────────────────────────────────────
+6. Congelar dependencias (buena práctica, para reproducir el entorno)
+───────────────────────────────────────────────────────────
+  pip freeze > requirements.txt
+
+  → Este archivo SÍ se versiona. Reconstruir en otra máquina:
+    pip install -r requirements.txt
+
+───────────────────────────────────────────────────────────
+7. Trabajar normal
+───────────────────────────────────────────────────────────
+  python ruta/script.py    # pelado está bien: estás en la burbuja
+
+───────────────────────────────────────────────────────────
+8. Salir de la burbuja al terminar
+───────────────────────────────────────────────────────────
+  deactivate
+
+═══════════════════════════════════════════════════════════
+NOTAS
+═══════════════════════════════════════════════════════════
+- El .venv NO se versiona (va en .gitignore). requirements.txt SÍ.
+- .gitignore: usar `.venv/` (sin slash inicial) para ignorarlo en
+  cualquier subcarpeta, no solo en la raíz.
+- Cada curso/proyecto = su propio .venv. Son burbujas independientes.
+- Lo global (pandas/matplotlib en 3.14) NO estorba a los .venv.
+═══════════════════════════════════════════════════════════
