@@ -1,0 +1,2 @@
+potenciar   = lambda base, exponente: print(f"{base} ^ {exponente} = {base ** exponente}")
+redondear   = lambda numero, n_decimales: print(f"{numero} redondeado a  {n_decimales} decimales = {round(numero, n_decimales)}")

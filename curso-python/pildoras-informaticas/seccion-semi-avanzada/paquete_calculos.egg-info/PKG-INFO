@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: paquete_calculos
+Version: 1.0.0
+Summary: Paquete de redondeo y potencia
+Home-page: https://mhenriquez.com
+Author: MHenriquez
+Author-email: manuelhm1993@gmail.com
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: summary
