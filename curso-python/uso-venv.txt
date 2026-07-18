@@ -72,4 +72,5 @@ NOTAS
   cualquier subcarpeta, no solo en la raíz.
 - Cada curso/proyecto = su propio .venv. Son burbujas independientes.
 - Lo global (pandas/matplotlib en 3.14) NO estorba a los .venv.
+- Para instalar las dependencias del proyecto: pip install -r requirements.txt
 ═══════════════════════════════════════════════════════════
