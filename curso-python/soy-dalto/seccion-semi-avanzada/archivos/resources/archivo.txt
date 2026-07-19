@@ -1,0 +1,10 @@
+Acabas de escribir un archivo con Python
+Felicidades.
+Prueba de añadir
+Felicidades.
+MHenriquez pronto será una empresa reconocida.
+- Línea 1 agregada
+- Línea 2 agregada
+- Línea 3 agregada
+- Línea 4 agregada
+- Línea 5 agregada
