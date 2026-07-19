@@ -16,7 +16,8 @@ furgoneta = Furgoneta("Renault", "Kangoo")
 furgoneta.arranchar()
 furgoneta.estado()
 
-print(furgoneta.carga(True))
+print(furgoneta.carga(True), end="\n\n")
 
 # Instanciar una bicicleta eléctrica que maneja múltiple herencia
-bicicleta_electrica = BicicletaElectrica()
+bicicleta_electrica = BicicletaElectrica("Xiaomi", "Qicycle")
+bicicleta_electrica.estado()
