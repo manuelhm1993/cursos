@@ -1,8 +1,9 @@
 from persona import Persona
 from artista import Artista
 from empleado_artista import EmpleadoArtista
+from typing import type
 
-def validar_herencia(clase1, clase2) -> bool:
+def validar_herencia(clase1: type, clase2: type) -> bool:
     return issubclass(clase1, clase2)
 
 def validar_instancia(obj: EmpleadoArtista) -> bool:
