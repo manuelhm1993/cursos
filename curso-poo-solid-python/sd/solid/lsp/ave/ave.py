@@ -1,0 +1,2 @@
+class Ave:
+    pass
