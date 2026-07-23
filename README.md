@@ -29,13 +29,15 @@ registrado fue **hosting** — de ese merge inicial se ramificó el resto.
 
 ```
 cursos/
-├── curso-hosting/              → rama: curso-hosting  (semilla del repo)
-├── curso-git/                  → rama: curso-git
-├── curso-vscode/               → rama: curso-vscode
-├── curso-sql/                  → rama: curso-sql 
-├── curso-python/               → rama: curso-python 
-├── curso-poo-solid-python/     → rama: curso-poo-solid-python
-└── curso-master-python/        → rama: curso-master-python  (en proceso)
+├── curso-hosting/              → rama:    curso-hosting  (semilla del repo)
+├── curso-git/                  → rama:    curso-git
+├── curso-vscode/               → rama:    curso-vscode
+├── curso-sql/                  → rama:    curso-sql 
+├── curso-python/               → carpeta: agrupa-distribuciones
+│   ├── fundamentos/            → rama:    curso-python
+│   ├── poo-solid/              → rama:    curso-poo-solid-python
+│   └── senior/                 → rama:    curso-python-senior  (en proceso)
+└── curso-siguiente/
 ```
 
 > El detalle operativo del progreso vive en Trello (espacio *Aprendizaje*).
