@@ -29,19 +29,13 @@ registrado fue **hosting** — de ese merge inicial se ramificó el resto.
 
 ```
 cursos/
-├── curso-hosting/          → rama: curso-hosting  (semilla del repo)
-├── curso-git/              → rama: curso-git
-├── curso-vscode/           → rama: curso-vscode
-├── curso-sql/              → rama: curso-sql (+ ramas de sección)
-│   ├── pildoras-informaticas/
-│   └── soy-dalto/
-│       ├── resources/
-│       │   └── databases/  → northwind.db (fuente única de datos)
-│       ├── seccion-basica/
-│       ├── seccion-intermedia/
-│       └── seccion-avanzada/
-│           └── python/     → SQL + Python + pandas + matplotlib
-└── curso-python/           → rama: curso-python  (en proceso)
+├── curso-hosting/              → rama: curso-hosting  (semilla del repo)
+├── curso-git/                  → rama: curso-git
+├── curso-vscode/               → rama: curso-vscode
+├── curso-sql/                  → rama: curso-sql 
+├── curso-python/               → rama: curso-python 
+├── curso-poo-solid-python/     → rama: curso-poo-solid-python
+└── curso-master-python/        → rama: curso-master-python  (en proceso)
 ```
 
 > El detalle operativo del progreso vive en Trello (espacio *Aprendizaje*).
@@ -78,10 +72,10 @@ cursos/
 
 ## Convención de trabajo
 
-- **Una rama por curso** (`curso-git`, `curso-vscode`, `curso-hosting`, `curso-sql`, `curso-python`…).
-- Ramas de sección para cursos largos (SQL: `seccion-basica`, `seccion-intermedia`, `seccion-avanzada`, `consultas-accion`, `ddl`, `triggers`; Python: prefijo `cpy-`).
+- **Una rama por curso** (`curso-git`, `curso-vscode`, `curso-hosting`, `curso-sql`, `curso-python`, `curso-poo-solid-python`…).
+- Ramas de sección para cursos largos (SQL: `seccion-basica`, `seccion-intermedia`, `seccion-avanzada`…).
 - Merge `--no-ff` a la rama del curso al cerrar un hito, y de ahí a `master` → la carpeta del curso queda incorporada.
-- Tags versionados por cierre de curso (`v1.0.0` hosting, `v2.0.0` git, `v3.0.0` vscode, `v4.0.0` sql…).
+- Tags versionados por cierre de curso (`v1.0.0` hosting, `v2.0.0` git, `v3.0.0` vscode, `v4.0.0` sql, `v5.0.0` python…).
 - Commits semánticos en español.
 
 ---
