@@ -26,4 +26,4 @@ if __name__ == "__main__":
 
     except ValueError as e:
         # Atrapa el error si falta el .env
-        print(f"\x1b[1;31m{e}\x1b[0m")
+        print(e)

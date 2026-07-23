@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from ..bot.formatear import Formatear
 
 # 1. Calculamos la ruta base del proyecto (estilo el base_path() de Laravel)
 # __file__ es este archivo (config/settigs.py) .parent es config/ .parent.parent es la raíz (sentimientos_open_router/)
@@ -16,7 +17,7 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 if not OPENROUTER_API_KEY:
     # El comando "\x1b[1;31m" pinta de rojo la consola
-    raise ValueError(f"{"\x1b[1;31m"}Error Crítico: No se encontró la KEY en la ruta: {PATH_ENV}")
+    raise ValueError(f"{Formatear._ROJO}Error Crítico: No se encontró la KEY en la ruta: {PATH_ENV}{Formatear._RESET}")
 
 # 4. Definimos el resto de configuraciones como constantes globales limpias
 BASE_URL    = "https://openrouter.ai/api/v1"
