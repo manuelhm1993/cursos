@@ -1,5 +1,5 @@
 import tkinter as tk
-from .primera_interface import App
+from widgets.root.primera_interface import App
 
 # Punto de entrada del programa
 if __name__ == "__main__":

@@ -1,5 +1,7 @@
 import tkinter as tk
-from ..core.settings import ASSETS_PATH
+
+# Se usan imports absolutos porque la ejecución del main pierde referencias relativas
+from core.settings import ASSETS_PATH
 
 class App:
     def __init__(self, root: tk.Tk) -> None:
