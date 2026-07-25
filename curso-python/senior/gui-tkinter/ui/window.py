@@ -1,6 +1,6 @@
 import tkinter as tk
 from core.settings import ASSETS_PATH
-from widgets.ui.interfaces import ViewInterface
+from ui.interfaces import ViewInterface
 
 class MainWindow:
     def __init__(self, root: tk.Tk, title: str, view: ViewInterface, favicon: str = ASSETS_PATH / "favicon.ico") -> None:

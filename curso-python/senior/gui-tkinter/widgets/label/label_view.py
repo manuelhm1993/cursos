@@ -1,5 +1,5 @@
 import tkinter as tk
-from widgets.ui.interfaces import ViewInterface
+from ui.interfaces import ViewInterface
 from core.settings import ASSETS_PATH
 
 class LabelView(ViewInterface):

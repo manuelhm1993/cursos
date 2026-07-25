@@ -1,8 +1,8 @@
 import tkinter as tk
 # from widgets.root.primera_interface import App
 # from widgets.frame.uso_frames import App
+from ui.window import MainWindow
 from widgets.label.label_view import LabelView
-from widgets.ui.window import MainWindow
 
 # Punto de entrada del programa
 if __name__ == "__main__":
