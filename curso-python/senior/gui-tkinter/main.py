@@ -1,8 +1,9 @@
 import tkinter as tk
 # from widgets.root.primera_interface import App
 # from widgets.frame.uso_frames import App
+# from widgets.label.label_view import LabelView
+from widgets.entry.entry_view import EntryView
 from ui.window import MainWindow
-from widgets.label.label_view import LabelView
 
 # Punto de entrada del programa
 if __name__ == "__main__":
@@ -10,10 +11,10 @@ if __name__ == "__main__":
     root = tk.Tk()
 
     # Instanciamos la vista concreta
-    main_view = LabelView(500, 400)
+    main_view = EntryView(1200, 600)
 
     # Inyectamos la raíz en nuestra clase
-    app = MainWindow(root, "GUI TKinter - Uso labels", main_view)
+    app = MainWindow(root, "GUI TKinter - Uso Entries", main_view)
     app.redimensionar(True)
 
     # Arrancamos el mainloop (bucle infinito que escucha eventos)

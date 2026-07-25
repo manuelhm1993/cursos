@@ -1,6 +1,5 @@
 import tkinter as tk
 from ui.interfaces import ViewInterface
-from core.settings import ASSETS_PATH
 
 class LabelView(ViewInterface):
     def __init__(self, ancho: int, alto: int) -> None:
