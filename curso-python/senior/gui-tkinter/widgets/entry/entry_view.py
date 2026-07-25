@@ -12,6 +12,9 @@ class EntryView(ViewInterface):
             "Nombre:", "Contraseña:", "Apellido:", "Dirección de casa:"
         ]
 
+        # EL Diccionario para guardar las referencias de los inputs
+        self._entries: dict[str, tk.Entry] = {}
+
     # ------------------------------- Decoradores
     @property
     def lista_formulario(self) -> list[str]:
@@ -54,6 +57,9 @@ class EntryView(ViewInterface):
 
             if elemento == "Contraseña:":
                 text_box.config(show="*")
+
+            # Guardamos el objeto en el diccionario usando el nombre como llave
+            self._entries[elemento] = text_box
 
             # index representa la fila directamente si asumimos 1 campo por fila
             tag.grid(row=index, column=0, sticky="e", padx=10, pady=10)
