@@ -1,16 +1,15 @@
 import tkinter as tk
 from core.settings import ASSETS_PATH
-from widgets.app.view_interface import ViewInterface
+from widgets.ui.interfaces import ViewInterface
 
-class Root:
-    def __init__(self, root: tk.Tk, title: str, view: tk.Frame, ancho: int, alto: int, favicon: str = ASSETS_PATH / "favicon.ico") -> None:
+class MainWindow:
+    def __init__(self, root: tk.Tk, title: str, view: ViewInterface, favicon: str = ASSETS_PATH / "favicon.ico") -> None:
         self._root = root
         self._root.title(title)
-        self._root.resizable(False, False)
         self._root.iconbitmap(favicon)
 
         # Inversión de control: Root le presta su ventana al Builder
-        self._main_frame = view
+        self._main_frame = view.build_frame(self._root)
 
         # Ahora sí, calcula las dimensiones del frame recién construido
         self._centrar_ventana()
@@ -28,3 +27,6 @@ class Root:
         y = int((alto_pantalla - alto) / 2)
 
         self._root.geometry(f"{ancho}x{alto}+{x}+{y}")
+
+    def redimensionar(self, accion: bool) -> None:
+        self._root.resizable(False, False) if not accion else self._root.resizable(1, 1)
