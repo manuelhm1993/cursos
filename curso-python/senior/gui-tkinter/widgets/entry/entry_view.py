@@ -48,25 +48,14 @@ class EntryView(ViewInterface):
 
         
     def _crear_formulario(self, frame, lista_elementos: list[str]) -> None:
-        row    = 0
-        column = 0
-
-        for elemento in lista_elementos:
-            tag      = tk.Label(frame, text=elemento)
+        for index, elemento in enumerate(lista_elementos):
+            tag = tk.Label(frame, text=elemento)
             text_box = tk.Entry(frame)
 
-            # Más configuraciones de Entry
             if elemento == "Contraseña:":
                 text_box.config(show="*")
 
-            # Sticky ubica los textos del label como un justificado con los puntos cardinales
-            tag.grid(row=row, column=column, sticky="e", padx=10, pady=10)
-            column += 1
-
-            text_box.grid(row=row, column=column, padx=10, pady=10, sticky="w")
-            column += 1
-
-            if column == 2:
-                row += 1
-                column = 0
+            # index representa la fila directamente si asumimos 1 campo por fila
+            tag.grid(row=index, column=0, sticky="e", padx=10, pady=10)
+            text_box.grid(row=index, column=1, padx=10, pady=10, sticky="w")
         
