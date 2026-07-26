@@ -31,7 +31,7 @@ class CalculatorView(ViewInterface):
         }
         self._ref_botones: dict[str, tk.Button] = {}
         self._lista_operandos: list[str] = []
-        self._siguiente = False
+        self._limpiar_pantalla = False
         self._operacion = ""
 
     # --------------------------------- Método de interfaz: Constructore de main_frame
@@ -80,6 +80,7 @@ class CalculatorView(ViewInterface):
     def _click_button(self, e: tk.Event) -> None:
         command = e.widget.cget("text")
 
+        # El diccionario enruta a los métodos reales
         operaciones = {
             "+": CalculatorEngine.sumar,
             "-": "self._operacion",
@@ -88,29 +89,49 @@ class CalculatorView(ViewInterface):
             "=": "self._operacion"
         }
 
-        # Uso de lambda para llamar a una función con parámetros
-        action = operaciones.get(command, lambda : self._escribir_pantalla(command))
+        # 1. Si es un número o punto, simplemente escribimos
+        if command not in operaciones:
+            self._escribir_pantalla(command)
+            return
 
-        if command not in ("+", "-", "x", "/", "="):
-            action()
+        # 2. Si es una operación matemática, guardamos el número actual en la memoria
+        valor_actual = self._pantalla.get()
+        self._lista_operandos.append(valor_actual)
+        self._limpiar_pantalla = True
+
+        # 3. Lógica de evaluación: Si ya hay 2 o más números y veníamos de sumar
+        if len(self._lista_operandos) >= 2 and self._operacion == "+":
+            # EXTRAEMOS Y EJECUTAMOS el método estático pasando la lista desempaquetada
+            funcion_matematica = operaciones["+"]
+            resultado = funcion_matematica(*self._lista_operandos)
+            
+            # Limpiamos y mostramos el resultado (convertido a string)
+            self._pantalla.delete(0, tk.END)
+            self._pantalla.insert(0, str(resultado))
+            
+            # El resultado se convierte en el nuevo primer operando para seguir calculando
+            self._lista_operandos = [str(resultado)]
+
+        # 4. Gestión del operador para el siguiente ciclo
+        if command == "=":
+            self._operacion = ""        # Cerramos el ciclo
+            self._lista_operandos = []  # Vaciamos la memoria
         else:
-            self._lista_operandos.append(self._pantalla.get())
-            self._siguiente = True
-
-            if len(self._lista_operandos) > 0 and self._operacion in ("+", "="):
-                self._pantalla.delete(0, tk.END)
-                self._pantalla.insert(0, operaciones["+"](*self._lista_operandos))
-
-            self._operacion = command
+            self._operacion = command   # Guardamos qué operación se hará luego
 
     def _escribir_pantalla(self, command: str) -> None:
-        if self._pantalla.get() not in ("0", "."):
-            if self._siguiente:
-                self._siguiente = False
-                self._pantalla.delete(0, tk.END)
-                self._pantalla.insert(0, command)
-            else:
-                self._pantalla.insert(tk.END, command)
+        estado_actual = self._pantalla.get()
+
+        # Si el flag está activo, borramos la pantalla y apagamos el flag
+        if self._limpiar_pantalla:
+            self._pantalla.delete(0, tk.END)
+            self._pantalla.insert(0, command)
+            self._limpiar_pantalla = False  # El flag se consume a sí mismo
+            return
+
+        # Comportamiento normal
+        if estado_actual not in ("0", "."):
+            self._pantalla.insert(tk.END, command)
         else: 
             self._pantalla.delete(0, tk.END)
             self._pantalla.insert(0, command)
