@@ -1,5 +1,7 @@
 import tkinter as tk
 from ui.interfaces import ViewInterface
+from collections.abc import Callable
+from logic.calculator_engine import CalculatorEngine
 
 class CalculatorView(ViewInterface):
     # --------------------------------- Método constructor
@@ -28,6 +30,9 @@ class CalculatorView(ViewInterface):
             "sumar": "+",
         }
         self._ref_botones: dict[str, tk.Button] = {}
+        self._lista_operandos: list[str] = []
+        self._siguiente = False
+        self._operacion = ""
 
     # --------------------------------- Método de interfaz: Constructore de main_frame
     def build_frame(self, master: tk.Tk) -> tk.Frame:
@@ -54,8 +59,12 @@ class CalculatorView(ViewInterface):
             row, col = divmod(index, 4)
             
             boton = tk.Button(frame, text=valor, width=3)
+
+            # Vincular el botón al evento click para capturar el objeto evento
+            boton.bind("<Button-1>", self._click_button)
+
             boton.grid(row=(row + 1), column=col, padx=3, pady=3)
-            
+
             self._ref_botones[clave] = boton
 
         # Liberar recursos que no se utilizarán de nuevo
@@ -66,6 +75,45 @@ class CalculatorView(ViewInterface):
 
         self._pantalla.insert(0, "0")
         self._pantalla.grid(row=0, column=0, columnspan=4, padx=5, pady=5)
+
+    # --------------------------------- Métodos privados: Manejadores de eventos
+    def _click_button(self, e: tk.Event) -> None:
+        command = e.widget.cget("text")
+
+        operaciones = {
+            "+": CalculatorEngine.sumar,
+            "-": "self._operacion",
+            "x": "self._operacion",
+            "/": "self._operacion",
+            "=": "self._operacion"
+        }
+
+        # Uso de lambda para llamar a una función con parámetros
+        action = operaciones.get(command, lambda : self._escribir_pantalla(command))
+
+        if command not in ("+", "-", "x", "/", "="):
+            action()
+        else:
+            self._lista_operandos.append(self._pantalla.get())
+            self._siguiente = True
+
+            if len(self._lista_operandos) > 0 and self._operacion in ("+", "="):
+                self._pantalla.delete(0, tk.END)
+                self._pantalla.insert(0, operaciones["+"](*self._lista_operandos))
+
+            self._operacion = command
+
+    def _escribir_pantalla(self, command: str) -> None:
+        if self._pantalla.get() not in ("0", "."):
+            if self._siguiente:
+                self._siguiente = False
+                self._pantalla.delete(0, tk.END)
+                self._pantalla.insert(0, command)
+            else:
+                self._pantalla.insert(tk.END, command)
+        else: 
+            self._pantalla.delete(0, tk.END)
+            self._pantalla.insert(0, command)
 
     # --------------------------------- Decoradores
     @property
