@@ -29,6 +29,9 @@ venv/
 __pycache__/
 *.pyc
 
+# C++
+*.exe
+
 # Java
 # Archivos compilados
 *.class
