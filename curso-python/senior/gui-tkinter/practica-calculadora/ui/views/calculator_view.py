@@ -47,24 +47,16 @@ class CalculatorView(ViewInterface):
         self._construir_botones(frame)
 
     def _construir_botones(self, frame: tk.Frame) -> None:
-        claves_valores = self._botones.items()
-        i      = 0
-        row    = 1
-        column = 0
-
-        for clave, valor in claves_valores:
+        for index, (clave, valor) in enumerate(self._botones.items()):
+            # divmod(index, 4) divide por 4 y te devuelve (cociente, residuo)
+            # Ej: index 5 -> divmod(5, 4) = (1, 1) -> Fila 1, Columna 1
+            # Importante: Para que no pise la pantalla (fila 0), sumamos 1 a la fila.
+            row, col = divmod(index, 4)
+            
             boton = tk.Button(frame, text=valor, width=3)
-            boton.grid(row=row, column=column, padx=3, pady=3)
-
+            boton.grid(row=(row + 1), column=col, padx=3, pady=3)
+            
             self._ref_botones[clave] = boton
-
-            if i > 0 and i % 3 == 0:
-                row += 1
-                column = 0
-                i = 0
-            else:
-                column += 1
-                i += 1
 
         # Liberar recursos que no se utilizarán de nuevo
         del self._botones
