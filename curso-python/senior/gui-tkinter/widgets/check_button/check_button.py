@@ -40,16 +40,14 @@ class CheckButtonView(ViewInterface):
         self._confirmacion_viaje.pack(pady=20)
 
     def _imprimir_destinos(self):
-        # Recorremos el diccionario. Si el IntVar tiene un 1, está seleccionado.
-        cadena = ""
+        # 1. Filtramos directamente los destinos que tengan valor 1 usando List Comprehension
+        seleccionados = [destino for destino, variable in self._destinos.items() if variable.get() == 1]
 
-        # Si no hay ningún valor seleccionado
-        if not any(var.get() for var in self._destinos.values()):
+        # 2. Guardia temprana (Early Return) verificando si la lista está vacía
+        if not seleccionados:
             self._confirmacion_viaje.config(text="")
             return
 
-        for destino, variable in self._destinos.items():
-            if variable.get() == 1:
-                cadena += destino if cadena == "" else f", {destino}"
-
-                self._confirmacion_viaje.config(text=f"Itinerario: {cadena}")
+        # 3. .join() se encarga de poner las comas mágicamente solo entre los elementos
+        cadena = ", ".join(seleccionados)
+        self._confirmacion_viaje.config(text=f"Itinerario: {cadena}")
