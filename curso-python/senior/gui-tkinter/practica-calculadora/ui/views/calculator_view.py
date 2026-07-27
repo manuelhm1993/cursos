@@ -83,10 +83,10 @@ class CalculatorView(ViewInterface):
         # El diccionario enruta a los métodos reales
         operaciones = {
             "+": CalculatorEngine.sumar,
-            "-": "self._operacion",
-            "x": "self._operacion",
-            "/": "self._operacion",
-            "=": "self._operacion"
+            "-": CalculatorEngine.restar,
+            "x": CalculatorEngine.multiplicar,
+            "/": CalculatorEngine.dividir,
+            "=": "totalizar"
         }
 
         # 1. Si es un número o punto, simplemente escribimos
@@ -96,13 +96,17 @@ class CalculatorView(ViewInterface):
 
         # 2. Si es una operación matemática, guardamos el número actual en la memoria
         valor_actual = self._pantalla.get()
-        self._lista_operandos.append(valor_actual)
+
+        # Validar el punto flotante para las conversiones de división
+        decimal = valor_actual.find(".")
+        self._lista_operandos.append(valor_actual if decimal == -1 else valor_actual[0:decimal])
+        
         self._limpiar_pantalla = True
 
-        # 3. Lógica de evaluación: Si ya hay 2 o más números y veníamos de sumar
-        if len(self._lista_operandos) >= 2 and self._operacion == "+":
+        # 3. Lógica de evaluación: Si ya hay 2 o más números y no es totalizar
+        if len(self._lista_operandos) >= 2 and self._operacion != "=":
             # EXTRAEMOS Y EJECUTAMOS el método estático pasando la lista desempaquetada
-            funcion_matematica = operaciones["+"]
+            funcion_matematica = operaciones[self._operacion]
             resultado = funcion_matematica(*self._lista_operandos)
             
             # Limpiamos y mostramos el resultado (convertido a string)
