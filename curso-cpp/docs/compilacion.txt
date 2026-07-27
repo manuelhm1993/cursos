@@ -1,4 +1,5 @@
 Proceso de compilación:
+--------------------------------------------------------------------------------------
 1. Preprocesado: ver todas las directivas e instrucciones que se incluyen para
 importar librerías. Trae las librerías y genera un fichero que incluye todo el código 
 de las librerías.
@@ -7,3 +8,18 @@ de la máquina donde se ejecuta la compilación.
 3. Ensamblado: transformar las instrucciones de ensamblado del paso 2 a código binario
 4. Enlazado: fusionar todos los archivos que se generaron en pasos anteriores en un
 archivo ejecutable que finalmente será leído, interpretado y ejecutado por la máquina.
+--------------------------------------------------------------------------------------
+Bugs:
+1. Por defecto Git Bash usa las \ para escapar caracteres, es distinto a windows y como
+el compilador g++ usa la arquitectura y el sistema anfitrión al usar c++ se debe usar
+la terminal nativa del sistema
+--------------------------------------------------------------------------------------
+Fuera de c++: 
+{
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+}
+--------------------------------------------------------------------------------------
+Dentro de c++:
+{
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+}
