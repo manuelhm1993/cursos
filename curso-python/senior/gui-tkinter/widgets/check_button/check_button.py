@@ -43,7 +43,8 @@ class CheckButtonView(ViewInterface):
         # Recorremos el diccionario. Si el IntVar tiene un 1, está seleccionado.
         cadena = ""
 
-        if sum([*map(lambda n: n.get(), self._destinos.values())]):
+        # Si no hay ningún valor seleccionado
+        if not any(var.get() for var in self._destinos.values()):
             self._confirmacion_viaje.config(text="")
             return
 
