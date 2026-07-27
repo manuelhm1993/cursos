@@ -4,7 +4,9 @@ import tkinter as tk
 # from widgets.label.label_view import LabelView
 # from widgets.entry.entry_view import EntryView
 # from widgets.text_scrollbar.text_scroll_bar_view import TextScrollBarView
-from widgets.button.button_view import ButtonView
+# from widgets.button.button_view import ButtonView
+# from widgets.radio_button.radio_button_view import RadioButtonView
+from widgets.check_button.check_button import CheckButtonView
 from ui.window import MainWindow
 
 # Punto de entrada del programa
@@ -13,10 +15,10 @@ if __name__ == "__main__":
     root = tk.Tk()
 
     # Instanciamos la vista concreta
-    main_view = ButtonView(1200, 600)
+    main_view = CheckButtonView(500, 350)
 
     # Inyectamos la raíz en nuestra clase
-    app = MainWindow(root, "GUI TKinter - Uso Button", main_view)
+    app = MainWindow(root, "GUI TKinter - Uso RadioButton", main_view)
     app.redimensionar(True)
 
     # Arrancamos el mainloop (bucle infinito que escucha eventos)
