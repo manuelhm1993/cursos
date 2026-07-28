@@ -1,0 +1,8 @@
+PASOS PARA CONECTAR CON UNA BBDD
+1. Abrir-Crear conexión
+2. Crear un puntero o cursor
+3. Ejecutar query (consulta SQL)
+4. Manejar los resultados de la query
+    4.1. Insetar, Leer, Actualizar, Borrar (CRUD - Create, Read, Update, Delete)
+5. Cerrar el puntero o cursor
+6. Cerrar conexión
