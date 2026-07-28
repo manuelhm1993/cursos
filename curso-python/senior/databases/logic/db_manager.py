@@ -15,18 +15,9 @@ class DBManager:
     _query_insert = """
     INSERT INTO productos (nombre_articulo, seccion, precio) 
     VALUES
-    ("BALÓN", "DEPORTES", 15)
+    (?, ?, ?)
     """
     _query_select = "SELECT * FROM productos"
-
-    _dict_productos = {
-        "query": "INSERT INTO productos (nombre_articulo, seccion, precio) VALUES (?, ?, ?)",
-        "registros": [
-            ("Camiseta", "Deportes", 10),
-            ("Jarrón", "Cerámica", 90),
-            ("Camión", "Juguetería", 20)
-        ]
-    }
 
     # ----------------------------------------- Static funcionales no saben que pertenecen a la clase
     @staticmethod
@@ -43,7 +34,7 @@ class DBManager:
 
     # ----------------------------------------- Static de clase, pueden usar cls para referenciar a la clase y sus propiedades
     @classmethod
-    def select_all_productos(cls) -> None:
+    def select_all_productos(cls) -> list[tuple]:
         try:
             with closing(sqlite3.connect(DB_PATH)) as conn:
                 with conn:
@@ -56,25 +47,22 @@ class DBManager:
 
                     cursor.close()
 
-            print(f"✅ Registros obtenidos: {productos}")
+                    print(f"✅ Productos obtenidos exitosamente")
 
-            for producto in productos:
-                id, nombre, seccion, precio = producto
-
-                print(f"Descripción del artículo {id}: \n- Nombre: {nombre} \n- Sección: {seccion} \n- Precio: {precio}")
-
+            return productos
         except sqlite3.Error as e:
             print(f"❌ Error de base de datos: {e}")
+            return []
 
     @classmethod
-    def insetar_multiples_registros(cls) -> None:
+    def insetar_multiples_registros(cls, registros: list[tuple]) -> None:
         try:
             with closing(sqlite3.connect(DB_PATH)) as conn:
                 with conn:
                     cursor = conn.cursor()
 
                     # Insertar una lista de valores
-                    cursor.executemany(cls._dict_productos["query"], cls._dict_productos["registros"])
+                    cursor.executemany(cls._query_insert, registros)
 
                     cursor.close()
 
@@ -83,13 +71,13 @@ class DBManager:
             print(f"❌ Error de base de datos: {e}")
 
     @classmethod
-    def insertar_registros(cls) -> None:
+    def insertar_registro(cls, nombre: str, seccion: str, precio: float) -> None:
         try:
             with closing(sqlite3.connect(DB_PATH)) as conn:
                 with conn:
                     cursor = conn.cursor()
 
-                    cursor.execute(cls._query_insert)
+                    cursor.execute(cls._query_insert, (nombre, seccion, precio))
 
                     cursor.close()
 
