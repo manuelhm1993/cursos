@@ -7,7 +7,7 @@ class DBManager:
     _query_create = """
     CREATE TABLE IF NOT EXISTS productos (
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-        nombre_articulo VARCHAR(255),
+        nombre_articulo VARCHAR(255) UNIQUE,
         seccion VARCHAR(255),
         precio DOUBLE(16,2)
     )
@@ -33,6 +33,64 @@ class DBManager:
             print(f"❌ Error al conectar con SQLite: {e}")
 
     # ----------------------------------------- Static de clase, pueden usar cls para referenciar a la clase y sus propiedades
+    @classmethod
+    def delete_producto_id(cls, id: int) -> None:
+        try:
+            with closing(sqlite3.connect(DB_PATH)) as conn:
+                with conn:
+                    cursor = conn.cursor()
+
+                    query = "DELETE FROM productos WHERE id = ?"
+
+                    cursor.execute(query, (id,))
+
+                    filas_afectadas = cursor.rowcount
+
+                    cursor.close()
+
+            print(f"✅ Operación exitosa cantidad de registros afectados {filas_afectadas}")
+        except sqlite3.Error as e:
+            print(f"❌ Error de base de datos: {e}")
+
+    @classmethod
+    def update_producto_id(cls, id: int, precio: float) -> None:
+        try:
+            with closing(sqlite3.connect(DB_PATH)) as conn:
+                with conn:
+                    cursor = conn.cursor()
+
+                    query = "UPDATE productos SET precio = ? WHERE id = ?"
+
+                    cursor.execute(query, (precio, id))
+
+                    filas_afectadas = cursor.rowcount
+
+                    cursor.close()
+
+            print(f"✅ Operación exitosa cantidad de registros afectados {filas_afectadas}")
+        except sqlite3.Error as e:
+            print(f"❌ Error de base de datos: {e}")
+
+    @classmethod
+    def select_productos_seccion(cls, seccion: str) -> list[tuple]:
+        try:
+            with closing(sqlite3.connect(DB_PATH)) as conn:
+                with conn:
+                    cursor = conn.cursor()
+
+                    query = "SELECT * FROM productos WHERE seccion like ?"
+
+                    cursor.execute(query, (seccion,))
+
+                    productos = cursor.fetchall()
+
+                    cursor.close()
+
+            return productos
+        except sqlite3.Error as e:
+            print(f"❌ Error de base de datos: {e}")
+            return []
+
     @classmethod
     def select_all_productos(cls) -> list[tuple]:
         try:
