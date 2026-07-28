@@ -1,0 +1,25 @@
+Barra de menú
+1. BBDD
+    1. Conectar: crear | conecta con la db usuarios y da un messagebox de feedback
+    2. Salir:    messagebox para confirmar el cierre
+2. Borrar
+    1. Borrar campos: limpia los campos del formulario
+3. CRUD
+    1. Crear: hace la operación en db
+    2. Leer: hace la operación en db
+    3. Actualizar: hace la operación en db
+    4. Borrar: hace la operación en db
+4. Ayuda
+    1. Licencia
+    2. Acerca de...
+
+Schema DB usuarios:
+- id primary key
+- nombre_usuario varchar(50)
+- password varchar(16)
+- apellido varchar(50)
+- direccion varchar(255)
+- comentarios text
+
+Los campos de la DB son los mimos que en la GUI y además los botones hacen lo mismo
+que los menú CRUD
