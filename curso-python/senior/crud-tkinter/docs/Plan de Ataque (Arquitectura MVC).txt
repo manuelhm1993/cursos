@@ -1,0 +1,8 @@
+Plan de Ataque (Arquitectura MVC)
+Para mantener la cohesión y no mezclar la base de datos con la interfaz prematuramente, este es el orden que te exijo:
+
+Etapa 1: El Cascarón (La Vista). Construye únicamente la clase de la interfaz gráfica (ui/main_window.py). Renderiza la barra de menús, las etiquetas, las entradas de texto y los botones. Solo la parte visual, las funciones command pueden apuntar a un simple print() o pass por ahora.
+
+Etapa 2: El Motor (El Modelo). Refactorizaremos tu logic/db_manager.py para crear la tabla de usuarios con tu nuevo esquema y prepararemos las consultas CRUD.
+
+Etapa 3: El Ensamblaje (El Controlador). Enlazaremos la Vista con el Motor, inyectando los datos de los Entries hacia SQLite y manejando los popups de messagebox.

@@ -27,6 +27,30 @@ class UserModel:
     }
 
     @classmethod
+    def ultimo_usuario(cls) -> tuple | None:
+        conn = cls._obtener_conexion()
+
+        data = {
+            "ULTIMO_USUARIO": 
+            """
+            SELECT * FROM usuarios WHERE id=(
+                    SELECT MAX(id) FROM usuarios
+                )
+            """
+        }
+
+        try:
+            # Consultar la tabla del sistema sqlite_master
+            cursor = conn.execute(data["ULTIMO_USUARIO"])
+    
+            # Obtener el resultado
+            resultado = cursor.fetchone()
+
+            return resultado
+        except sqlite3.Error as e:
+            return ("Error", f"Error al validar la tabla: {e}")
+
+    @classmethod
     def _validar_conexion_tabla_usuarios(cls, conn: sqlite3.Connection) -> tuple | None:
         data = {
             "SELECT": "SELECT name FROM sqlite_master WHERE type='table' AND name=?",

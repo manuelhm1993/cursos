@@ -10,10 +10,10 @@ sys.path.append(BASE_DIR)
 
 # 2. Ahora hacemos una importación ABSOLUTA (sin los dos puntos iniciales)
 from core.settings import DB_USUSARIOS
+from logic.user_model import UserModel
 
-import sqlite3
-
-if __name__ == "__main__":
+def uso_singleton():
+    import sqlite3
 
     class SQLiteSingleton:
         _instancia = None  # Aquí guardaremos el objeto único
@@ -52,3 +52,12 @@ if __name__ == "__main__":
 
     # Prueba de fuego (Demostración de memoria RAM)
     print(db1 is db2) # ✅ TRUE. Son exactamente el mismo objeto. No abriste 2 archivos.
+
+
+if __name__ == "__main__":
+    UserModel.crear_tabla_usuarios()
+    UserModel.crear_usuario(("Manuel", "1234", "Henriquez", "Mi casa", "Te amo Sugey"))
+
+    usuario = UserModel.ultimo_usuario()
+
+    print(usuario)
