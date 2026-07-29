@@ -9,6 +9,7 @@ class InterfaceView(ABC):
         self._alto = alto
 
     # ------------------------------------ Métodos abstractos
+    @abstractmethod
     def construir_frame(self, master: tk.Tk) -> tk.Frame:
         pass
 

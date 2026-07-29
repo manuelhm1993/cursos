@@ -1,8 +1,5 @@
-import tkinter as tk
-
 from core.settings import ASSETS
-from ui.interfaces.interface_view import InterfaceView
-from ui.main_view import MainView
+from ui.interfaces.interface_view import InterfaceView, tk
 
 class BaseView:
     # ---------------------------- Método constructor

@@ -1,6 +1,4 @@
-import tkinter as tk
-
-from ui.interfaces.interface_view import InterfaceView
+from ui.interfaces.interface_view import InterfaceView, tk
 
 class MainView(InterfaceView):
     # ------------------------------ Método constructor
@@ -12,11 +10,12 @@ class MainView(InterfaceView):
             ("BBDD", ("Conectar", "Salir")),
             ("Borrar", ("Borrar campos",)),
             ("CRUD", ("Crear", "Leer", "Actualizar", "Borrar")),
-            ("Ayuda", ("Licencia", "Acerca de")),
+            ("Ayuda", ("Licencia", "Acerca de..."))
         )
 
         self._botones_crud = ("Create", "Read", "Update", "Delete")
 
+        # Variables de estado, permiten conservar la referencia a los widgets
         self._id          = tk.StringVar()
         self._nombre      = tk.StringVar()
         self._password    = tk.StringVar()
@@ -78,20 +77,8 @@ class MainView(InterfaceView):
 
 
     def _construir_botones_crud(self, frame: tk.Frame) -> None:
-        n_botones = len(self._botones_crud)
-
-        for i in range(n_botones):
-            tk.Button(frame, text=self._botones_crud[i]).grid(row=0, column=i, padx=10, pady=10)
-
-        # btn_create = tk.Button(frame, text="Create")
-        # btn_reade = tk.Button(frame, text="Read")
-        # btn_update = tk.Button(frame, text="Update")
-        # btn_delete = tk.Button(frame, text="Delete")
-
-        # btn_create.grid(row=0, column=0, padx=10, pady=10)
-        # btn_reade.grid(row=0, column=1, padx=10, pady=10)
-        # btn_update.grid(row=0, column=2, padx=10, pady=10)
-        # btn_delete.grid(row=0, column=3, padx=10, pady=10)
+        for index, label in enumerate(self._botones_crud):
+            tk.Button(frame, text=label).grid(row=0, column=index, padx=10, pady=10)
 
     def construir_barra_menu(self, master: tk.Tk) -> None:
         barra_menu = tk.Menu(master)
@@ -106,29 +93,6 @@ class MainView(InterfaceView):
             for opcion in opciones:
                 i += 1
                 menu.add_command(label=opcion, command=lambda n=i: print(f"pene {n}"))
-
-        # db     = tk.Menu(barra_menu, tearoff=0)
-        # borrar = tk.Menu(barra_menu, tearoff=0)
-        # crud   = tk.Menu(barra_menu, tearoff=0)
-        # ayuda  = tk.Menu(barra_menu, tearoff=0)
-
-        # barra_menu.add_cascade(label="BBDD", menu=db)
-        # barra_menu.add_cascade(label="Borrar", menu=borrar)
-        # barra_menu.add_cascade(label="CRUD", menu=crud)
-        # barra_menu.add_cascade(label="Ayuda", menu=ayuda)
-
-        # db.add_command(label="Conectar", command=lambda: print("pene 1"))
-        # db.add_command(label="Salir", command=lambda: print("pene 2"))
-
-        # borrar.add_command(label="Borrar campos", command=lambda: print("pene 3"))
-
-        # crud.add_command(label="Crear", command=lambda: print("pene 4"))
-        # crud.add_command(label="Leer", command=lambda: print("pene 5"))
-        # crud.add_command(label="Actualizar", command=lambda: print("pene 6"))
-        # crud.add_command(label="Borrar", command=lambda: print("pene 7"))
-
-        # ayuda.add_command(label="Licencia", command=lambda: print("pene 8"))
-        # ayuda.add_command(label="Acerca de", command=lambda: print("pene 9"))
 
         master.config(menu=barra_menu)
 

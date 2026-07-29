@@ -15,10 +15,6 @@ class DBManager:
                 # 2. Abrimos la conexión física a SQLite
                 # check_same_thread=False es vital en Tkinter si usas eventos asíncronos
                 cls._instancia._conn = sqlite3.connect(DB_USUSARIOS, check_same_thread=False)
-
-                print("Conexión creada")
-            else:
-                print("Conexión activa")
         except sqlite3.Error as e:
             print("Error", f"❌ Error de base de datos: {e}")
 

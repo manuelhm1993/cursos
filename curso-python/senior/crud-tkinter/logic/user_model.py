@@ -1,8 +1,6 @@
 from logic.db_manager import DBManager, sqlite3
 
 class UserModel:
-    _conn = DBManager().get_conexion()
-
     _queries = {
         "CREATE": """
             CREATE TABLE usuarios (
@@ -29,78 +27,65 @@ class UserModel:
     }
 
     @classmethod
+    def _obtener_conexion(cls) -> sqlite3.Connection:
+        """Helper interno para Lazy Loading. Pide el taxi solo cuando lo necesita."""
+        return DBManager().get_conexion()
+
+    @classmethod
     def crear_tabla_usuarios(cls) -> tuple:
+        conn = cls._obtener_conexion()
         try:
-            cursor = cls._conn.cursor()
-
-            cursor.execute(cls._queries["CREATE"])
-
-            cls._conn.commit()
-            cursor.close()
-
-            return ("Éxito", f"Conexión creada exitosamente")
+            # 'with conn' maneja el commit y rollback automáticamente en la transacción
+            with conn: 
+                conn.execute(cls._queries["CREATE"])
+            return ("Éxito", "Conexión creada exitosamente")
         except sqlite3.OperationalError as e:
-            return ("Aviso", f"La conexión ya existe")
+            return ("Aviso", "La conexión ya existe")
         except sqlite3.Error as e:
-            return ("Error", f"Error crear la tabla usuarios: {e}")
+            return ("Error", f"Error al crear la tabla usuarios: {e}")
 
     @classmethod
     def crear_usuario(cls, usuario: tuple) -> tuple:
+        conn = cls._obtener_conexion()
         try:
-            cursor = cls._conn.cursor()
-
-            cursor.execute(cls._queries["INSERT"], usuario)
-
-            cls._conn.commit()
-            registros_afectados = cursor.rowcount
-            cursor.close()
-
-            return ("Éxito", f"Inserción realizada exitosamente. Cantidad de registros afectados: {registros_afectados}")
+            with conn:
+                # conn.execute devuelve un cursor temporal, ejecutamos y extraemos rowcount
+                cursor = conn.execute(cls._queries["INSERT"], usuario)
+                registros_afectados = cursor.rowcount
+                
+            return ("Éxito", f"Inserción realizada. Registros afectados: {registros_afectados}")
         except sqlite3.Error as e:
             return ("Error", f"Error al crear el usuario {e}")
 
     @classmethod
     def leer_usuario(cls, usuario_id: tuple) -> tuple:
+        conn = cls._obtener_conexion()
         try:
-            cursor = cls._conn.cursor()
-
-            cursor.execute(cls._queries["SELECT"], usuario_id)
-
+            # Para SELECT no necesitamos 'with' porque no modifica datos (no hay commit)
+            cursor = conn.execute(cls._queries["SELECT"], usuario_id)
             usuario = cursor.fetchone()
-
-            cursor.close()
-
             return usuario
         except sqlite3.Error as e:
             return ("Error", f"Error al leer el usuario: {e}")
 
     @classmethod
     def actualizar_usuario(cls, request: tuple, usuario_id: tuple) -> tuple:
+        conn = cls._obtener_conexion()
         try:
-            cursor = cls._conn.cursor()
-
-            # Desempaquetado de tuplas pythonico
-            cursor.execute(cls._queries["UPDATE"], (*request, *usuario_id))
-
-            cls._conn.commit()
-            registros_afectados = cursor.rowcount
-            cursor.close()
-
-            return ("Éxito", f"Actualización realizada exitosamente. Cantidad de registros afectados: {registros_afectados}")
+            with conn:
+                cursor = conn.execute(cls._queries["UPDATE"], (*request, *usuario_id))
+                registros_afectados = cursor.rowcount
+            return ("Éxito", f"Actualización realizada. Registros afectados: {registros_afectados}")
         except sqlite3.Error as e:
             return ("Error", f"Error al actualizar el usuario: {e}")
 
     @classmethod
     def borrar_usuario(cls, usuario_id: tuple) -> tuple:
+        conn = cls._obtener_conexion()
         try:
-            cursor = cls._conn.cursor()
-
-            cursor.execute(cls._queries["DELETE"], usuario_id)
-
-            cls._conn.commit()
-            registros_afectados = cursor.rowcount
-            cursor.close()
-
-            return ("Éxito", f"Borrado realizado exitosamente. Cantidad de registros afectados: {registros_afectados}")
+            with conn:
+                cursor = conn.execute(cls._queries["DELETE"], usuario_id)
+                registros_afectados = cursor.rowcount
+            return ("Éxito", f"Borrado exitoso. Registros afectados: {registros_afectados}")
         except sqlite3.Error as e:
             return ("Error", f"Error al borrar el usuario: {e}")
