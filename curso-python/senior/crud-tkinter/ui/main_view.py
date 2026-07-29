@@ -1,19 +1,13 @@
 from ui.interfaces.interface_view import InterfaceView, tk
+from logic import UserController
+
+import tkinter.messagebox as msg
 
 class MainView(InterfaceView):
     # ------------------------------ Método constructor
     def __init__(self, ancho: int, alto: int) -> None:
         super().__init__(ancho, alto)
         self._size_integrity = False
-
-        self._sub_menu_opciones = (
-            ("BBDD", ("Conectar", "Salir")),
-            ("Borrar", ("Borrar campos",)),
-            ("CRUD", ("Crear", "Leer", "Actualizar", "Borrar")),
-            ("Ayuda", ("Licencia", "Acerca de..."))
-        )
-
-        self._botones_crud = ("Create", "Read", "Update", "Delete")
 
         # Variables de estado, permiten conservar la referencia a los widgets
         self._id          = tk.StringVar()
@@ -77,24 +71,117 @@ class MainView(InterfaceView):
 
 
     def _construir_botones_crud(self, frame: tk.Frame) -> None:
-        for index, label in enumerate(self._botones_crud):
-            tk.Button(frame, text=label).grid(row=0, column=index, padx=10, pady=10)
+        botones_crud = (
+            ("Create", lambda : UserController.crear(*self._get_usuario())), 
+            ("Read", lambda : self._set_usuario()), 
+            ("Update", self._update_usuario), 
+            ("Delete", self._delete_usuario)
+        )
+
+        for index, (label, comando) in enumerate(botones_crud):
+            tk.Button(frame, text=label, command=comando).grid(row=0, column=index, padx=10, pady=10)
 
     def construir_barra_menu(self, master: tk.Tk) -> None:
         barra_menu = tk.Menu(master)
 
-        i = 0
+        sub_menu_opciones = (
+            ("BBDD", (
+                    ("Conectar", UserController.crear_tabla_usuarios), 
+                    ("Salir", lambda : UserController.cerrar_app(master))
+                )
+            ),
+            ("Borrar", (("Borrar campos", self._borrar_campos),)),
+            ("CRUD", (
+                    ("Crear", lambda : UserController.crear(*self._get_usuario())), 
+                    ("Leer", lambda : self._set_usuario()), 
+                    ("Actualizar", self._update_usuario), 
+                    ("Borrar", self._delete_usuario)
+                )
+            ),
+            # ("Ayuda", ("Licencia", "Acerca de..."))
+        )
 
-        for sub_menu, opciones in self._sub_menu_opciones:
+        for sub_menu, opciones in sub_menu_opciones:
             menu = tk.Menu(barra_menu, tearoff=0)
-
             barra_menu.add_cascade(label=sub_menu, menu=menu)
 
-            for opcion in opciones:
-                i += 1
-                menu.add_command(label=opcion, command=lambda n=i: print(f"pene {n}"))
+            for opcion, comando in opciones:
+                menu.add_command(label=opcion, command=comando)
 
         master.config(menu=barra_menu)
+
+    # ------------------------------ Métodos de eventos
+    def _delete_usuario(self) -> None:
+        usuario_id = self._get_usuario_id(False)
+
+        if not usuario_id:
+            msg.showwarning("Aviso", "Debe ingresar un id con valor")
+            return
+        
+        UserController.borrar(usuario_id)
+
+        self._borrar_campos()
+
+    def _update_usuario(self) -> None:
+        usuario_id = self._get_usuario_id(False)
+
+        if not usuario_id:
+            msg.showwarning("Aviso", "Debe ingresar un id con valor")
+            return
+        
+        usuario    = self._get_usuario(False)
+
+        UserController.actualizar(usuario_id, *usuario)
+
+        self._set_usuario()
+
+    def _set_usuario(self) -> None:
+        usuario_id = self._get_usuario_id(False)
+
+        if not usuario_id:
+            msg.showwarning("Aviso", "Debe ingresar un id con valor")
+            return
+
+        usuario    = UserController.leer(usuario_id)
+
+        if not usuario:
+            msg.showwarning("Aviso", "Usuario no encontrado")
+            return
+
+        for (campo_label, campo_var), usuario_valor in zip(self._campos_form, usuario):
+            if campo_var is not None:
+                campo_var.set(usuario_valor)
+            else:
+                self._comentarios.delete("1.0", "end")
+                self._comentarios.insert("1.0", usuario_valor)
+
+    def _get_usuario_id(self, borrar_campos = True) -> str:
+        data = self._id.get()
+
+        if borrar_campos:
+            self._borrar_campos()
+
+        return data
+
+    def _get_usuario(self, borrar_campos = True) -> tuple:
+        # Bucle for pitónico con operador ternario
+        data = tuple(
+            var.get() if isinstance(var, tk.StringVar) else self._comentarios.get("1.0", "end")
+            # Validar que el ID no se tome en cuenta
+            for campo, var in self._campos_form[1:]
+        )
+
+        if borrar_campos:
+            self._borrar_campos()
+
+        return data
+
+    def _borrar_campos(self) -> None:
+        for campo, var in self._campos_form:
+            if isinstance(var, tk.StringVar):
+                var.set("")
+            elif self._comentarios is not None:
+                self._comentarios.delete("1.0", "end")
 
     # ------------------------------ Métodos de accesores
     @property

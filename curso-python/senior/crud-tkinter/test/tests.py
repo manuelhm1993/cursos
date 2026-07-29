@@ -1,14 +1,40 @@
-import tkinter as tk
-import sqlite3
-
 from pathlib import Path
 
-def validar_archivo():
-    archivo = Path(__file__).resolve().parent.parent / "data/usuarios.db"
+DB_PATH = Path(__file__).resolve().parent.parent / "data/usuarios.db"
 
-    print("El archivo existe" if archivo.is_file() else "El archivo no existe")
+def validar_tabla_db():
+    import sqlite3
+
+    # Conectar a la base de datos (o crearla)
+    conexion = sqlite3.connect(DB_PATH)
+    cursor = conexion.cursor()
+
+    # Nombre de la tabla que deseas buscar
+    nombre_tabla = "usuarios"
+
+    # Consultar la tabla del sistema sqlite_master
+    cursor.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name=?;",
+        (nombre_tabla,),
+    )
+
+    # Obtener el resultado
+    resultado = cursor.fetchone()
+
+    if resultado:
+        print(f"La tabla '{nombre_tabla}' sí existe.")
+    else:
+        print(f"La tabla '{nombre_tabla}' no existe.")
+
+    conexion.close()
+
+
+def validar_archivo():
+    print("El archivo existe" if DB_PATH.is_file() else "El archivo no existe")
 
 def barra_menu_botones():
+    import tkinter as tk
+
     root = tk.Tk()
     root.geometry("300x200")
 
@@ -31,24 +57,4 @@ def barra_menu_botones():
 
     root.mainloop()
 
-class SQLiteSingleton:
-    _instancia: SQLiteSingleton   = None  # Aquí guardaremos el objeto único
-    _conexion: sqlite3.Connection = None  # Aquí guardaremos la conexión abierta
-
-    # __new__ se ejecuta ANTES de __init__
-    def __new__(cls) -> SQLiteSingleton:
-        if cls._instancia is None:
-            # 1. Si no existe, creamos la instancia en RAM por primera y única vez
-            cls._instancia = super().__new__(cls)
-            
-            # 2. Abrimos la conexión física a SQLite
-            # check_same_thread=False es vital en Tkinter si usas eventos asíncronos
-            cls._instancia._conexion = sqlite3.connect("usuarios.db", check_same_thread=False)
-            print("⚙️ [Sistema] Construyendo la ÚNICA conexión a la Base de Datos.")
-        else:
-            print("⚡ [Sistema] Reutilizando conexión existente en memoria.")
-            
-        return cls._instancia
-
-    def get_conexion(self) -> sqlite3.Connection:
-        return self._conexion
+validar_tabla_db()

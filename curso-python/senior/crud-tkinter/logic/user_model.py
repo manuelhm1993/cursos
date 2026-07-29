@@ -27,6 +27,24 @@ class UserModel:
     }
 
     @classmethod
+    def _validar_conexion_tabla_usuarios(cls, conn: sqlite3.Connection) -> tuple | None:
+        data = {
+            "SELECT": "SELECT name FROM sqlite_master WHERE type='table' AND name=?",
+            "CRITERIO": ("usuarios",)
+        }
+
+        try:
+            # Consultar la tabla del sistema sqlite_master
+            cursor = conn.execute(data["SELECT"], data["CRITERIO"])
+    
+            # Obtener el resultado
+            resultado = cursor.fetchone()
+
+            return resultado
+        except sqlite3.Error as e:
+            return ("Error", f"Error al validar la tabla: {e}")
+
+    @classmethod
     def _obtener_conexion(cls) -> sqlite3.Connection:
         """Helper interno para Lazy Loading. Pide el taxi solo cuando lo necesita."""
         return DBManager().get_conexion()
@@ -47,6 +65,10 @@ class UserModel:
     @classmethod
     def crear_usuario(cls, usuario: tuple) -> tuple:
         conn = cls._obtener_conexion()
+
+        if cls._validar_conexion_tabla_usuarios(conn) is None:
+            return ("Aviso", "Primero debe abrir la conexión con la DB")
+
         try:
             with conn:
                 # conn.execute devuelve un cursor temporal, ejecutamos y extraemos rowcount
