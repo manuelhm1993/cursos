@@ -2,6 +2,6 @@
 del módulo de documentación para no contaminar el main.
 """
 
-from helpers.funciones import prueba_documentacion
+from helpers.funciones import prueba_documentacion, validar_email
 
-__all__ = ["prueba_documentacion"]
+__all__ = ["prueba_documentacion", "validar_email"]
