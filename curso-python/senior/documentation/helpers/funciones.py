@@ -1,5 +1,31 @@
 import calculos.areas as ca
-import doctest
+import re
+
+def validar_email(email: str) -> bool:
+    """Valida una dirección de correo utilizando expresiones regulares
+
+    Args:
+        email (str): correo a evaluar
+
+    Returns:
+        bool: True o False dependiendo si es correcto o no
+
+    Examples:
+        >>> validar_email("manuelhm1993@gmail.com")
+        True
+
+        >>> validar_email("manuelhm1993gmail.com@")
+        False
+
+        >>> validar_email("manuelhm1993gmail.com")
+        False
+
+        >>> validar_email("manuelhm1993@gmail@.com")
+        False
+    """
+    pattern = r"^[a-zA-Z0-9_.+ñÑ-]+@[a-zA-Z0-9ñÑ-]+\.[a-zA-Z0-9.-]+$"
+
+    return True if re.search(pattern, email) else False
 
 def prueba_documentacion():
     """Muestra el resultado de los métodos de la clase Areas y el funcionamiento del helper
@@ -23,8 +49,3 @@ def prueba_documentacion():
 
     # Se puede incluso documentar un módulo
     help(ca)
-
-def test_driven_development_tdd():
-    # Para las pruebas unitarias se requiere el módulo doctest, si no devuelve nada, entonces está correcto
-    # Si hay un error, lo mostrará en consola, debe estar documentado el módulo y función con >>>
-    doctest.testmod(ca)
