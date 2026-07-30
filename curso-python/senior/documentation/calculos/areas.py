@@ -27,7 +27,7 @@ class Areas:
         return lado * lado
 
     @staticmethod
-    def area_triangulo(base: float, altura: float) -> float:
+    def area_triangulo(base: float, altura: float) -> str:
         """Calcula el área de un cuadrado en base al lado pasado por parámetro
         
         Args:
@@ -35,13 +35,19 @@ class Areas:
             altura (float): Altura del triángulo.
 
         Returns:
-            float: Un valor flotante con el resultado del cálculo del área del triángulo.
+            str: Una cadena de texto indicando el resultado de la operación
 
         Raises:
             TypeError: Si no se le pasa ningún parámetro.
 
         Examples:
             >>> Areas.area_triangulo(3, 6)
-            9.0
+            'El área del triángulo es: 9.0'
+
+            >>> Areas.area_triangulo(4, 5)
+            'El área del triángulo es: 10.0'
+
+            >>> Areas.area_triangulo(9, 3)
+            'El área del triángulo es: 13.5'
         """
-        return (base * altura) / 2
+        return f"El área del triángulo es: {(base * altura) / 2}"
