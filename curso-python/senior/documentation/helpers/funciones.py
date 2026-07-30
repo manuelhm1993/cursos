@@ -1,4 +1,5 @@
 import calculos.areas as ca
+import doctest
 
 def prueba_documentacion():
     """Muestra el resultado de los métodos de la clase Areas y el funcionamiento del helper
@@ -22,3 +23,8 @@ def prueba_documentacion():
 
     # Se puede incluso documentar un módulo
     help(ca)
+
+def test_driven_development_tdd():
+    # Para las pruebas unitarias se requiere el módulo doctest, si no devuelve nada, entonces está correcto
+    # Si hay un error, lo mostrará en consola, debe estar documentado el módulo y función con >>>
+    doctest.testmod(ca)

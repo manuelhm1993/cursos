@@ -1,4 +1,5 @@
-from helpers import prueba_documentacion
+from helpers import prueba_documentacion, test_driven_development_tdd
 
 if __name__ == "__main__":
-    prueba_documentacion()
+    # Pruebas unitarias - Si no retorna nada, pasó el test, al retornar hay error
+    test_driven_development_tdd()

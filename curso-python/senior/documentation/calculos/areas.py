@@ -21,8 +21,8 @@ class Areas:
             TypeError: Si no se le pasa ningún parámetro.
 
         Examples:
-            >>> area = area_cuadrado(3)
-            9
+            >>> Areas.area_cuadrado(3.0)
+            9.0
         """
         return lado * lado
 
@@ -41,7 +41,7 @@ class Areas:
             TypeError: Si no se le pasa ningún parámetro.
 
         Examples:
-            >>> area = area_triangulo(2, 7)
-            7
+            >>> Areas.area_triangulo(3, 6)
+            9.0
         """
         return (base * altura) / 2
