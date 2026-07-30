@@ -1,6 +1,13 @@
 import calculos.areas as ca
 
 def prueba_documentacion():
+    """Muestra el resultado de los métodos de la clase Areas y el funcionamiento del helper
+    help y el atributo __doc__
+
+    Args:
+        N/A
+    """
+
     resultado = f"El área del cuadrado es: {ca.Areas.area_cuadrado(3)}"
     
     # La propiedad __doc__ devuelve la documentación asociada

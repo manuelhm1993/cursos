@@ -1,30 +1,47 @@
+"""Este módulo tiene el objetivo de proveer clases y funciones para cálculos básicos I y II
 """
-==================================================================================
-Este módulo tiene el objetivo de proveer clases y funciones para cálculos básicos 
-I y II
-=================================================================================="""
-
 class Areas:
-    # Para documentar una función se usa la triple comilla y dentro de la misma
+    """Clase con métodos static para no necesitar instanciar la clase al realizar un
+    cálculo básico.
 
+    Attributes:
+        N/A.
     """
-    ==================================================================================
-    Clase que calcula las áreas de diferentes polígonos
-    =================================================================================="""
     @staticmethod
     def area_cuadrado(lado: float) -> float:
+        """Calcula el área de un cuadrado en base al lado pasado por parámetro
+
+        Args:
+            lado (float): Lado del cuadrado.
+
+        Returns:
+            float: Un valor flotante con el resultado del cálculo del área del cuadrado.
+
+        Raises:
+            TypeError: Si no se le pasa ningún parámetro.
+
+        Examples:
+            >>> area = area_cuadrado(3)
+            9
         """
-        ==================================================================================
-        Función encargada de calcular el área de un cuadrado en base del lado pasado
-        por parámetro
-        =================================================================================="""
         return lado * lado
 
     @staticmethod
     def area_triangulo(base: float, altura: float) -> float:
+        """Calcula el área de un cuadrado en base al lado pasado por parámetro
+        
+        Args:
+            base   (float): Base del triángulo.
+            altura (float): Altura del triángulo.
+
+        Returns:
+            float: Un valor flotante con el resultado del cálculo del área del triángulo.
+
+        Raises:
+            TypeError: Si no se le pasa ningún parámetro.
+
+        Examples:
+            >>> area = area_triangulo(2, 7)
+            7
         """
-        ==================================================================================
-        Función encargada de calcular el área de un triángulo usando los parámetros
-        base y altura
-        =================================================================================="""
         return (base * altura) / 2
