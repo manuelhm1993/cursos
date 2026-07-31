@@ -41,7 +41,8 @@ Versión: 1.0 · Objetivo: Transición de entorno local (Laragon) a contenedores
 
 
 ## FASE 4: Orquestación (Docker Compose)
-- [ ] Introducción a `docker-compose.yml`: Infraestructura como Código (IaC).
-- [ ] Levantar múltiples servicios simultáneos.
-- [ ] Ejercicio final: Conectar un contenedor de Python con un contenedor de Base de Datos aislado en la misma red de Docker.
-- [ ] Regla de Arquitectura: Aislar Laragon (puertos 80/3306) para que no colisione con los contenedores Docker.
+- [x] Introducción a `docker-compose.yml`: Infraestructura como Código (IaC).
+- [x] Borrar los contenedores anteriores y levantar el compose: `docker-compose up -d --build`
+- [x] Levantar múltiples servicios simultáneos.
+- [x] Ejercicio final: Conectar un contenedor de Python con un contenedor de Base de Datos aislado en la misma red de Docker.
+- [x] Regla de Arquitectura: Aislar Laragon (puertos 80/3306) para que no colisione con los contenedores Docker.

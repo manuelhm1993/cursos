@@ -1,0 +1,7 @@
+services:
+  extractor_crypto:
+    build: .
+    container_name: mh_bot_crypto_compose
+    restart: always
+    environment:
+      - ENTORNO=produccion
