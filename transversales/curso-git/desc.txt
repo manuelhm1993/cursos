@@ -1,1 +1,12 @@
 Curso completado: https://www.youtube.com/watch?v=9ZJ-K-zk_Go
+
+git config --global --list:
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+init.defaultbranch=master
+core.editor=code --wait
+core.autocrlf=true
+color.ui=auto
+alias.mh-log=log --oneline --all --graph --pretty=format:'%C(auto)%h%d - %C(auto)%s %C(black)%C(bold)- %an - %cr'
