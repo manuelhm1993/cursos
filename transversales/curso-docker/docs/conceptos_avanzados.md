@@ -1,6 +1,6 @@
 # Arquitectura de Contenedores Efímeros y Redes en Docker
 
-**Arquitecto de Software:** Manuel Henríquez  
+**Arquitecto de Software:** Manuel Henriquez  
 **Organización:** MHenriquez CA  
 **Área:** Infraestructura, WSL2 y Docker Base  
 **Propósito:** Manual táctico de comandos efímeros, gestión de permisos UNIX y resolución de dominios en red.
@@ -42,52 +42,82 @@ En arquitectura de contenedores, el contexto de red cambia según la **perspecti
 * **`localhost` (Perspectiva del Anfitrión):** Tu máquina física (Windows/WSL2). Desde tu navegador en Windows, accedes a `http://localhost:3000` para entrar al contenedor de Node.
 * **`localhost` (Perspectiva del Contenedor):** Bucle cerrado interno de la caja aislada. Si Node intenta conectar a Mongo en `localhost:27017`, buscará a Mongo dentro de su propio contenedor y colapsará.
 * **`host.docker.internal`:** Nombre de dominio DNS especial proporcionado por el motor de Docker. Le permite al contenedor de Node salir de su aislamiento y conectarse a servicios que escuchan en los puertos de la máquina anfitriona (como el contenedor de MongoDB con `-p 27017:27017`).
-* SOLO si los contenedores están en la misma red, esto no es necesario, se apunta como dominio al nombre del contenedor
+* **SOLO si los contenedores están en la misma red**, esto no es necesario, se apunta como dominio al nombre del contenedor
 
 ---
 
 ## 4. Comandos de Operación por Entorno
 
-### 🟢 Node.js / Express (Ecosistema JavaScript)
-
 ```bash
-# 1. Inicializar el archivo package.json
+🟢 Node.js / Express (Ecosistema JavaScript)
+
+1. Inicializar el archivo package.json
 docker run --rm -u $(id -u):$(id -g) -v$(pwd):/app -w /app node:22.22.0-slim npm init -y
 
-# 2. Instalar dependencias de producción (Express, Mongoose, dotenv)
+2. Instalar dependencias de producción (Express, Mongoose, dotenv)
 docker run --rm -u $(id -u):$(id -g) -v$(pwd):/app -w /app node:22.22.0-slim npm install express mongoose dotenv
 
-# 3. Ejecutar la aplicación exponiendo el puerto al exterior
+3. Ejecutar la aplicación exponiendo el puerto al exterior
 docker run --rm -p 3000:3000 -v $(pwd):/app -w /app node:22.22.0-slim node index.js
 
-### 🔴 PHP / Laravel (Ecosistema Composer)
+🟣 PHP / Laravel (Ecosistema Composer)
 # Crear un proyecto limpio de Laravel con Composer (Sin PHP local)
 docker run --rm -u $(id -u):$(id -g) -v$(pwd):/app -w /app composer:2.8 composer create-project laravel/laravel mi_proyecto
 
-### 🐍 Python / Django (Ecosistema Pip)
+🐍 Python / Django (Ecosistema Pip)
 # Inicializar proyecto de Django con la versión slim de Python
-docker run --rm -u $(id -u):$(id -g) -v$(pwd):/app -w /app python:3.12-slim bash -c "pip install django && django-admin startproject mi_api ."
+docker run --rm -u $(id -u):$(id -g) -v$(pwd):/app -w /app python:3.14.6-slim bash -c "pip install django && django-admin startproject mi_api ."
+```
 
 ### 4. Volúmenes fantasmas
 Si no se indica un espacio para guardar la data de forma permanente a una imagen db como mongo o mysql este creará volúmenes fantasmas que se deben purgar de esta manera `docker volume prune -f`
 
-Para evitar eso se debe usar el siguiente comando indicando el volúmen: `docker run -d --name monguito -p 27017:27017 \
+Para evitar eso se debe usar el siguiente comando indicando el volúmen: 
+```bash
+docker run -d --name <nombre_contenedor> -p 27017:27017 \
   -v mongo_data:/data/db \
   -v mongo_config:/data/configdb \
-  -e MONGO_INITDB_ROOT_USERNAME=mhenriquez \
-  -e MONGO_INITDB_ROOT_PASSWORD=password \
-  mongo:8.3`
+  -e MONGO_INITDB_ROOT_USERNAME=<usuario> \
+  -e MONGO_INITDB_ROOT_PASSWORD=<contraseña> \
+  mongo:8.3
+```
 
 ### 5. Networking
 Los contenedores pueden comunicarse con el exterior a través del mapeo de puertos, pero entre otros contenedores no, están aislados. Para evitar esto se deben agrupar en redes, ya docker por defecto tiene 3 redes incluidas:
 
-`mhenriquez@MHenriquez:~/workspace/cursos/transversales/curso-docker/node_mongo$ docker network ls
+```bash
+# Listar las redes docker
+docker network ls
 NETWORK ID     NAME      DRIVER    SCOPE
 74493afc99b6   bridge    bridge    local
 1c5b84ce843e   host      host      local
 4e9199377be4   none      null      local
-mhenriquez@MHenriquez:~/workspace/cursos/transversales/curso-docker/node_mongo$ docker network create mh_network`
+
+# Crear una red propia
+docker network create <nombre_red>
+```
 
 ### 6. Crear una imagen propia
-`docker build -t <name> .`
-`docker run -d --name mh_api_node_mongo --network mh_network -p 3000:3000 --env-file .env mh-api-node-mongo`
+```bash
+# Se crea la imágen con su etiqueta nombre:1
+docker build -t <name>:<v1.0.0> .
+docker run -d --name <nombre_contenedor> --network <nombre_red> -p 3000:3000 --env-file .env <nombre_imagen>
+
+# Para poder ver los cambios en tiempo real
+docker rm -f <nombre_contenedor>
+docker run -d --name <nombre_contenedor> --network <nombre_red> -p 3000:3000 -v $(pwd):/app --env-file .env <nombre_imagen> node --watch index.js
+```
+
+### Consideraciones del punto 6
+**En producción NUNCA** se usa el Bind Mount **(-v $(pwd):/app)** para inyectar código fuente. Eso es un riesgo de seguridad masivo y rompe la inmutabilidad.
+
+En producción **se destruye y se vuelve a crear.** El flujo es este:
+
+```bash
+1. Terminar una nueva función (como un endpoint delete).
+2. Compilar una nueva versión de la imagen: 
+  2.1. docker build -t <nombre_imagen:n+1> .
+3. Destruir el contenedor viejo en el servidor: 
+  3.1. docker rm -f <nombre_contenedor>
+4. Levantar nuevamente: docker run -d --name <nombre_contenedor> --network <nombre_red> -p 3000:3000 --env-file .env <nombre_imagen:n+1>
+```

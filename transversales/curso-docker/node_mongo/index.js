@@ -20,8 +20,14 @@ app.get('/', async (_req, res) => {
 
 app.get('/crear', async (_req, res) => {
     console.log('Creando...');
-    await Animal.create({tipo: 'Chanchito', estado: 'Feliz'});
-    return res.send('Ok');
+    const result = await Animal.create({tipo: 'Chanchito', estado: 'Feliz'});
+    return res.send(`Éxito. Registro creado: ${result}`);
+});
+
+app.delete('/borrar', async (_req, res) => {
+    console.log('Eliminando...');
+    const result = await Animal.deleteMany({});
+    return res.send(`Éxito. Registros eliminados ${result.deletedCount}`);
 });
 
 // APROVECHAMOS PARA LEER EL PUERTO TAMBIÉN
