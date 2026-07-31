@@ -42,6 +42,7 @@ En arquitectura de contenedores, el contexto de red cambia según la **perspecti
 * **`localhost` (Perspectiva del Anfitrión):** Tu máquina física (Windows/WSL2). Desde tu navegador en Windows, accedes a `http://localhost:3000` para entrar al contenedor de Node.
 * **`localhost` (Perspectiva del Contenedor):** Bucle cerrado interno de la caja aislada. Si Node intenta conectar a Mongo en `localhost:27017`, buscará a Mongo dentro de su propio contenedor y colapsará.
 * **`host.docker.internal`:** Nombre de dominio DNS especial proporcionado por el motor de Docker. Le permite al contenedor de Node salir de su aislamiento y conectarse a servicios que escuchan en los puertos de la máquina anfitriona (como el contenedor de MongoDB con `-p 27017:27017`).
+* SOLO si los contenedores están en la misma red, esto no es necesario, se apunta como dominio al nombre del contenedor
 
 ---
 
@@ -66,3 +67,27 @@ docker run --rm -u $(id -u):$(id -g) -v$(pwd):/app -w /app composer:2.8 composer
 ### 🐍 Python / Django (Ecosistema Pip)
 # Inicializar proyecto de Django con la versión slim de Python
 docker run --rm -u $(id -u):$(id -g) -v$(pwd):/app -w /app python:3.12-slim bash -c "pip install django && django-admin startproject mi_api ."
+
+### 4. Volúmenes fantasmas
+Si no se indica un espacio para guardar la data de forma permanente a una imagen db como mongo o mysql este creará volúmenes fantasmas que se deben purgar de esta manera `docker volume prune -f`
+
+Para evitar eso se debe usar el siguiente comando indicando el volúmen: `docker run -d --name monguito -p 27017:27017 \
+  -v mongo_data:/data/db \
+  -v mongo_config:/data/configdb \
+  -e MONGO_INITDB_ROOT_USERNAME=mhenriquez \
+  -e MONGO_INITDB_ROOT_PASSWORD=password \
+  mongo:8.3`
+
+### 5. Networking
+Los contenedores pueden comunicarse con el exterior a través del mapeo de puertos, pero entre otros contenedores no, están aislados. Para evitar esto se deben agrupar en redes, ya docker por defecto tiene 3 redes incluidas:
+
+`mhenriquez@MHenriquez:~/workspace/cursos/transversales/curso-docker/node_mongo$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+74493afc99b6   bridge    bridge    local
+1c5b84ce843e   host      host      local
+4e9199377be4   none      null      local
+mhenriquez@MHenriquez:~/workspace/cursos/transversales/curso-docker/node_mongo$ docker network create mh_network`
+
+### 6. Crear una imagen propia
+`docker build -t <name> .`
+`docker run -d --name mh_api_node_mongo --network mh_network -p 3000:3000 --env-file .env mh-api-node-mongo`
