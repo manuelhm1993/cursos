@@ -1,0 +1,30 @@
+# MHenriquez CA - Infraestructura como Código (IaC)
+services:
+  monguito:
+    image: mongo:8.3
+    container_name: mh_db_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    # Interpolamos desde el .env local. No queda expuesto en GitHub.
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - mongo_data:/data/db
+      - mongo_config:/data/configdb
+  nodito:
+    build: .
+    container_name: mh_api_node
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - monguito
+    # Le inyectamos el archivo completo internamente
+    env_file:
+      - .env
+# Al final del archivo, declaramos que los discos duros deben existir
+volumes:
+  mongo_data:
+  mongo_config:

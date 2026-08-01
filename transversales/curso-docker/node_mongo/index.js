@@ -2,6 +2,14 @@ import express from "express";
 import mongoose from "mongoose";
 import "dotenv/config"; // <--- INYECTA LAS VARIABLES DEL .env (NUEVO)
 
+// AHORA LEE DIRECTAMENTE DESDE .env
+const USER     = process.env.DB_USER;
+const PASSWORD = process.env.DB_PASSWORD;
+const DB_PORT  = process.env.DB_PORT;
+const DOMAIN   = process.env.DOMAIN;
+const DB_NAME  = process.env.DB_NAME;
+const PORT     = process.env.APP_PORT || 3000; 
+
 const Animal = mongoose.model('Animal', new mongoose.Schema({
     tipo:   String,
     estado: String,
@@ -9,8 +17,12 @@ const Animal = mongoose.model('Animal', new mongoose.Schema({
 
 const app = express();
 
-// AHORA LEE DIRECTAMENTE DESDE .env
-mongoose.connect(process.env.MONGO_URI);
+// Construcción perfecta de la URI
+const url = `mongodb://${USER}:${PASSWORD}@${DOMAIN}:${DB_PORT}/${DB_NAME}?authSource=admin`;
+
+mongoose.connect(url)
+.then(() => console.log('Conexión a MongoDB exitosa.'))
+.catch(err => console.error('Error conectando a Mongo:', err));
 
 app.get('/', async (_req, res) => {
     console.log('Listando...');
@@ -30,6 +42,4 @@ app.delete('/borrar', async (_req, res) => {
     return res.send(`Éxito. Registros eliminados ${result.deletedCount}`);
 });
 
-// APROVECHAMOS PARA LEER EL PUERTO TAMBIÉN
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));

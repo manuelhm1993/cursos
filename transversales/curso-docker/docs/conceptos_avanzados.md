@@ -74,7 +74,7 @@ Si no se indica un espacio para guardar la data de forma permanente a una imagen
 
 Para evitar eso se debe usar el siguiente comando indicando el volúmen: 
 ```bash
-docker run -d --name <nombre_contenedor> -p 27017:27017 \
+docker run -d --name <nombre_contenedor> -p <puerto>:<puerto> \
   -v mongo_data:/data/db \
   -v mongo_config:/data/configdb \
   -e MONGO_INITDB_ROOT_USERNAME=<usuario> \
@@ -99,11 +99,38 @@ docker network create <nombre_red>
 
 ### 6. Crear una imagen propia
 ```bash
-# Se crea la imágen con su etiqueta nombre:1
+1. Se debe crear un archivo con nombre Dockerfile donde se automatizará la creación de la imagen
+# Dockerfile
+
+# Toda imagen se debe basar en otra imagen
+FROM <nombre_imagen>
+
+# Directorio de trabajo, es el /home de linux, pero dentro del contenedor
+WORKDIR /app
+
+# Los archivos que se van a copiar desde el anfitrión al contenedor
+COPY package*.json ./
+
+# Se ejecutan las dependencias primero para optimizar la compilación
+RUN npm install
+
+# Se repite el proceso de copiado para el código fuente
+COPY . .
+
+# Se expone un puerto para la comunicación con el exterior
+EXPOSE 3000
+
+# Se indica el comando de inicio de la app
+CMD ["node", "index.js"]
+
+2. Se compila la imagen
+# Se crea la imagen con su etiqueta nombre:1
 docker build -t <name>:<v1.0.0> .
+
+3. Se crea un contenedor en base a la imagen previamente creada
 docker run -d --name <nombre_contenedor> --network <nombre_red> -p 3000:3000 --env-file .env <nombre_imagen>
 
-# Para poder ver los cambios en tiempo real
+4. Para poder ver los cambios en tiempo real (La config se optimiza con .gitignore y .dockerignore para que el RUN ejecute la instalación de dependencias)
 docker rm -f <nombre_contenedor>
 docker run -d --name <nombre_contenedor> --network <nombre_red> -p 3000:3000 -v $(pwd):/app --env-file .env <nombre_imagen> node --watch index.js
 ```
@@ -120,4 +147,50 @@ En producción **se destruye y se vuelve a crear.** El flujo es este:
 3. Destruir el contenedor viejo en el servidor: 
   3.1. docker rm -f <nombre_contenedor>
 4. Levantar nuevamente: docker run -d --name <nombre_contenedor> --network <nombre_red> -p 3000:3000 --env-file .env <nombre_imagen:n+1>
+```
+
+### 6. Infraestructura como Código (IaC)
+Para evitar escribir cada comando por cada contenedor, variables de entorno y además redes, existe el docker-compose.yml. Esta herramienta poderosa lee el Dockerfile, permite automatizar todo el proceso de forma declarativa y colocar las imagenes, contenedores y dependencias paso a paso, él lee y ejecuta:
+```bash
+1. Crear el archivo: docker-compose.yml
+# MHenriquez CA - Infraestructura como Código (IaC)
+services:
+  # Contenedor de db
+  <nombre_dominio_contenedor>:
+    image: <imagen:version>
+    container_name: <nombre_contenedor>
+    restart: always
+    ports:
+      - "<host:container>"
+    # Interpolamos desde el .env local. No queda expuesto en GitHub.
+    environment:
+      - <MONGO_INITDB_ROOT_USERNAME>=${DB_USER}
+      - <MONGO_INITDB_ROOT_PASSWORD>=${DB_PASSWORD}
+    volumes:
+      - <nombre_volumen>:/data/db
+      - <nombre_volumen>:/data/configdb
+  
+  # Contenedor compilando una imagen propia de una app
+  <nombre_dominio_contenedor>:
+    build: .
+    container_name: <nombre_contenedor>
+    restart: always
+    ports:
+      - "<host:container>"
+    depends_on:
+      - <contenedor_del_que_depende>
+    # Le inyectamos el archivo completo internamente
+    env_file:
+      - .env
+# Al final del archivo, declaramos que los discos duros deben existir
+volumes:
+  mongo_data:
+  mongo_config:
+
+2. Ejecutar el comando: docker-compose up -d --build
+
+3. Comandos de uso docker-compose:
+- docker-compose logs -f: Ver los logs (¿Qué está pasando adentro?)
+- docker-compose stop: Apagar todo al final del día (Sin destruir datos)
+- docker-compose down: Destruir toda la infraestructura (Para limpiar la computadora)
 ```
