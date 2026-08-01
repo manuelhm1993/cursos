@@ -1,0 +1,9 @@
+Para escribir tu primer Dockerfile, no necesitamos un sistema masivo, pero sí uno que requiera dependencias.
+
+Revisa tu curso de automatizaciones o tus ideas en mente y elige un solo script/bot que cumpla con esto:
+
+1. No tiene interfaz gráfica (solo imprime en consola o guarda en base de datos/archivos).
+2. Usa librerías externas (que requieran un requirements.txt).
+3. Hace algo útil (ej: consultar una API, procesar un CSV, o hacer web scraping simple).
+
+Se decidió crear un pequeño bot que consulta el precio del bitcoin y lo actualiza en consola cada 10 segundos

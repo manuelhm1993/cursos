@@ -1,0 +1,35 @@
+# MHenriquez CA - Infraestructura como Código (IaC) - Entorno DEV
+services:
+  monguito:
+    image: mongo:8.3
+    container_name: mh_db_mongo_dev
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - mongo_data_dev:/data/db
+      - mongo_config_dev:/data/configdb
+
+  nodito:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: mh_api_node_dev
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - monguito
+    env_file:
+      - ${PWD}/.env
+    volumes:
+      - ".:/app"                            # 1. Inyecta el código de Windows a Linux
+      - "node_modules_dev:/app/node_modules" # 2. Protege los módulos de Linux (Volumen nombreado)
+
+volumes:
+  mongo_data_dev:
+  mongo_config_dev:
+  node_modules_dev:

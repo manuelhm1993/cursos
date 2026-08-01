@@ -1,0 +1,21 @@
+{
+  "name": "mh-api-node-mongo",
+  "version": "1.0.0",
+  "description": "API para conectar con node y mongo usando docker",
+  "main": "main.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["js", "json", "api", "node", "mongo"],
+  "author": "Manuel Henriquez",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.9.0"
+  }
+}
