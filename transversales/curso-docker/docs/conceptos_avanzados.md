@@ -193,4 +193,60 @@ volumes:
 - docker-compose logs -f: Ver los logs (¿Qué está pasando adentro?)
 - docker-compose stop: Apagar todo al final del día (Sin destruir datos)
 - docker-compose down: Destruir toda la infraestructura (Para limpiar la computadora)
+
+4. Crear ambientes separados para desarrollo y producción:
+- Dockerfile.dev:
+FROM node:22.22.0-slim
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+# En modo dev el COPY es casi de respaldo, el volumen hará el trabajo duro
+COPY . .
+
+EXPOSE 3000
+
+# Separación estricta de argumentos
+CMD ["node", "--watch", "index.js"]
+
+5. docker-compose-dev.yml:
+# MHenriquez CA - Infraestructura como Código (IaC)
+services:
+  monguito:
+    image: mongo:8.3
+    container_name: mh_db_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    # Interpolamos desde el .env local. No queda expuesto en GitHub.
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - mongo_data:/data/db
+      - mongo_config:/data/configdb
+  nodito:
+    build: .
+    container_name: mh_api_node
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - monguito
+    # Le inyectamos el archivo completo internamente
+    env_file:
+      - .env
+# Al final del archivo, declaramos que los discos duros deben existir
+volumes:
+  mongo_data:
+  mongo_config:
+
+6. Comandos de uso docker-compose:
+- docker-compose -f docker-compose-dev.yml up -d --build (Levantar el entorno)
+- docker-compose -f docker-compose-dev.yml logs --follow: Ver los logs (¿Qué está pasando adentro?)
+- docker-compose -f docker-compose-dev.yml stop: Apagar todo al final del día (Sin destruir datos)
+- docker-compose -f docker-compose-dev.yml down: Destruir toda la infraestructura (Para limpiar la computadora)
 ```
