@@ -40,7 +40,6 @@ permitiendo avanzar de forma independiente sin desordenar el árbol.
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 <!-- Si No se encuentra el ícono en simpleicons, entonces se usa desarrollo front propio para ello -->
 ![Java](https://img.shields.io/badge/java-%23F89820.svg?style=for-the-badge&logo=java&logoColor=white)
-![Java](https://curso.mhenriquez.com/assets/badges/java.svg)
 #### Pendientes Q4 - Borrar
 ![Livewire](https://img.shields.io/badge/livewire-%234E56A6.svg?style=for-the-badge&logo=livewire&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2306B6D4.svg?style=for-the-badge&logo=tailwindcss&logoColor=white)
@@ -52,21 +51,34 @@ permitiendo avanzar de forma independiente sin desordenar el árbol.
 ## Arquitectura del repositorio
 
 Repositorio con raíz común `cursos/`. Cada curso se desarrolla en una **rama independiente**
-y, al alcanzar un hito, se fusiona a `master` aportando su carpeta. El primer curso
+y al alcanzar un hito, se fusiona a `master` aportando su carpeta. El primer curso
 registrado fue **hosting** — de ese merge inicial se ramificó el resto.
 
 ```
 cursos/
-├── curso-hosting/              → rama:    curso-hosting  (semilla del repo)
-├── curso-git/                  → rama:    curso-git
-├── curso-vscode/               → rama:    curso-vscode
-├── curso-sql/                  → rama:    curso-sql 
-├── curso-python/               → carpeta: agrupa-distribuciones
-│   ├── fundamentos/            → rama:    curso-python
-│   ├── poo-solid/              → rama:    curso-poo-solid-python
-│   └── senior/                 → rama:    curso-python-senior  (en proceso)
-├── curso-java/                 → rama:    curso-java           (en proceso)
-└── curso-cpp/                  → rama:    curso-cpp            (en proceso)
+├── automatizaciones/           → directorio:     agrupa-distribuciones
+├── docs/                       → directorio:     agrupa-distribuciones
+│   ├── bash/                   → directorio:       uso-conceptos          (simple-docs)
+│   ├── docker/                 → directorio:       uso-conceptos          (simple-docs)
+│   └── vs/                     → directorio:       vs-tecnologías         (simple-docs)
+├── frameworks/                 → directorio:     agrupa-distribuciones
+├── lenguajes_pg/               → directorio:     agrupa-distribuciones
+│   ├── curso-python/           → directorio:     agrupa-distribuciones
+│   │   ├── fundamentos/            → rama:         curso-python           (merged) 
+│   │   ├── poo-solid/              → rama:         curso-poo-solid-python (merged)
+│   │   └── senior/                 → rama:         curso-python-senior    (merged)
+│   ├── curso-java/                 → rama:                                (stand-by)
+│   └── curso-cpp/                  → rama:                                (stand-by)
+├── transversales/              → directorio:     agrupa-distribuciones
+│   ├── curso-docker/               → rama:         curso-docker           (merged)
+│   ├── curso-git/                  → rama:         curso-git              (merged)
+│   ├── curso-hosting/              → rama:         curso-hosting          (merged && semilla del repositorio)
+│   ├── curso-markdown/             → rama:         curso-markdown         (merged)
+│   ├── curso-sql/                  → rama:         curso-sql              (merged)
+│   │   ├── pildoras-informaticas/  → directorio: agrupa-distribuciones
+│   │   └── soy-dalto/              → directorio: agrupa-distribuciones
+│   ├── curso-vscode/               → rama:       curso-vscode             (merged)
+└── web/                        → directorio:     agrupa-distribuciones
 
 ```
 
