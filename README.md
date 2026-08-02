@@ -4,39 +4,54 @@ Repositorio de seguimiento del plan de estudio del Ing. Manuel Henriquez / MHenr
 Cada curso vive en su propia rama y aporta su carpeta al hacer merge a `master`,
 permitiendo avanzar de forma independiente sin desordenar el árbol.
 
-🏢 [MHenriquez C.A.](https://github.com/MHenriquezCA) · 👤 [manuelhm1993](https://github.com/manuelhm1993)
+🏢 [MHenriquez C.A.](https://github.com/MHenriquezCA) · 🧑🏽‍💻 [manuelhm1993](https://github.com/manuelhm1993)
 
 ---
 
 ### Stack de aprendizaje 💻
 
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+#### Terminados
+![Git](https://img.shields.io/badge/git-%23F03C2E.svg?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23181717.svg?style=for-the-badge&logo=github&logoColor=white)
+<!-- Si No se encuentra el ícono en simpleicons, entonces se usa desarrollo front propio para ello -->
 ![VSCode](https://img.shields.io/badge/vscode-%23007ACC.svg?style=for-the-badge&logo=visualstudiocode&logoColor=white)
 ![cPanel](https://img.shields.io/badge/cpanel-%23FF6C2C.svg?style=for-the-badge&logo=cpanel&logoColor=white)
 ![MySQL](https://img.shields.io/badge/mysql-%234479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
-![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+![SQLite](https://img.shields.io/badge/sqlite-%23003B57.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Python](https://img.shields.io/badge/python-%233776AB.svg?style=for-the-badge&logo=python&logoColor=white)
-![pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
-![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+![VirtualBox](https://img.shields.io/badge/virtualbox-%23FCC624.svg?style=for-the-badge&logo=virtualbox&logoColor=white)
+![Linux](https://img.shields.io/badge/linux-%232F61B4.svg?style=for-the-badge&logo=linux&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
+#### En proceso
+![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
+![Bash](https://img.shields.io/badge/bash-%234EAA25.svg?style=for-the-badge&logo=gnubash&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/ubuntu-%23E95420.svg?style=for-the-badge&logo=ubuntu&logoColor=white)
+![Debian](https://img.shields.io/badge/debian-%23A81D33.svg?style=for-the-badge&logo=debian&logoColor=white)
+#### Pendientes Q1 - Hacer ahora
+![UML](https://img.shields.io/badge/uml-%23FABD14.svg?style=for-the-badge&logo=uml&logoColor=white)
+#### Pendientes Q2 - Agendar
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![CSS](https://img.shields.io/badge/css-%23663399.svg?style=for-the-badge&logo=css&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![JSON](https://img.shields.io/badge/json-%23000000.svg?style=for-the-badge&logo=json&logoColor=white)
 ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
-![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
+#### Pendientes Q3 - Delegar
+![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+<!-- Si No se encuentra el ícono en simpleicons, entonces se usa desarrollo front propio para ello -->
+![Java](https://img.shields.io/badge/java-%23F89820.svg?style=for-the-badge&logo=java&logoColor=white)
+![Java](https://curso.mhenriquez.com/assets/badges/java.svg)
+#### Pendientes Q4 - Borrar
 ![Livewire](https://img.shields.io/badge/livewire-%234E56A6.svg?style=for-the-badge&logo=livewire&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2306B6D4.svg?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![Flux](https://img.shields.io/badge/flux-%23181717.svg?style=for-the-badge&logo=flux&logoColor=white)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![UML](https://img.shields.io/badge/uml-%23FBB040.svg?style=for-the-badge&logo=&logoColor=white)
+![Flux](https://img.shields.io/badge/flux-%235468FF.svg?style=for-the-badge&logo=flux&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%239135FF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
 ---
 
 ## Arquitectura del repositorio
 
-Repo con raíz común `cursos/`. Cada curso se desarrolla en una **rama independiente**
+Repositorio con raíz común `cursos/`. Cada curso se desarrolla en una **rama independiente**
 y, al alcanzar un hito, se fusiona a `master` aportando su carpeta. El primer curso
 registrado fue **hosting** — de ese merge inicial se ramificó el resto.
 
