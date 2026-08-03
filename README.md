@@ -16,8 +16,8 @@ permitiendo avanzar de forma independiente sin desordenar el árbol.
 <!-- Si No se encuentra el ícono en simpleicons, entonces se usa desarrollo front propio para ello -->
 ![VSCode](https://img.shields.io/badge/vscode-%23007ACC.svg?style=for-the-badge&logo=visualstudiocode&logoColor=white)
 ![cPanel](https://img.shields.io/badge/cpanel-%23FF6C2C.svg?style=for-the-badge&logo=cpanel&logoColor=white)
-![MySQL](https://img.shields.io/badge/mysql-%234479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![SQLite](https://img.shields.io/badge/sqlite-%23003B57.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-%234479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![Python](https://img.shields.io/badge/python-%233776AB.svg?style=for-the-badge&logo=python&logoColor=white)
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 ![VirtualBox](https://img.shields.io/badge/virtualbox-%23FCC624.svg?style=for-the-badge&logo=virtualbox&logoColor=white)
@@ -25,10 +25,10 @@ permitiendo avanzar de forma independiente sin desordenar el árbol.
 ![Docker](https://img.shields.io/badge/docker-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
 #### En proceso
 ![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
-![Bash](https://img.shields.io/badge/bash-%234EAA25.svg?style=for-the-badge&logo=gnubash&logoColor=white)
-![Ubuntu](https://img.shields.io/badge/ubuntu-%23E95420.svg?style=for-the-badge&logo=ubuntu&logoColor=white)
-![Debian](https://img.shields.io/badge/debian-%23A81D33.svg?style=for-the-badge&logo=debian&logoColor=white)
 #### Pendientes Q1 - Hacer ahora
+![Bash](https://img.shields.io/badge/bash-%234EAA25.svg?style=for-the-badge&logo=gnubash&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232088FF.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/ubuntu-%23E95420.svg?style=for-the-badge&logo=ubuntu&logoColor=white)
 ![UML](https://img.shields.io/badge/uml-%23FABD14.svg?style=for-the-badge&logo=uml&logoColor=white)
 #### Pendientes Q2 - Agendar
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -41,6 +41,7 @@ permitiendo avanzar de forma independiente sin desordenar el árbol.
 <!-- Si No se encuentra el ícono en simpleicons, entonces se usa desarrollo front propio para ello -->
 ![Java](https://img.shields.io/badge/java-%23F89820.svg?style=for-the-badge&logo=java&logoColor=white)
 #### Pendientes Q4 - Borrar
+![Debian](https://img.shields.io/badge/debian-%23A81D33.svg?style=for-the-badge&logo=debian&logoColor=white)
 ![Livewire](https://img.shields.io/badge/livewire-%234E56A6.svg?style=for-the-badge&logo=livewire&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2306B6D4.svg?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Flux](https://img.shields.io/badge/flux-%235468FF.svg?style=for-the-badge&logo=flux&logoColor=white)
@@ -79,10 +80,13 @@ cursos/
 │   │   └── soy-dalto/              → directorio: agrupa-distribuciones
 │   ├── curso-vscode/               → rama:       curso-vscode             (merged)
 └── web/                        → directorio:     agrupa-distribuciones
+    ├── front-end/              → directorio:     agrupa-distribuciones
+    └── back-end/               → directorio:     agrupa-distribuciones
+        └── curso-laravel/          → rama:         curso-laravel          (in-progress) 
 
 ```
 
-> El detalle operativo del progreso vive en Trello (espacio *Aprendizaje*).
+> El detalle operativo del progreso vive en Trello [Espacio Aprendizaje](https://trello.com/w/aprendizajemh/home).
 > Este README refleja el estado macro; se actualiza conforme avanza cada curso.
 
 ---
@@ -90,36 +94,40 @@ cursos/
 ## Cursos y progreso
 
 | Curso | Fuente | Canal | Estado |
-|-------|--------|-------|--------|
+|:---|:---|:---|:---:|
 | **Git** | [Curso de Git](https://www.youtube.com/watch?v=9ZJ-K-zk_Go) | [Soy Dalto](https://www.youtube.com/@soydalto) | ✅ Terminado |
 | **VSCode** | [Curso de VSCode](https://www.youtube.com/watch?v=TbzrOz8HbFM) | [Soy Dalto](https://www.youtube.com/@soydalto) | ✅ Terminado |
 | **Hosting** | [Curso de Hosting desde Cero](https://www.youtube.com/watch?v=hikoV1Q9EzY) | [Soy Dalto](https://www.youtube.com/@soydalto) | ✅ Terminado |
-| **SQL** | [Curso de SQL](https://www.youtube.com/watch?v=DFg1V-rO6Pg) | [Soy Dalto](https://www.youtube.com/@soydalto) | ✅ Terminado |
-| **SQL** | [Curso de MySQL](https://www.youtube.com/watch?v=iOiyJgnN71c&list=PLU8oAlHdN5Bmx-LChV4K3MbHrpZKefNwn) | [Píldoras Informáticas](https://www.youtube.com/@pildorasinformaticas) | ✅ Terminado |
-| **Python** | [Curso de Python](https://www.youtube.com/watch?v=nKPbfIU442g) | [Soy Dalto](https://www.youtube.com/@soydalto) | 🔄 En proceso |
-| **Python** | [Curso de Python](https://www.youtube.com/watch?v=tDYr14IIu_4&list=PLU8oAlHdN5BlvPxziopYZRd55pdqFwkeS) | [Píldoras Informáticas](https://www.youtube.com/@pildorasinformaticas) | 🔄 En proceso |
-| **UML** | _por definir_ | — | ⏳ Pendiente |
+| **SQL** | [Curso de SQL (SQLite)](https://www.youtube.com/watch?v=DFg1V-rO6Pg) | [Soy Dalto](https://www.youtube.com/@soydalto) | ✅ Terminado |
+| **SQL** | [Curso de SQL (MySQL)](https://www.youtube.com/watch?v=iOiyJgnN71c&list=PLU8oAlHdN5Bmx-LChV4K3MbHrpZKefNwn) | [Píldoras Informáticas](https://www.youtube.com/@pildorasinformaticas) | ✅ Terminado |
+| **Python** | [Curso de Python](https://www.youtube.com/watch?v=nKPbfIU442g) | [Soy Dalto](https://www.youtube.com/@soydalto) | ✅ Terminado |
+| **Python** | [Curso de Python](https://www.youtube.com/watch?v=tDYr14IIu_4&list=PLU8oAlHdN5BlvPxziopYZRd55pdqFwkeS) | [Píldoras Informáticas](https://www.youtube.com/@pildorasinformaticas) | ✅ Terminado |
+| **Máquinas virtuales** |[Curso de VM](https://www.youtube.com/watch?v=uiFZUfmFAus) | [HolaMundo](https://www.youtube.com/@HolaMundoDev) | ✅ Terminado |
+| **Linux** |[Curso de Linux](https://www.youtube.com/watch?v=L906Kti3gzE) | [HolaMundo](https://www.youtube.com/@HolaMundoDev) | ✅ Terminado |
+| **Docker** |[Curso de Docker](https://www.youtube.com/watch?v=4Dko5W96WHg) | [HolaMundo](https://www.youtube.com/@HolaMundoDev) | ✅ Terminado |
+| **Docker** |[Curso de Docker](https://www.youtube.com/@roelcode/search?query=docker) | [Roelcode](https://www.youtube.com/@roelcode) | ✅ Terminado |
+| **Laravel && Sail** |[Curso de Laravel](https://www.youtube.com/watch?v=73Rr1KYrraw&list=PLtSHuJYuv1socuCv04gF3Ml-3mlrPqeNp) | [Rodrigo-Rio](https://www.youtube.com/@devwithrodri) | 🔄 En proceso |
+| **Bash** |[Curso de Bash](https://www.youtube.com/watch?v=ABgLEKFhlZE) | [MoureDev](https://www.youtube.com/@mouredev) | 🔄 En proceso |
+| **Github Actions** |[Curso de GitHub Actions](https://www.youtube.com/watch?v=pNtcTmCiXzw) | [MoureDev](https://www.youtube.com/@mouredev) | ⏳ Pendiente |
 
 **Leyenda:** ✅ Terminado · 🔄 En proceso · ⏳ Pendiente
 
-> **SQL** se cursó con dos fuentes complementarias: la base ágil de **Soy Dalto**
-> y la profundización de **Píldoras Informáticas** — ambas completadas.
->
-> **Python** sigue el mismo esquema de dos fuentes (**Soy Dalto** + **Píldoras Informáticas**)
-> para la base del lenguaje. La ruta prevista continúa con **POO** (Soy Dalto) y luego
-> **Django** y **automatizaciones** (Píldoras Informáticas). Cada etapa se detalla en la
-> tabla al arrancar formalmente.
->
-> **UML** y **desarrollo web frontend** quedan encolados tras cerrar Python, Django y automatizaciones.
+> **Git, VSCode && Hosting:** fueron las bases transversales para el control de versiones, desarrollo y deploy que marcaron el inicio del camino a *junior-dev*.
+> **SQL:** se cursó con dos fuentes complementarias la base ágil de *Soy Dalto* y la profundización de *Píldoras Informáticas*.
+> **Python:** sigue el mismo esquema de dos fuentes Soy Dalto + Píldoras Informáticas. Para la base del lenguaje. 
+> **Python:** *POO-SOLID* Soy Dalto *POO* Píldoras Informáticas. Para arquitectura y patrones de diseño.
+> **Python:** *TKinter, DB, Documentación, Testing && Ejecutables* Píldoras Informáticas. Para el desarrollo de sistemas completos. Este punto marca la transición de *junior-dev* a *semi-senior-dev*.
+> **VM, WSL2 - Ubuntu && Docker** *HolaMundo*, se aprendió el uso de VM solo por arquitectura, pero respecto a docker quedó en el pasado. Con el WSL2 y Docker para el manejo de contenedores y entornos aislados, fueron la transición de *semi-senior-dev* a *senior-dev*.
+> **Laravel - Sail - Bash && Github Actions** *Rodrigo Río* + *MoureDev*, complementa las bases entre el front-end y back-end para la transición de *senior-dev* a *senior-dev-fullstack*.
 
 ---
 
 ## Convención de trabajo
 
-- **Una rama por curso** (`curso-git`, `curso-vscode`, `curso-hosting`, `curso-sql`, `curso-python`, `curso-poo-solid-python`…).
+- **Una rama general por curso** (`curso-git`, `curso-vscode`, `curso-hosting`, `curso-sql`, `curso-python`, `curso-docker`, `curso-markdown`…).
 - Ramas de sección para cursos largos (SQL: `seccion-basica`, `seccion-intermedia`, `seccion-avanzada`…).
 - Merge `--no-ff` a la rama del curso al cerrar un hito, y de ahí a `master` → la carpeta del curso queda incorporada.
-- Tags versionados por cierre de curso (`v1.0.0` hosting, `v2.0.0` git, `v3.0.0` vscode, `v4.0.0` sql, `v5.0.0` python…).
+- Tags versionados por cierre de curso (`v1.0.0` hosting, `v2.0.0` git, `v3.0.0` vscode, `v4.0.0` sql, `v5.0.0` python, `v5.1.0` python-poo-solid, `v5.2.0` python-tkinter-db-tdd, `v6.0.0` docker, …).
 - Commits semánticos en español.
 
 ---
@@ -135,7 +143,7 @@ git checkout <rama>    # entrar a un curso específico
 
 Sin build step — material de estudio, scripts y esquemas planos.
 
-### Entornos Python
+### Entornos
 
 Los ejercicios de Python (curso SQL avanzado y curso Python) usan librerías externas
 (`pandas`, `matplotlib`). A partir del curso de Python se estandariza el uso de
@@ -148,8 +156,7 @@ source .venv/Scripts/activate     # activar — Git Bash en Windows
 pip install -r requirements.txt   # ya dentro del venv, pip pelado es el correcto
 ```
 
-> Fuera del `.venv` usar siempre `py` (nunca `python`/`pip` pelados, que resolverían
-> al Python 3.13 de Laragon). Dentro del `.venv`, `python` y `pip` ya apuntan al entorno.
+> Fuera del `.venv` usar siempre `py` (nunca `python`/`pip`, que resolverían al Python 3.13 de Laragon). Dentro del `.venv`, `python` y `pip` ya apuntan al entorno. Actualmente esto está solucionado con WSL2 y Docker.
 
 ---
 
@@ -157,7 +164,7 @@ pip install -r requirements.txt   # ya dentro del venv, pip pelado es el correct
 
 - Estructura resultado de varias iteraciones prueba-error hasta llegar a la arquitectura actual (rama + carpeta por curso).
 - Repo en cuenta **personal** (`manuelhm1993`), no en la organización MHenriquezCA.
-- Resolución de rutas en scripts Python: `Path(__file__).parent` para referenciar la BD relativa al script, no al directorio de ejecución.
+- Resolución de rutas en scripts Python: `Path(__file__).resolve().parent.parent / "data/usuarios.db"` para referenciar la BD relativa al script, no al directorio de ejecución.
 - Python se detallará (subcursos, ramas, carpetas) conforme avance cada etapa del plan.
 
 ---
