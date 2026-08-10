@@ -1,0 +1,12 @@
+# MHenriquez CA - Plantilla Base para PHP 8.x (Vanilla / Sin BD)
+# Ruta: ~/workspace/cursos/web/curso-php
+services:
+  php_vanilla:
+    image: php:8.3-apache
+    container_name: mh_curso_php_8
+    ports:
+      - "8081:80" # Puerto 8081 para evadir Laragon (80) y Bot Clima (8080)
+    volumes:
+      # Bind Mount: Inyecta el código local al document root de Apache
+      - .:/var/www/html
+    restart: unless-stopped
