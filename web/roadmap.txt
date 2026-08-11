@@ -1,7 +1,9 @@
-1. HTML
-2. CSS
-3. JavaScript
-4. Json
-5. Nodejs
-6. Tailwind
-7. Vite
+1. HTML       ⚙️
+2. CSS        ⚙️
+3. JavaScript 📌
+4. Json       📌
+5. Nodejs     📌
+6. Vite       📌
+7. PHP        ✅
+
+Pendiente 📌 En curso ⚙️ En pausa ⏸️ Terminado ✅
