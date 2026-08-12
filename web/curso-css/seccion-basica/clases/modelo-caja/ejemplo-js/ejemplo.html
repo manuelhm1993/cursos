@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de CSS - Ejemplo con JS</title>
+
+    <link rel="stylesheet" href="./../../../assets/css/modelo-caja/ejemplo-js/ejemplo.css">
+</head>
+<body>
+    <a href="./../../../index.html">
+        Inicio 📌
+    </a>
+
+    <section class="controles">
+        <div>
+            <label>
+                Width:
+                <input type="range" name="width" min="1" max="1900" step="1" value="130">
+            </label>
+            <label>
+                Height:
+                <input type="range" name="height" min="1" max="500" step="1" value="33">
+            </label>
+            <label>
+                Padding:
+                <input type="range" name="padding" min="0" max="250" step="1" value="0">
+            </label>
+            <label>
+                Margin:
+                <input type="range" name="margin" min="0" max="250" step="1" value="0">
+            </label>
+            <label>
+                Border Width:
+                <input type="range" name="border-width" min="0" max="50" step="1" value="1">
+            </label>
+            <label>
+                Border Radius:
+                <input type="range" name="border-radius" min="0" max="100" step="1" value="1">
+            </label>
+            <label>
+                Box Sizing:
+                <select name="box-sizing">
+                    <option value="content-box">Content-box</option>
+                    <option value="border-box">Border-box</option>
+                </select>
+            </label>
+        </div>
+    </section>
+    
+    <main class="contenido">Contenido</main>
+
+    <script src="./../../../assets/js/ejemplo.js"></script>
+</body>
+</html>
