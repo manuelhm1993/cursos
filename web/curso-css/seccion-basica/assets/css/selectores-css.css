@@ -1,0 +1,14 @@
+/* Selector de etiqueta: modifica las propiedades de todas las etiquetas <li> */
+li {
+    color: gray;
+}
+
+/* Selector de clase: modifica las propiedades de elementos que poseen esta clase */
+.ingrediente-faltante {
+    color: red;
+}
+
+/* Selector de id: modifica las propiedades de un elemento específico */
+#ingrediente-secreto {
+    color: blue;
+}

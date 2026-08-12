@@ -1,0 +1,25 @@
+body {
+    background: gray;
+}
+
+p {
+    color: blue;        /*  */  
+    font-family: Tahoma; /*  */ 
+    font-size: 13px;     /* Tamaño de letra (default 16px) */
+    font-weight: 700;    /* Negrita en caso de Tahoma (bold) */
+    font-style: italic;  /* Cursiva */
+    /* font: italic, 700, 13px; */ /* Modo abreviado */
+    text-align: justify; /* Justificado */
+    line-height: 1.5;    /* Interlineado (Default 1) */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    text-transform: uppercase;
+}
+
+p span {
+    text-decoration: line-through; /* Tachar el texto */
+    color: white;
+}
+
+h1 {
+    text-align: right; /* Funciona en elementos de bloque */
+}
