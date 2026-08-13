@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+}
+
+body {
+    background: #00f;
+}
+
+h1 {
+    margin: 0;
+    padding: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.box {
+    width: 300px;
+    height: 400px;
+    margin: 20px auto 0 auto;
+    border-radius: 7px;
+    border-top: 6px solid #009;
+
+    /* Uso de gradientes radiales */
+    background: radial-gradient(#fff0, #000a);
+}
