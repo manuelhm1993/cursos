@@ -1,0 +1,23 @@
+.controles {
+    background: #efebebdf;
+    height: 15vmax;
+    border-bottom: 2px gray solid;
+    padding: 10px 0;
+}
+
+.controles div {
+    width: 500px;
+}
+
+.controles div label {
+    display: block;
+    margin-top: 10px;
+}
+
+.contenido {
+    text-transform: capitalize;
+    font-size: 1.8rem;
+    background: blue;
+    width: 130px;
+    border: 0px solid black;
+}

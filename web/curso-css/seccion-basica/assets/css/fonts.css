@@ -1,0 +1,7 @@
+/* Se hace la configuración de la instalación de la fuente Montserrat */
+@font-face {
+    font-family: "Montserrat";
+    src: url("./../fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format('truetype');
+    font-weight: 100 900; /* Le decimos al navegador que soporta todo el rango */
+    font-style: normal;
+}

@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background: red;
+    margin: 10px;
+}
+
+.box-default {
+    /* Valor por defecto, ajusta el width y height de la caja sumando padding y border */
+    box-sizing: content-box;
+    padding: 25px;
+    border: 10px solid black;
+}
+
+.box-new {
+    /* Valor moderno, ajusta el contenido para que al agregar padding y border cumpla con el width y height */
+    box-sizing: border-box;
+    padding: 25px;
+    border: 10px solid black;
+}

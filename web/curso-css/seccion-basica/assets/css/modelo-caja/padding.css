@@ -1,0 +1,29 @@
+.formulario {
+    background: red;
+    width: 300px;
+    margin: 0 auto;
+    /*padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;*/ /* Método absoluto */
+
+    /* padding: 20px 20px; */ /* Vertical, horizontal */
+
+    padding: 30px; /* Distancia entre el contenido y el borde */
+}
+
+.formulario_input {
+    width: 100%;
+    padding: 6px 10px;
+    box-sizing: border-box; /* Evita que margin, padding y border afecten el tamaño */
+    background: black;
+    color: red;
+}
+
+.formulario_submit {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: red;
+    color: white;
+    width: 50%;
+}

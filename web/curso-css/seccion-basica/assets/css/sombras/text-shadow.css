@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+}
+
+.box {
+    margin: 30px auto 0 auto;
+    padding: 20px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    background: #e2e2e2;
+    width: 280px;
+    height: 324px;
+    font-family: sans-serif;
+    color: #444;
+
+    /* Sombras de caja */
+    /*
+        @param:
+            - Desplazamiento horizontal
+            - Desplazamiento vertical
+            - Difuminado
+            - Extensión de la sombra
+            - Color
+    */
+    box-shadow: 0 0 40px 0 #0007;
+}
+
+.box h2 {
+    text-transform: uppercase;
+    text-shadow: 0 0 12px #f88;
+    font-size: 20px;
+}
+
+.box p {
+    line-height: 1.4;
+    text-align: justify;
+    font-size: 13px;
+
+    /* Sombras de texto */
+    /*
+        @param:
+            - Desplazamiento horizontal
+            - Desplazamiento vertical
+            - Difuminado
+            - Color
+    */
+    text-shadow: 0 0 5px #f88;
+}
