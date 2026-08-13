@@ -1,0 +1,24 @@
+main {
+    background: #ededed;
+    /* Los pixeles son medidas absolutas y cada pixel es la unidad mínima de luz en la pantalla */
+    padding: 20px;
+    font-family: sans-serif;
+    border-left: 5px solid #999;
+    /* Se usan para definit márgenes, padding y tamaños de imágenes */
+    margin-top: 20px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+span {
+    color: #999;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+p {
+    color: #555;
+}
