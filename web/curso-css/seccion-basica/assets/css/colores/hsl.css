@@ -1,0 +1,14 @@
+.box {
+    text-transform: uppercase;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+    /* Texto oscuro */
+    color: hsl(210, 40%, 35%);
+    /* Fondo claro */
+    background: hsl(210, 40%, 85%);
+    padding: 20px 50px;
+    margin: 20px;
+    margin-left: 100px;
+    border-top: 2px solid hsl(210, 40%, 45%);
+}
