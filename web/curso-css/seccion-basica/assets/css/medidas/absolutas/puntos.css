@@ -1,0 +1,23 @@
+main {
+    background: #ededed;
+    padding: 20px;
+    font-family: sans-serif;
+    border-left: 5px solid #999;
+    margin-top: 20px;
+}
+
+h2 {
+    margin: 0;
+    /* Los puntos son unidades de medida referentes al formato de impresión */
+    font-size: 12pt;
+}
+
+span {
+    color: #999;
+    font-size: 16pt;
+    font-weight: 100;
+}
+
+p {
+    color: #555;
+}
