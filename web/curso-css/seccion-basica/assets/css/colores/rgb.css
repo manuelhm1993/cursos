@@ -1,0 +1,7 @@
+.box {
+    width: 100px;
+    height: 100px;
+    /* Rojo(0-255), Verde(0-255), Azul(0-255): se combinan para crear más colores */
+    background: rgb(200, 200, 200);
+    margin: 20px;
+}

@@ -1,0 +1,7 @@
+.box {
+    width: 100px;
+    height: 100px;
+    /* Rojo(0-F), Verde(0-F), Azul(0-F): se combinan para crear más colores y tienen dos niveles, pero 3 es suficiente #000000 */
+    background: #0bdf;
+    margin: 20px;
+}
