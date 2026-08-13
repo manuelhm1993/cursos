@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    background: #000;
+}
+
+.box {
+    margin: 30px auto 0 auto;
+    padding: 20px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    background: #e2e2e2;
+    width: 280px;
+    font-family: sans-serif;
+    color: #444;
+    text-align: center;
+
+    /* Sombras de caja */
+    /*
+        @param:
+            - Desplazamiento horizontal
+            - Desplazamiento vertical
+            - Difuminado
+            - Extensión de la sombra
+            - Color
+    */
+    box-shadow: 0 0 40px 0 #0007;
+}
+
+.box h2 {
+    text-transform: uppercase;
+    text-shadow: 0 0 12px #f88;
+    font-size: 20px;
+}
+
+.box p {
+    line-height: 1.4;
+    text-align: justify;
+    font-size: 13px;
+
+    /* Sombras de texto */
+    /*
+        @param:
+            - Desplazamiento horizontal
+            - Desplazamiento vertical
+            - Difuminado
+            - Color
+    */
+    text-shadow: 0 0 5px #f88;
+}
+
+.box img {
+    width: 160px;
+    border-radius: 100%;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 0 10px 0 #0007;
+}
+
+img.img-png {
+    border-radius: 0;
+    box-shadow: none;
+    /* Las imágenes png con fondo transparente son un caso especial */
+    filter: drop-shadow(0 0 5px #f92);
+}
+
+h2.h-png {
+    text-shadow: 0 0 12px #f92;
+    font-size: 18px;
+    color: #999;
+    letter-spacing: 5px;
+    font-weight: 100;
+    margin-top: 5px;
+}
+
+p.p-png {
+    text-shadow: 0 0 5px #f93;
+}
