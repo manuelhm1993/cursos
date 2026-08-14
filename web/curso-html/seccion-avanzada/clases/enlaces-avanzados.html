@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Esta página web es la introducción a la sección avanzada del curso de HTML">
+    <meta name="keywords" content="html, css, js">
+    <meta name="author" content="Manuel Henriquez">
+
+    <!-- Open Graph -->
+    <meta name="OG:image" content="./../assets/img/foto-perfil.jpg">
+    <meta name="OG:title" content="Curso de HTML Avanzado">
+    <meta name="OG:description" content="Página web de pruebas para aprender HTML5">
+
+    <!-- Title & links -->
+    <title>Curso de HTML - Enlaces avanzados</title>
+
+    <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./../assets/css/enlaces-avanzados.css">
+</head>
+<body>
+    <a href="./../index.html">
+        Inicio 📌
+    </a>
+
+    <form>
+        <h2>Formulario de contacto</h2>
+
+        <!-- Fieldset & Legend -->
+        <fieldset>
+            <legend>Información Básica</legend>
+            <!-- Simple inputs -->
+            <div class="form_input">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" placeholder="John Doe">
+            </div>
+            <div class="form_input">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" placeholder="ejemplo@mhenriquez.com">
+            </div>
+            <div class="form_input">
+                <label for="asunto">Asunto:</label>
+                <input type="text" id="asunto" placeholder="El asunto de tu mensaje">
+            </div>
+        </fieldset>
+
+        <!-- Select & Option -->
+        <div class="form_input">
+            <label for="type-of-user">Tipo de usuario:</label>
+            <select name="type-of-user" id="type-of-user">
+                <option value="">Seleccionar</option>
+                <option value="seguidor">Seguidor/a</option>
+                <option value="empresa">Empresa</option>
+                <option value="otros">Otros</option>
+            </select>
+        </div>
+
+        <!-- Datalist & Option -->
+        <div class="form_input">
+            <label for="referente-input">Referente:</label>
+            <!-- El datalist está atado a un list que posee un input -->
+            <input list="referente" name="referente" id="referente-input">
+            <!-- Se vinculan a través de un id como con un label -->
+            <datalist id="referente">
+                <option value="MHenriquez">Sitio web de desarrollo de software</option>
+                <option value="Una empresa">Publicidad de terceros</option>
+                <option value="Un amigo">Boca a boca</option>
+            </datalist>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form_input">
+            <label for="comentarios">Comentarios:</label>
+            <textarea rows="8" id="comentarios" placeholder="Deseo realizar un pedido..."></textarea>
+        </div>
+        <div class="form_input">
+            <label for="licencia">
+                Acepto los 
+                <a href="ejemplos/terminos-condiciones.html" target="_blank">
+                    términos y condiciones:
+                </a>
+            </label>
+            <input type="checkbox" class="checkbox" id="licencia">
+        </div>
+    </form>
+</body>
+</html>
