@@ -14,10 +14,10 @@
     <meta name="OG:description" content="Página web de pruebas para aprender HTML5">
 
     <!-- Title & links -->
-    <title>Curso de HTML - Textarea & Labels</title>
+    <title>Curso de HTML - Select, datalist & option</title>
 
     <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./../assets/css/textarea-labels.css">
+    <link rel="stylesheet" href="./../assets/css/select-datalist-option.css">
 </head>
 <body>
     <a href="./../index.html">
@@ -35,6 +35,30 @@
         <div class="form_input">
             <label for="correo">Correo:</label>
             <input type="email" id="correo" placeholder="ejemplo@mhenriquez.com">
+        </div>
+
+        <!-- Select & Option -->
+        <div class="form_input">
+            <label for="type-of-user">Tipo de usuario:</label>
+            <select name="type-of-user" id="type-of-user">
+                <option value="">Seleccionar</option>
+                <option value="seguidor">Seguidor/a</option>
+                <option value="empresa">Empresa</option>
+                <option value="otros">Otros</option>
+            </select>
+        </div>
+
+        <!-- Datalist & Option -->
+        <div class="form_input">
+            <label for="referente-input">Referente:</label>
+            <!-- El datalist está atado a un list que posee un input -->
+            <input list="referente" name="referente" id="referente-input">
+            <!-- Se vinculan a través de un id como con un label -->
+            <datalist id="referente">
+                <option value="MHenriquez">Sitio web de desarrollo de software</option>
+                <option value="Una empresa">Publicidad de terceros</option>
+                <option value="Un amigo">Boca a boca</option>
+            </datalist>
         </div>
 
         <!-- Textarea -->
