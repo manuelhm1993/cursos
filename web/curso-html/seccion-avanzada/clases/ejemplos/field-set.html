@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso HTML Avanzado - FieldSet & Legend Simple</title>
+
+    <link rel="stylesheet" href="./../../assets/css/ejemplos/field-set.css">
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Información básica</legend>
+            <input type="text" placeholder="Nombre">
+            <input type="text" placeholder="Apellido">
+            <input type="number" placeholder="Edad" min="1" max="100" step="1">
+        </fieldset>
+
+        <fieldset>
+            <legend>Información de contacto</legend>
+            <input type="text" placeholder="Correo">
+            <input type="tel" placeholder="Teléfono" pattern="[0-9]{3,4}-[0-9]{7}">
+        </fieldset>
+    </form>
+</body>
+</html>
