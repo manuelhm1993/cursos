@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #222;
+    color: #ddd;
+}
+
+form {
+    background: transparent;
+    margin: 50px auto 0 auto;
+    padding: 10px 20px;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 0 55px 0 #fff2;
+    font-size: 16px;
+}
+
+form input {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 6px 0;
+    padding: 6px 8px;
+    border: none;
+    border: 1px solid #666;
+    border-radius: 4px;
+    box-shadow: 0 0 15px 0 #0003;
+    background: transparent;
+    color: #ddd;
+}
+
+form fieldset {
+    margin: 20px 0;
+    border: 1px solid #ddd6;
+    border-radius: 5px;
+}
+
+form fieldset legend {
+    text-transform: uppercase;
+    padding: 0 6px;
+}
