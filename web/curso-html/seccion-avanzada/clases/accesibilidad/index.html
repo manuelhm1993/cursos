@@ -16,23 +16,31 @@
     <meta name="OG:image" content="./../../assets/img/foto-perfil.jpg">
     <meta name="OG:title" content="Curso de HTML Avanzado">
     <meta name="OG:description" content="Página web de pruebas para aprender HTML5">
-    <title>Curso de HTML - Carga diferida</title>
+    <title>Curso de HTML - Accesibilidad</title>
 
     <!-- Especifica el tipo de imagen, la busca y especifica el tipo de relación -->
     <link rel="shortcut icon" href="./../../assets/img/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="../../assets/css/lazy-loading/lazy-loading.css">
+    <link rel="stylesheet" href="../../assets/css/semantic/html-semantico.css">
 </head>
 <body>
-    <a href="./../../index.html">
+    <a href="./../../index.html" aria-label="Ir al hub del curso">
         Inicio 📌
     </a>
 
-    <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum quis veritatis minus ullam provident molestiae hic voluptatibus, tempore accusantium vero fugiat libero facere possimus aliquam! Alias necessitatibus numquam ex animi, nobis amet veniam repudiandae vel ratione accusamus ab veritatis tenetur cum adipisci laborum dolorum doloribus ipsam maiores enim optio, suscipit facilis at. Maxime id est tempora quisquam nihil quidem tempore ullam dolorum necessitatibus alias iusto quod vitae aliquid, doloribus natus fugit. Dolore ipsum saepe fugiat.
-    </p>
+    <!-- La semántica debe ser estricta para la accesibilidad -->
+    <header>
+        <nav>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Carga perezosa -->
-    <img src="./../../assets/img/foto-perfil.jpg" alt="Manuel Henriquez" loading="lazy">
+    <!-- Para las ayudas de personas con discapacidad visual el atributo alt es importante -->
+    <img src="../../assets/img/foto-perfil.jpg" alt="Foto de perfil Manuel Henriquez">
 </body>
 </html>
