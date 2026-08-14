@@ -3,5 +3,7 @@
 3. Laravel  ⏸️
 4. Tailwind 📌
 5. Livewire 📌
+6. React    📌
+7. Flux     📌
 
 Pendiente 📌 En curso ⚙️ En pausa ⏸️ Terminado ✅

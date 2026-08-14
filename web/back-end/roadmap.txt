@@ -1,3 +1,4 @@
-1. Json ⚙️
+1. PHP        ✅
+2. Nodejs     📌
 
 Pendiente 📌 En curso ⚙️ En pausa ⏸️ Terminado ✅

@@ -4,8 +4,10 @@
 4. SQL            ✅
 5. Markdown       ✅
 6. Docker         ✅
-7. SSH & Bash     ⚙️
-8. Linux          ⏸️
+7. SSH & Bash     ⏸️
+8. Linux          ✅
+8. Ubuntu         📌
+8. Debian         📌
 9. GitHub Actions 📌
 
 Pendiente 📌 En curso ⚙️ En pausa ⏸️ Terminado ✅
