@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto 0 auto;
+    font-family: sans-serif;
+    border-collapse: collapse;
+    box-shadow: 0 0 25px 0 #0003;
+}
+
+table tbody tr:nth-child(odd) {
+    background: #cccd;
+}
+
+td {
+    color: #444;
+}
+
+td, th {
+    text-align: center;
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #0004;
+}

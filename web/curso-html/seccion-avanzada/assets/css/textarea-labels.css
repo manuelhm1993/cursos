@@ -1,0 +1,67 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    color: #ddd;
+    background: #222;
+}
+
+form {
+    margin: 50px auto 0 auto;
+    padding: 20px 0;
+    background: #ededed;
+    max-width: 500px;
+    box-shadow: 0 0 55px 0 #fff2;
+    background: transparent;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+form h2 {
+    text-align: center;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 1.3em;
+}
+
+
+.form_input {
+    padding: 6px 20px;
+}
+
+.form_input label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9em;
+}
+
+.form_input input,
+.form_input textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    box-shadow: 0 0 15px 0 #0003;
+    background: transparent;
+    color: #ddd;
+}
+
+.form_input textarea {
+    min-width: 100%;
+    min-height: 100px;
+    resize: none;
+}
+
+.form_input label[for="licencia"] {
+    display: inline;
+}
+
+.form_input .checkbox {
+    width: auto;
+    height: 10px;
+}
