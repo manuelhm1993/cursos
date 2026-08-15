@@ -1,0 +1,6 @@
+1. HTML       ⚙️
+2. CSS        ⚙️
+3. JavaScript 📌
+4. Vite       📌
+
+Pendiente 📌 En curso ⚙️ En pausa ⏸️ Terminado ✅

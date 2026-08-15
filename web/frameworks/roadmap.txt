@@ -1,0 +1,9 @@
+1. Django   📌
+2. FastAPI  📌
+3. Laravel  ⏸️
+4. Tailwind 📌
+5. Livewire 📌
+6. Angular  ⚙️
+7. Flux     📌
+
+Pendiente 📌 En curso ⚙️ En pausa ⏸️ Terminado ✅

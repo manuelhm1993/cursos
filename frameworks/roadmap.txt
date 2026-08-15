@@ -1,3 +1,0 @@
-1. Django
-2. FastAPI
-3. Laravel
