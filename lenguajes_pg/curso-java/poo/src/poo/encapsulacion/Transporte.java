@@ -27,7 +27,7 @@ public class Transporte {
 	
 
 	// -------------------------- Campos de clase
-	private int id;
-	private int tiempo;
+	//private int id;
+	//private int tiempo;
 	private double costo;
 }

@@ -20,25 +20,29 @@ public class Main {
 			{"Silla gamer", "Laptop de diseño", "Mouse inalámbrico"}
 		};
 		
-		int items = productos[0].length;
+		int i = 0;
 		
-		for(int i=0; i<items; i++) {
-			Producto producto = (Producto) productos[0][i];
+		for(Object objeto: productos[0]) {
+			Producto producto = (Producto)objeto;
 			
-			producto.setPrecio((double)productos[1][i]);
-			producto.setNombre((String)productos[2][i]);
+			configurarProducto(producto, (double)productos[1][i], (String)productos[2][i]);
+			i++;
+			mostrarProductos(producto);
 		}
-		
-		for(int i=0; i<items; i++) {
-			Producto producto = (Producto) productos[0][i];
-			
-			System.out.println("Producto: "
-				+ "\n- Código: " + producto.getCodigo()
-				+ "\n- Nombre: " + producto.getNombre()
-				+ "\n- Precio: " + producto.getPrecio()
-				+ "\n- Con descuento: " + producto.getDescuento()
-			);
-		}
+	}
+	
+	public static void configurarProducto(Producto producto, double precio, String nombre) {
+		producto.setPrecio(precio);
+		producto.setNombre(nombre);
+	}
+	
+	public static void mostrarProductos(Producto producto) {
+		System.out.println("Producto: "
+			+ "\n- Código: " + producto.getCodigo()
+			+ "\n- Nombre: " + producto.getNombre()
+			+ "\n- Precio: " + producto.getPrecio()
+			+ "\n- Con descuento: " + producto.getDescuento()
+		);
 	}
 
 }
