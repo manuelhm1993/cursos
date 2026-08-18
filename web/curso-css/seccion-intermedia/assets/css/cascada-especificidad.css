@@ -1,0 +1,19 @@
+/* La especificidad son los puntos del selector */
+h1 {
+    text-transform: uppercase;
+}
+
+/* El selector de id es superior al selector de clase */
+#titulo {
+    color: #0f0;
+}
+
+/* El selector de clase es superior al selector de etiqueta */
+.titulo {
+    color: #f00;
+}
+
+/* Si hay conflicto entre reglas con la misma especificidad, se prioriza el orden */
+h1 {
+    color: #00f !important; /* Important es el más importante de todos */
+}

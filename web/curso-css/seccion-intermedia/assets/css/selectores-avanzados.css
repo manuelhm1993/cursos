@@ -1,0 +1,25 @@
+/* Seleccionar de atributo: termina con .jpg */
+img[src$=".jpg"] {
+    width: 300px;
+}
+
+/* Selectores descendientes */
+/* Hijo */
+ul li {
+    color: #666;
+}
+
+/* Hijo directo */
+li > em {
+    color: #f00;
+}
+
+/* Selector adyacente (hermano) */
+h1 + p {
+    color: #00f;
+}
+
+/* Selecto de hermanos generales (todos) */
+h1 ~ p {
+    color: #00f;
+}

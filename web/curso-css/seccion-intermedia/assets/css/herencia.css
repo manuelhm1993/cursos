@@ -1,0 +1,17 @@
+body {
+    color: blue;
+}
+
+div {
+    font-family: sans-serif;
+    width: 50%;
+}
+
+h1, p {
+    text-transform: uppercase;
+}
+
+h1 {
+    color: inherit; /* Propiedad por defecto */
+    font-family: initial; /* Valor del navegador sin herencia */
+}
