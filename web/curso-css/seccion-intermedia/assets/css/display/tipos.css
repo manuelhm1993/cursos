@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+}
+
+/* Elemento de bloque */
+div {
+    padding: 20px;
+    background: #999;
+}
+
+/* Elemento en línea pasado a bloque */
+div a {
+    background: #f00;
+    color: #fff;
+    display: block;
+    border: 1px solid #000;
+    margin: 20px;
+    padding: 20px;
+    opacity: 0.6;
+}
