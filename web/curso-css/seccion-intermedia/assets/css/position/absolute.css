@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    background: #ccc;
+    font-family: sans-serif;
+}
+
+.main {
+    border: 2px solid #000;
+    margin: 30px 50px;
+    position: relative;
+    background: #fff;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background: #ca6;
+    color: #fff;
+}
+
+.box--blue {
+    background: #37d;
+    /* La posición absoluta hace que el elemento no ocupe lugar en la página y su posición sea absoluta respecto a html o su contenedor relativo */
+    position: absolute;
+    /* Doblemente centrada */
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    margin: auto;
+}
+
+.box--red {
+    background: #e53;
+}
