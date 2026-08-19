@@ -1,0 +1,37 @@
+div {
+    padding: 20px;
+}
+
+/* Pseudoelementos se seleccionan con :: */
+h1::first-letter {
+    color: red;
+    font-size: 3em;
+    letter-spacing: -8px;
+}
+
+div::first-line {
+    color: red;
+}
+
+div::selection {
+    background: red;
+    color: #fff;
+}
+
+input::placeholder {
+    color: green;
+}
+
+li::marker {
+    color: red;
+}
+
+li::before {
+    content: 'Elemento: ';
+    color: red;
+}
+
+li::after {
+    content: ' Después';
+    color: blue;
+}

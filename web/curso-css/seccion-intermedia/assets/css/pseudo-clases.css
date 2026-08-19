@@ -1,0 +1,69 @@
+h1 {
+    text-transform: uppercase;
+    color: #48e;
+    font-family: sans-serif;
+    margin: 30px;
+}
+
+ul {
+    background: #999;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+/* Pseudo clases que controlan estados de los elementos */
+/* Pasar el mouse por el elemento */
+h1:hover {
+    color: #000;
+    background: #ccc;
+    cursor: pointer;
+}
+
+/* Al mantener el click */
+h1:active {
+    background: #999;
+    color: #fff;
+}
+
+/* Primer elemento */
+li:first-child {
+    color: #f00;
+}
+
+/* Un elemento si y uno no. odd | even */
+li:nth-child(2n) {
+    color: #0f0;
+    background: #fff;
+}
+
+/* Último elemento */
+li:last-child {
+    color: #00f;
+}
+
+/* Pseudoclase negada */
+.lista li:not(.excluir) {
+    color: red;
+}
+
+div {
+    border: 2px solid #000;
+}
+
+/* Elementos vacíos */
+div:empty {
+    border: none;
+}
+
+/* Enlaces visitados */
+a:link {
+    color: red;
+}
+
+/* Enlaces no visitados */
+a:visited {
+    color: #0f0;
+}

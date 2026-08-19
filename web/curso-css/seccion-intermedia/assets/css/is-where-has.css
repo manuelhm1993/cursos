@@ -1,0 +1,22 @@
+/* Selectores de grupo */
+section .elemento1,
+section .elemento2,
+section .elemento3 {
+    color: red;
+}
+
+/* La pseudo clase is abrevia la sintaxis */
+section :is(.elemento1, .elemento2, .elemento3) {
+    color: blue;
+}
+
+/* La pseudo clase where hace lo mismo que :is, pero no altera la especificidad */
+/* section :where(.elemento1, .elemento2, .elemento3) {
+    color: blue;
+} */
+
+/* Funciona como un condicional */
+section:has(.elemento1) {
+    background: #000;
+    color: red;
+}
