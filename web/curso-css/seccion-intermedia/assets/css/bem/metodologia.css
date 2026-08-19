@@ -1,0 +1,30 @@
+h1, li {
+    text-transform: uppercase;
+}
+
+/* Bloques, elementos y modificadores */
+/* Bloque: entidad independiente. No necesita nada para existir */
+.lista {
+    border: 2px solid #000;
+}
+
+.lista--vieja {
+    opacity: 0.5;
+    background: #ddd;
+}
+
+/* Elemento: pertenece a un bloque y por si solo no significa nada */
+.lista__item {
+    color: gray;
+    margin: 10px 0;
+    list-style: square;
+}
+
+/* Modificador: modifica un elemento */
+.item--importante {
+    color: blue;
+}
+
+.item--danino {
+    color: red;
+}
