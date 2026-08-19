@@ -1,0 +1,29 @@
+body {
+    background: #bbb;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+h1 {
+    text-transform: uppercase;
+    text-wrap: balance; /* Forma de balancear el texto para que haga \n uniforme */
+}
+
+.box {
+    background: #fff;
+    width: 240px;
+    height: 240px;
+    margin: 50px auto;
+    border: 1px solid #0006;
+
+    /* Controlar los espacios en blanco */
+    /* Propiedades y valores
+        - normal:  default
+        - nowrap:  quita los \n
+        - pre:     coloca los \n tal cual se definieron en html
+        - prewrap: suma el comportamiento de normal y wrap
+    */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;        /* Combinando estas 3 se logra el efecto de los ...*/
+}

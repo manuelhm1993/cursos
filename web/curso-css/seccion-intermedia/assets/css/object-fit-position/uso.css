@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+section img {
+    width: 400px;
+    height: 200px;
+    border: 2px solid #000;
+    margin: 50px 0 0 50px;
+
+    /* Ajustar la imagen a las dimensiones fijas */
+    /* Propiedad:valor
+        - fill:    (default) rellena la imagen sin tomar en cuenta la proporción
+        - contain: hace que la imagen entre al menos una vez en las dimensiones
+        - cover:   se adapta a las dimensiones conservando el aspecto
+    */
+    object-fit: cover;
+    object-position: top;
+}
