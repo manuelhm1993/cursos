@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    height: 100vh;
+}
+
+.box {
+    width: 120px;
+    height: 120px;
+    background: #f00;
+    margin-top: 50px;
+    position: relative;
+    left: 0;
+
+    /* Transición */
+    transition-property: left;
+    transition-duration: 1s;
+    /* Estilo de animación */
+    transition-timing-function: cubic-bezier(.52,.31,.27,.92);
+    transition-delay: 25ms;
+
+    /* transition: left 1s cubic-bezier(.52,.31,.27,.92) 25ms; */ /* Shorthand */
+}
+
+body:hover .box {
+    left: 400px;
+}
