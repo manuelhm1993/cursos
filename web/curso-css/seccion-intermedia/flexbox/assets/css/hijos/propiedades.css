@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #ccc;
+}
+
+div, body {
+    box-sizing: border-box;
+}
+
+.flexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    margin: 20px;
+    border: 2px solid #000;
+    justify-content: start;
+    align-items: center;
+    /* gap: 30px; */ /* Separación entre items */
+    height: 300px;
+}
+
+.flex-item {
+    background: #800;
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    direction: rtl;
+    /* flex-grow: 0; 
+    flex-shrink: 1;
+    flex-basis: auto; */
+    flex: 1 1 100px; /* Modo abreviado */
+}
+
+.flex-item:nth-child(even) {
+    background: #f77;
+    /* flex-basis: 150px; */ /* Sustituye el width, tamaño base antes de encogerse */
+    /* flex-grow: 2; */ /* Ocupa el doble que el resto de items */
+    /* flex-shrink: 5; */ /* Determina cuánto se encoge un elemento */
+}
+
+.flex-item:last-child {
+    background: #000;
+}
+
+.item-5 {
+    align-self: center; /* Solo funciona con align-items */
+}
