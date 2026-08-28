@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.flexbox {
+    /* Se aplica al contenedor padre */
+    display: flex;
+    /* Dirección de los flex-items */
+    flex-direction: row; /* default: row izquierda a derecha */
+    direction: ltr;      /* Dirección del texto de izquierda a derecha */
+}
+
+.flex-item {
+    width: 180px; /* Al definir un width, se ocupa todo el espacio, si no, el axis cruzado es todo el espacio */
+    margin: 10px;
+    background: #800;
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+}
+
+.flex-item:first-child {
+    background: #f77;
+}
+
+.flex-item:last-child {
+    background: #000;
+}
