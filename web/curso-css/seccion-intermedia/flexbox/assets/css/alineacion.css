@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+div, body {
+    box-sizing: border-box;
+}
+
+.flexbox {
+    /* Se aplica al contenedor padre */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* default: nowrap */
+    border: 2px solid #000;
+    margin: 20px;
+    height: 360px;
+    justify-content: space-evenly; /* Alineación de elementos */
+    align-content: space-evenly; /* Alinea el eje cruzado varias líneas */
+    /* align-items: start; */ /* Alinea el eje principal en una línea */
+}
+
+.flex-item {
+    width: 100px; /* Al definir un width, se ocupa todo el espacio, si no, el axis cruzado es todo el espacio */
+    background: #800;
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    direction: rtl;
+}
+
+.flex-item:first-child {
+    background: #f77;
+}
+
+.flex-item:last-child {
+    background: #000;
+}

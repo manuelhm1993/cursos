@@ -1,0 +1,21 @@
+.hero-background {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('bg-1920px.jpg');
+}
+
+@media (max-width: 1024px) {
+  .hero-background { background-image: url('bg-1024px.jpg'); }
+}
+@media (max-width: 800px) {
+  .hero-background { background-image: url('bg-800px.jpg'); }
+}
+@media (max-width: 600px) {
+  .hero-background { background-image: url('bg-600px.jpg'); }
+}
+@media (max-width: 480px) {
+  .hero-background { background-image: url('bg-480px.jpg'); }
+}

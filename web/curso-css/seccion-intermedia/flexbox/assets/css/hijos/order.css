@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #ccc;
+}
+
+div, body {
+    box-sizing: border-box;
+}
+
+.flexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    border: 2px solid #000;
+    margin: 20px;
+    height: 100px;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #fff;
+}
+
+.flex-item {
+    width: 100px; /* Al definir un width, se ocupa todo el espacio, si no, el axis cruzado es todo el espacio */
+    background: #800;
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    direction: rtl;
+    order: 2;
+}
+
+.flex-item:first-child {
+    background: #f77;
+    order: 1; /* Valor por defecto es 0 */
+}
+
+.flex-item:last-child {
+    background: #000;
+    order: 3;
+}

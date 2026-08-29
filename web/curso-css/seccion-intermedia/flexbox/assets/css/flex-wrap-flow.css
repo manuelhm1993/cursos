@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+div, body {
+    box-sizing: border-box;
+}
+
+.flexbox {
+    /* Se aplica al contenedor padre */
+    display: flex;
+    /* flex-direction: row; */
+    /* No encoger los elementos, permitir que vayan abajo cuando falte espacio */
+    /* flex-wrap: wrap; */ /* default: nowrap */
+    flex-flow: row wrap; /* Modo abreviado */
+    border: 1px solid #000;
+    margin: 20px;
+}
+
+.flex-item {
+    width: 100px; /* Al definir un width, se ocupa todo el espacio, si no, el axis cruzado es todo el espacio */
+    margin: 10px;
+    background: #800;
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+}
+
+.flex-item:first-child {
+    background: #f77;
+}
+
+.flex-item:last-child {
+    background: #000;
+}
