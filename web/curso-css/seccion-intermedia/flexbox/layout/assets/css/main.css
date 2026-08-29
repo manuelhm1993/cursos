@@ -1,0 +1,163 @@
+/* ------------------ Etiquetas base ------------------ */
+body, h1:is(h1, h2, h3, h4, h5, h6), div, section, main, figure, 
+nav, header, ul, li {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #48ec;
+    color: #fff;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3.6rem;
+    text-wrap: balance;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+/* ------------------ Header ------------------ */
+.header {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("./../img/header-logo-1920x1080.jpg");
+    display: flex;
+}
+
+.header__overlay {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #48e3;
+    position: absolute;
+    z-index: 1;
+}
+
+.header__item-container {
+    position: relative;
+    z-index: 10;
+    margin: auto;
+    text-align: center;
+    max-width: 700px;
+}
+
+.header__img {
+    min-width: 250px;
+    max-width: 40%;
+    margin: 20px;
+    border-radius: 50%;
+    border: 10px solid #ccc4;
+}
+
+.header__item-container p {
+    text-wrap: pretty;
+}
+
+/* ------------------ Navbar ------------------ */
+.nav {
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 20px;
+    position: sticky;
+    top: 0;
+    margin-bottom: 10px;
+    box-shadow: 0 0 25px #0006;
+}
+
+.nav__ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav__item {
+    list-style: none;
+}
+
+.nav__ul-container, .nav__logo-container {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav__ul-container {
+    flex-grow: 4;
+}
+
+.nav__link {
+    color: #48e;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px;
+    padding: 8px 10px;
+    border-radius: 0;
+    transition: background-color 0.24s, border-radius 0.2s, outline 0.2s, outline-offset 0.2s;
+    outline: 0;
+    outline-offset: 0;
+}
+
+.nav__link:hover {
+    background-color: #48e3;
+    border-radius: 20px;
+    outline: 2px solid #48e6;
+    outline-offset: -7px;
+}
+
+.link--login {
+    background-color: #48e;
+    color: #fff;
+    border-radius: 20px;
+    padding: 8px 24px;
+    margin-left: 6px;
+}
+
+.link--login:hover {
+    background-color: #48e9;
+    outline: none;
+}
+
+.nav__logo {
+    width: 70px;
+    min-height: 100%;
+}
+
+/* ------------------ Main section ------------------ */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 30px;
+    text-wrap: pretty;
+}
+
+/* ------------------ Break points ------------------ */
+@media (max-width: 1024px) {
+    .header {
+        background-image: url('./../img/header-logo-1024x768.jpg'); 
+    }
+}
+@media (max-width: 800px) {
+    .header {
+        background-image: url('./../img/header-logo-800x1280.jpg'); 
+    }
+}
+@media (max-width: 600px) {
+    .header {
+        background-image: url('./../img/header-logo-600x1024.jpg'); 
+    }
+}
+@media (max-width: 480px) {
+    .header {
+        background-image: url('./../img/header-logo-480x854.jpg'); 
+    }
+}
