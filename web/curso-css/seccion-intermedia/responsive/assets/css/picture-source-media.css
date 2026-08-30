@@ -1,0 +1,11 @@
+body {
+    font-family: sans-serif;
+}
+
+body, div, figure, figcaption {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+

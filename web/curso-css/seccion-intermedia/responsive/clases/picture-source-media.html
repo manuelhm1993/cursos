@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de CSS - Responsive design atributos html</title>
+
+    <link rel="stylesheet" href="./../assets/css/picture-source-media.css">
+</head>
+<body>
+    <header class="header">
+        <nav>
+            <ul>
+                <li><a href="./../../index.html">Inicio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- La etiqueta picture es una especie de selector de imagenes para el navegador -->
+    <picture>
+        <!-- Opciones para el navegador -->
+        <source srcset="./../assets/img/perfil-webp.webp" type="image/webp">
+        <source media="(max-width: 400px)" srcset="./../assets/img/perfil-360.jpg">
+        <source media="(max-width: 600px)" srcset="./../assets/img/perfil-600.jpg">
+        <img src="./../assets/img/perfil-1024.jpg" alt="Manuel Henriquez">
+    </picture>
+</body>
+</html>
