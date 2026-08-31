@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+/* Declarar un contenedor: permite en base a las dimensiones de un contenedor ajustar el contenido */
+.container {
+    container-type: inline-size;
+    container-name: main;
+}
+
+p {
+    font-size: 8px;
+}
+
+/* Container query: afecta al contenido del contenedor nombrado */
+@container main (max-width: 600px) {
+    p {
+        font-size: 20px;
+        color: #f00;
+        background-color: #000;
+    }
+}

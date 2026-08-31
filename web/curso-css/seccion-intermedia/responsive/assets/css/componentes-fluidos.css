@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body, div {
+    box-sizing: border-box;
+}
+
+.flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.bloque {
+    /* Contenedor con ancho fluido, míximo 500px y permite que se estire */
+    min-width: 200px; 
+    /* Contenedor con ancho fluido, máximo 600px y permite que se encoja */
+    /* max-width: 200px;  */
+    /* min-height: 300px; */ /* Recomendable no usar medidas de altura */
+    background-color: #7bf;
+    margin: 0 auto;
+    display: inline-block;
+    width: 100%;
+    font-size: 12px;
+    padding: 10px;
+    margin: 4px;
+
+    /* Uso de flexbox */
+    flex-grow: 1;
+    flex-basis: 0;
+}
