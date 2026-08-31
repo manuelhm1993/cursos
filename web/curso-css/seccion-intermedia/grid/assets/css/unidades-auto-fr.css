@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body, div {
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+    height: 80vh;
+    /* El min-content es el espacio reservado para el contenido y el espacio que sobra se distribuye en los auto */
+    /* grid-template-columns: auto 200px 300px;
+    grid-template-rows: auto auto; */
+    /* El fr en cambio calcula la medida exácta para cada item y no toma en cuenta el contenido */
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+}
+
+.grid-item {
+    background-color: #48e;
+    color: #fff;
+    margin: 10px;
+    padding: 10px;
+    font-size: 30px;
+}
