@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    height: 100vh;
+    background-color: #48e2;
+}
+
+body, div, nav, header, footer, aside, main  {
+    box-sizing: border-box;
+}
+
+nav, header, footer, aside, main {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.grid {
+    flex-grow: 1;
+    display: grid;
+    /* Controlar los tamaños de las áreas */
+    grid-template-columns: minmax(200px, 1fr) minmax(300px, 3fr) minmax(200px, 1fr); 
+    grid-template-rows: 1fr;
+    grid-auto-flow: dense; 
+    grid-template-areas: 
+    "nav main aside";
+    /* "header header header"  */
+    /* "footer footer footer"  */
+    gap: 10px;
+    margin: 0 auto;
+    padding: 10px;
+    /* min-height: 100vh; */
+    max-width: 1460px;
+}
+
+/* Asignar los elementos a las áreas ya nombradas */
+header {
+    /* grid-area: header; */
+    background-color: #48e;
+    border-color: #48e;
+    color: #fff;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+}
+
+nav {
+    grid-area: nav;
+}
+
+main {
+    grid-area: main;
+}
+
+aside {
+    grid-area: aside;
+}
+
+footer {
+    /* grid-area: footer; */
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    padding: 50px;
+    text-align: center;
+}
+
+nav, aside {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+/* Medias queries */
+@media screen and (max-width:800px) {
+    .grid {
+        grid-template-columns: minmax(200px, 1fr) minmax(300px, 3fr); 
+    }
+
+    nav, aside {
+        position: static;
+        height: auto;
+    }
+
+    aside {
+        display: none;
+    }
+}
+
+@media screen and (max-width:580px) {
+    .grid {
+        grid-template-areas: 
+        "nav"
+        "main"
+        "aside";
+        grid-template-columns: 1fr; 
+    }
+}
