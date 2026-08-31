@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body, div {
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+    /* Tres columnas */
+    grid-template-columns: 100px 200px 300px;
+    /* Dos filas */
+    grid-template-rows: 400px 200px;
+}
+
+/* Por defecto cada hijo directo se vuelve una fila */
+.grid-item {
+    background-color: #48e;
+    color: #fff;
+    /* A diferencia de una tabla normal, el grid no colapsa los márgenes */
+    margin: 10px;
+    padding: 10px;
+    font-size: 30px;
+}
