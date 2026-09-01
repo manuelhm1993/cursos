@@ -9,16 +9,15 @@ body, div {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(3, 50px);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     gap: 10px;
     padding: 10px;
     margin: 20px;
     justify-items: stretch; /* Default: stretch. Mueve el hijo en horizontal dentro de la celda */
     align-items: stretch; /* Default: stretch. Ídem justify-items, pero en vertical */
     justify-content: space-evenly; /* Mueve en el eje horizontal la celda en el contenedor */
-    align-content: space-around; /* Ídem justify-content, pero en vertical */
-    height: 350px;
+    align-content: space-evenly; /* Ídem justify-content, pero en vertical */
     border: 2px solid #000;
 }
 
@@ -26,18 +25,38 @@ body, div {
     background-color: #48e;
     color: #fff;
     font-size: 30px;
-    font-size: 30px;
     max-width: 100%;
     border-radius: 16px;
     /* Centrar item dentro de la celda */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
 }
 
 .grid-item:first-child {
+    /* Darle un área de trabajo */
+    grid-area: 3/1/span 2/span 2;
+    /* Darle formato de grilla */
+    display: grid;
+    grid-template-columns: subgrid; /* Las medidas de un subgrid se deben definir así */
+    grid-template-rows: subgrid;
+    gap: 10px;
+    padding: 0;
+    background-color: transparent;
+}
+
+.subgrid-item {
     background-color: #e66;
+    padding: 20px;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.subgrid-item:first-child {
+    order: 2;
+    background-color: #4a4;
+    width: 350px;
 }
 
 .grid-item:hover {
