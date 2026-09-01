@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primera página web</title>
+
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/lib/fontawesome-7.3.1-web/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+    <header class="header">
+        <input type="checkbox" id="open-menu" class="header__checkbox">
+        <!-- El atributo role refiere a accesibilidad -->
+        <label for="open-menu" role="button" class="header__open-nav-button">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+        <figure class="header__logo-container">
+            <img src="./assets/img/logo-horizontal.jpg" alt="Logo MHenriquez" class="header__logo">
+        </figure>
+
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li class="header__nav-item"><a href="#">About</a></li>
+                <li class="header__nav-item"><a href="#">Portfolio</a></li>
+                <li class="header__nav-item"><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>

@@ -1,0 +1,110 @@
+/* ---------------- IMPORTAR DEPENDENCIAS ---------------- */
+@import url("./fonts.css");
+
+/* ---------------- RESET CSS ---------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* ---------------- RESET ENDS ---------------- */
+
+/* ---------------- BODY SECTION ---------------- */
+body {
+    margin: 0;
+    font-family: "Montserrat";
+    font-weight: 400;
+    background-color: #e2eaff;
+    color: #101632;
+}
+/* ---------------- BODY ENDS ---------------- */
+
+/* ---------------- HEADER SECTION ---------------- */
+.header {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    container-type: inline-size;
+    container-name: header;
+    
+}
+
+.header__checkbox {
+    display: none;
+}
+
+.header__checkbox:checked ~ .header__nav {
+    display: flex;
+}
+
+.header__open-nav-button {
+    color: #48e;
+    font-size: 2rem;
+    font-weight: 600;
+    position: absolute;
+    right: 10px;
+}
+
+.header__logo {
+    max-width: 100%;
+    width: 64px;
+    margin: 10px 20px;
+}
+
+.header__nav {
+    display: none;
+    background-color: #fff;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    z-index: -1;
+}
+
+.header__nav-list {
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    margin: auto;
+    justify-content: space-evenly;
+}
+
+.header__nav-item {
+    list-style: none;
+}
+
+.header__nav-item a {
+    color: #48e;
+}
+
+/* Cuando no está en hover o activo se quita el subrayado */
+.header__nav-item a:not(:is(:hover, :active)) {
+    text-decoration: none;
+}
+/* ---------------- HEADER ENDS ---------------- */
+
+/* ---------------- QUERIES ---------------- */
+/* */
+/* ---------------- HEADER ---------------- */
+@container header (min-width: 600px) {
+    .header__nav {
+        display: block;
+        position: static;
+        height: auto;
+        width: auto;
+        z-index: auto; /* <-- La llave para sacarlo del fondo */
+    }
+
+    .header__nav-list {
+        flex-direction: row;
+        height: auto;
+        width: auto;
+        gap: 20px;
+        margin-right: 40px;
+    }
+
+    .header__open-nav-button {
+        display: none;
+    }
+}
