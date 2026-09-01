@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body, div {
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, 50px);
+    gap: 10px;
+    padding: 10px;
+    margin: 20px;
+    justify-items: stretch; /* Default: stretch. Mueve el hijo en horizontal dentro de la celda */
+    align-items: stretch; /* Default: stretch. Ídem justify-items, pero en vertical */
+    justify-content: space-evenly; /* Mueve en el eje horizontal la celda en el contenedor */
+    align-content: space-around; /* Ídem justify-content, pero en vertical */
+    height: 350px;
+    border: 2px solid #000;
+}
+
+.grid-item {
+    background-color: #48e;
+    color: #fff;
+    font-size: 30px;
+    font-size: 30px;
+    max-width: 100%;
+    border-radius: 16px;
+    /* Centrar item dentro de la celda */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.grid-item:first-child {
+    background-color: #e66;
+}
+
+.grid-item:hover {
+    opacity: 0.74;
+}
