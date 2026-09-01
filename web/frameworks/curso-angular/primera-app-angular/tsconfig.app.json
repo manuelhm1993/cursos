@@ -4,6 +4,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+    "rootDir": "./src", // Evita colisiones y adivinanzas en el clon de salida de typescript
     "types": []
   },
   "include": [
