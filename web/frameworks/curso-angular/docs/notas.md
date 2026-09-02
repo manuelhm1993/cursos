@@ -18,8 +18,10 @@ Referencia real de aplicación de estos conceptos: proyecto de prueba
 técnica mh-prueba-tecnica (github.com/manuelhm1993/mh-prueba-tecnica).
 
 ### Comandos
-- Instalación de proyecto:   dexecit node:22.22.0-slim npx @angular/cli@latest new curso-angular-demo --routing --style=scss
-- Levantamiento de servidor: dportit 4200 node:22.22.0-slim npx ng serve --host 0.0.0.0
+- Instalación de proyecto:        dexecit node:22.22.0-slim npx @angular/cli@latest new curso-angular-demo --routing --style=scss
+- Levantamiento de servidor:      dportit 4200 node:22.22.0-slim npx ng serve --host 0.0.0.0
+- Creación de componentes:        dexec node:22.22.0-slim npx ng g c empleados
+- Creación de componentes inline: dexec node:22.22.0-slim npx ng g c empleados -t -s
 
 CONTEXTO — ARQUITECTURA SPA Y BOOTSTRAP (ANGULAR 11 VS 21)
 Versión: 1.0 · Fecha: Septiembre 2026
