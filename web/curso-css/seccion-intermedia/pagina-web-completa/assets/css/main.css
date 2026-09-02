@@ -29,7 +29,10 @@ body {
     align-items: center;
     container-type: inline-size;
     container-name: header;
-    
+    position: relative;
+    z-index: 104;
+    text-align: center;
+    font-size: 20px;
 }
 
 .header__checkbox {
@@ -167,7 +170,52 @@ h1, h2 {
 /* ---------------- PROFILE ENDS ---------------- */
 
 /* ---------------- PORTFOLIO SECTION ---------------- */
+.portfolio {
+    background-color: #18233f;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    container-name: portfolio;
+    container-type: inline-size;
+    justify-content: space-evenly;
+}
 
+.portfolio h2 {
+    color: #fff;
+}
+
+.portfolio__title {
+    color: #fff;
+    font-size: 2.4rem;
+    margin-bottom: 0;
+}
+
+.portfolio__project-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1300px;
+    width: 100%;
+    min-height: 80vh;
+    margin: auto;
+    padding: 12px;
+    gap: 12px;
+}
+
+.portfolio__project {
+    background-image: linear-gradient(#0009, #0009), url("./../img/portfolio-large.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: grid;
+    place-content: center;
+}
+
+.portfolio__project:hover {
+    opacity: 0.74;
+    outline: 2px solid #fff6;
+}
 /* ---------------- PORTFOLIO ENDS ---------------- */
 
 /* ---------------- QUERIES ---------------- */
@@ -179,7 +227,8 @@ h1, h2 {
         position: static;
         height: auto;
         width: auto;
-        z-index: auto; /* <-- La llave para sacarlo del fondo */
+        /* La llave para sacarlo del fondo */
+        /* z-index: auto; */ 
     }
 
     .header__nav-list {
@@ -236,3 +285,31 @@ h1, h2 {
     }
 }
 /* ---------------- PROFILE ENDS ---------------- */
+
+/* ---------------- PORTFOLIO ---------------- */
+@container portfolio (min-width: 56.25rem) {
+    .portfolio__project-container {
+        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    }
+
+    .portfolio__project:first-child,
+    .portfolio__project:last-child {
+        grid-column: span 2;
+    }
+}
+
+@container portfolio (min-width: 81.25rem) {
+    .portfolio__project-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .portfolio__project:first-child {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .portfolio__project:last-child {
+        grid-column: span 4;
+    }
+}
+/* ---------------- PORTFOLIO ENDS ---------------- */
