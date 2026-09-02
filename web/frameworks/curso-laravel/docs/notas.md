@@ -10,7 +10,7 @@ Para crear un proyecto con contenedores no se instala globalmente laravel, ni su
 3. Motor de base de datos
 - docker run -d --name mh_mysql_lv_app -p 33060:3306 -e MYSQL_DATABASE=first_app -e MYSQL_ROOT_PASSWORD=password mysql:8.4.3
 4. Correr migraciones
-- dexec php:8.3-apache php artisan migrate
+- dexec php:8.3-apache php artisan migrate"
 5. Exponer los puertos
 - dportit 8000 php:8.3-apache php artisan serve --host=0.0.0.0 --port=8000
 6. Uso de vite online
@@ -25,4 +25,10 @@ Para crear un proyecto con contenedores no se instala globalmente laravel, ni su
 - dexec composer:2.9.4 composer update
 3. Ejecutar la migración nuevamente
 - dexec php:8.3-apache php artisan migrate
+```
+
+### Instalación de PDO
+```bash
+docker run --rm -u root -v $(pwd):/var/www/html -w /var/www/html php:8.3-apache sh -c "docker-php-ext-install pdo_mysql && php artisan migrate"
+docker run --rm -u root -v $(pwd):/var/www/html -w /var/www/html php:8.3-apache sh -c "docker-php-ext-install pdo_mysql && php artisan install:api"
 ```
