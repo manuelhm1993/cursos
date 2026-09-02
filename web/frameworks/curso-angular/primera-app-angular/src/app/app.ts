@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Empleados } from './empleados/empleados'; // 1. Importación física
 
 @Component({
   selector: 'app-raiz', // Es el que le da nombre a la etiqueta html del componente
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Empleados], // 2. Declaración de uso local
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
