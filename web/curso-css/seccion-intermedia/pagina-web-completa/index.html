@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primera página web</title>
+
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/lib/fontawesome-7.3.1-web/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <header class="header" id="header">
+        <input type="checkbox" id="open-menu" class="header__checkbox">
+        <!-- El atributo role refiere a accesibilidad -->
+        <label for="open-menu" role="button" class="header__open-nav-button">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+        <figure class="header__logo-container">
+            <img src="./assets/img/logo.png" alt="Logo MHenriquez" class="header__logo">
+        </figure>
+
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li class="header__nav-item"><a href="#profile">About</a></li>
+                <li class="header__nav-item"><a href="#portfolio">Portfolio</a></li>
+                <li class="header__nav-item"><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN SECTION -->
+    <main class="profile" id="profile">
+        <div class="profile__wrapper">
+            <figure class="profile__img-container">
+                <img src="./assets/img/foto-perfil.jpg" alt="Ing. Manuel Henriquez" class="profile__img">
+            </figure>
+
+            <section class="profile__data-container">
+                <div class="profile__data">
+                    <div class="profile__description">
+                        <h1>¿Quién es Manuel Henriquez?</h1>
+                        <p>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non dignissimos totam, voluptatibus, odit, dicta nemo corrupti expedita vero omnis suscipit quibusdam architecto! Aperiam provident odit asperiores nulla! Veniam, architecto quod!
+                        </p>
+                    </div>
+
+                    <div class="profile__skills-container">
+                        <h2>SKILLS</h2>
+                        <ul>
+                            <li class="profile__skill">
+                                <div class="load-bar">
+                                    <div class="load-bar__bar bar--80">80%</div>
+                                </div>
+                                <span class="profile__skill-name">HTML</span>
+                            </li>
+
+                            <li class="profile__skill">
+                                <div class="load-bar">
+                                    <div class="load-bar__bar bar--60">60%</div>
+                                </div>
+                                <span class="profile__skill-name">CSS</span>
+                            </li>
+
+                            <li class="profile__skill">
+                                <div class="load-bar">
+                                    <div class="load-bar__bar bar--70">70%</div>
+                                </div>
+                                <span class="profile__skill-name">JS</span>
+                            </li>
+
+                            <li class="profile__skill">
+                                <div class="load-bar">
+                                    <div class="load-bar__bar bar--70">70%</div>
+                                </div>
+                                <span class="profile__skill-name">PYTHON</span>
+                            </li>
+
+                            <li class="profile__skill">
+                                <div class="load-bar">
+                                    <div class="load-bar__bar bar--90">90%</div>
+                                </div>
+                                <span class="profile__skill-name">SQL</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- PORTFOLIO SECTION -->
+    <section class="portfolio" id="portfolio">
+        <h2 class="portfolio__title">PORTFOLIO SECTION</h2>
+        <div class="portfolio__project-container">
+            <div class="portfolio__project">
+                <h2 class="portfolio__project-name">ENLACE PROPIEDADES</h2>
+            </div>
+
+            <div class="portfolio__project">
+                <h2 class="portfolio__project-name">BOOKY</h2>
+            </div>
+
+            <div class="portfolio__project">
+                <h2 class="portfolio__project-name">SUEÑOS AL HORNO</h2>
+            </div>
+
+            <div class="portfolio__project">
+                <h2 class="portfolio__project-name">GUERRERAS DE DIOS</h2>
+            </div>
+
+            <div class="portfolio__project">
+                <h2 class="portfolio__project-name">ATELIER CAFÉ & PÂTISSERIE</h2>
+            </div>
+
+            <div class="portfolio__project">
+                <h2 class="portfolio__project-name">GAMBIT FINANCE</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="form" id="contact">
+        <h2 class="form__title">CONTACT</h2>
+        <form class="form__form">
+            <div class="form__input-container">
+                <label>Nombre
+                    <input type="text" placeholder="John">
+                </label>
+            </div>
+
+            <div class="form__input-container">
+                <label>Apellido
+                    <input type="text" placeholder="Doe">
+                </label>
+            </div>
+
+            <div class="form__input-container">
+                <label>E-mail
+                    <input type="email" placeholder="yourmail@example.com">
+                </label>
+            </div>
+
+            <div class="form__input-container">
+                <label>Mensaje
+                    <textarea placeholder="Your message"></textarea>
+                </label>
+            </div>
+
+            <div class="form__input-container">
+                <input type="submit">
+            </div>
+        </form>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer id="footer">
+        <strong>MHenriquez</strong> - Copyright
+    </footer>
+</body>
+</html>
