@@ -7,20 +7,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('categories', function () {
-    $categories = [
-        'Fideos',
-        'Tomates',
-        'Arroz'
-    ];
+Route::prefix('categories')->name('categories.')->group(function() {
+    Route::get('/', function () {
+        $categories = [
+            'Fideos',
+            'Tomates',
+            'Arroz'
+        ];
 
-    foreach ($categories as $category) {
-        echo "{$category} <br>";
-    }
-});
+        foreach ($categories as $category) {
+            echo "{$category} <br>";
+        }
+    })->name('index');
 
-Route::get('categories/{name}', function(string $name) {
-    return "Productos de $name";
+    Route::get('oferta', function() {
+        return 'Oferta';
+    })->name('oferta');
+
+    Route::get('mas-vendidas', function() {
+        return 'Más vendida';
+    })->name('mas-vendidas');
+
+    Route::get('/{name}', function(string $name) {
+        return "Productos de $name";
+    })->name('show');
 });
 
 Route::get('products/{category?}', function(?string $category = null) {
