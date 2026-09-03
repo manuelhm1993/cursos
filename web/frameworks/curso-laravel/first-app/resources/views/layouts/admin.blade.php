@@ -29,7 +29,7 @@
   </head>
   <body class="app aside-menu-fixed sidebar-lg-show">
     <header class="app-header bg-light border-0 navbar">
-      <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto ml-3" type="button" data-toggle="sidebar-show"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="#"><b>Back</b><span>strap</span></a>
+      <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto ml-3" type="button" data-toggle="sidebar-show"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="{{ route('admin.dashboard') }}"><b>MH</b><span>enriquez</span></a>
       <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show"><span class="navbar-toggler-icon"></span></button>
       <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item px-3"><a class="nav-link" href="#">Dashboard</a></li>
@@ -69,7 +69,9 @@
           </li>
         </ol>
         <div class="container-fluid">
-          <div class="animated fadeIn"></div>
+          <div class="animated fadeIn">
+            @yield('content')
+          </div>
         </div>
       </main>
       <aside class="aside-menu">
