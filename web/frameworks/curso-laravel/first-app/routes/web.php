@@ -3,55 +3,19 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-$categories = [
-    "Fideos" => [
-        "Moñitos",
-        "Fideos largos",
-        "Cabello de ángel",
-    ],
-    "Verduras" => [
-        "Tomates",
-        "Lechuga",
-        "Cebolla",
-    ],
-];
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Utilities\Common;
 
-// HOME
-Route::get('/', function () use ($categories) {
-    $products   = array_merge(...array_values($categories));
-    $categories = array_keys($categories);
+$categories = Common::getCategories();
 
-    return view('home', compact('categories', 'products'));
-});
+// HOME - USO DE CONTROLADOR PARA DELEGAR LA LÓGICA DEL NEGOCIO
+Route::get('/', [HomeController::class, 'index']);
 
-// CATEGORÍAS
-Route::prefix('categories')->name('categories.')->group(function() use ($categories) {
-    // Inyectar el objeto Request
-    Route::get('/', function (Request $request) use ($categories) {
-        // Manipular el objeto request para acceder a los params
-        $to_find = $request->name;
-
-        if(!is_null($to_find) && array_key_exists($to_find, $categories)) {
-            echo "Existe <br>";
-            return;
-        }
-        
-        foreach ($categories as $category => $product) {
-            echo "{$category} <br>";
-        }
-    })->name('index');
-
-    Route::get('oferta', function() {
-        return 'Oferta';
-    })->name('oferta');
-
-    Route::get('mas-vendidas', function() {
-        return 'Más vendida';
-    })->name('mas-vendidas');
-
-    Route::get('/{name}', function(string $name) {
-        return "Productos de $name";
-    })->name('show');
+// CATEGORÍAS - USO DE CONTROLADOR PARA DELEGAR LA LÓGICA DEL NEGOCIO
+Route::prefix('categories')->name('categories.')->controller(CategoryController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{name}', 'show')->name('show');
 });
 
 // PRODUCTOS
