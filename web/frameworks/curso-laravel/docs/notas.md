@@ -31,4 +31,14 @@ Para crear un proyecto con contenedores no se instala globalmente laravel, ni su
 ```bash
 docker run --rm -u root -v $(pwd):/var/www/html -w /var/www/html php:8.3-apache sh -c "docker-php-ext-install pdo_mysql && php artisan migrate"
 docker run --rm -u root -v $(pwd):/var/www/html -w /var/www/html php:8.3-apache sh -c "docker-php-ext-install pdo_mysql && php artisan install:api"
+
+Otra forma
+Dockerfile
+FROM php:8.3-apache
+RUN docker-php-ext-install pdo pdo_mysql
+
+docker build -t mh_php:8.3-dev .
+
+dexec mh_php:8.3-dev php artisan migrate
 ```
+

@@ -20,4 +20,5 @@ Route::prefix('categories')->name('categories.')->controller(CategoryController:
 // PRODUCTOS - USO DE CONTROLADOR PARA DELEGAR LA LÓGICA DEL NEGOCIO
 Route::prefix('products')->name('products.')->controller(ProductController::class)->group(function() {
     Route::get('/{category?}', 'show')->name('show');
+    Route::get('/create/{category_id}/{name}/', 'create')->name('create');
 });
