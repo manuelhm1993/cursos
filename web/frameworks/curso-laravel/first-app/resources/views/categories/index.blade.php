@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
+@section('title', 'Products')
+
 @section('content')
-    <h1>HOME</h1>
-    <h2>CATEGORÍAS</h2>
+    <h1>CATEGORÍAS</h1>
 
     @include('includes.categories')
 @endsection

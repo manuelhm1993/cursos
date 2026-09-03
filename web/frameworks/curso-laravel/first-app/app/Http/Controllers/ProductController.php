@@ -44,6 +44,7 @@ class ProductController extends Controller
             return view('products.index', compact('products'));
         }
 
-        echo "Categoría no encontrada";
+        echo "Categoría no encontrada <br>";
+        echo "<a href='".url("/")."'>Volver a Home</a>";
     }
 }
