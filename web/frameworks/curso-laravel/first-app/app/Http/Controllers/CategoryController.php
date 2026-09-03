@@ -2,32 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Utilities\Common;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    private array $categories;
+    public function index() {
+        $categories = Category::orderBy('nombre', 'asc')->get();
 
-    public function __construct() {
-        $this->categories = Common::getCategories();
+        return view('categories.index', compact('categories'));
     }
 
-    public function index(Request $request) {
-        // Manipular el objeto request para acceder a los params
-        $to_find = $request->name;
+    public function show(string $nombre) {
+        $categories = Category::where('nombre', 'like', "%{$nombre}%")->get();
 
-        if(!is_null($to_find) && array_key_exists($to_find, $this->categories)) {
-            echo "Existe <br>";
-            return;
-        }
-        
-        foreach ($this->categories as $category => $product) {
-            echo "<a href='".route('products.show', $category)."'>{$category}</a> <br>";
-        }
+        return view('categories.index', compact('categories'));
     }
 
-    public function show(string $name) {
-        return to_route('products.show', $name);
+    public function create(string $nombre) {
+        $category = Category::create([
+            'nombre' => $nombre
+        ]);
+
+        return $category;
+    }
+
+    public function categoryProducts(Request $request) {
+        return to_route('products.show', $request->nombre);
     }
 }

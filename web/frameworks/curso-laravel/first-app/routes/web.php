@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
@@ -13,10 +12,14 @@ Route::get('/', [HomeController::class, 'index']);
 // CATEGORÍAS - USO DE CONTROLADOR PARA DELEGAR LA LÓGICA DEL NEGOCIO
 Route::prefix('categories')->name('categories.')->controller(CategoryController::class)->group(function() {
     Route::get('/', 'index')->name('index');
+    Route::get('/category-products', 'categoryProducts')->name('category-products');
+    Route::get('/create/{name}', 'create')->name('create');
     Route::get('/{name}', 'show')->name('show');
 });
 
 // PRODUCTOS - USO DE CONTROLADOR PARA DELEGAR LA LÓGICA DEL NEGOCIO
 Route::prefix('products')->name('products.')->controller(ProductController::class)->group(function() {
-    Route::get('/{category?}', 'show')->name('show');
+    Route::get('/{category?}', 'index')->name('index');
+    Route::get('/show/{product}', 'show')->name('show');
+    Route::get('/create/{category_id}/{name}/', 'create')->name('create');
 });

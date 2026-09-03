@@ -2,48 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use App\Utilities\Common;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    private array $categories;
-
-    public function __construct() {
-        $this->categories = Common::getCategories();
-    }
-
-    public function show(?string $category = null) {
+    public function index(?string $category = null) {
         // Si la categoría no fue enviada, se muestran todos los productos
         if (is_null($category)) {
-            /*$products = [];
-            foreach ($categories as $key => $value) {
-                foreach($value as $product) {
-                    $products[] = $product;
-                }
-            }*/
-
-            /*$products = [];
-            foreach ($categories as $value) {
-                $products = array_merge($products, $value);
-            }*/
-
-            /*$products = array_reduce($categories, function($carry, $item) {
-                return array_merge($carry, $item);
-            }, []);*/
-
-            $products = array_merge(...array_values($this->categories));
+            $products = Product::all();
 
             return view('products.index', compact('products'));
         }
 
+        $category = Category::where('nombre', $category)->first();
+        
         // Si la categoría existe se muestran sus productos
-        if (array_key_exists($category, $this->categories)) {
-            $products = $this->categories[$category];
+        if (!is_null($category)) {
+            // Obtener los productos que pertenecen a la categoría
+            $products = $category->products;
 
             return view('products.index', compact('products'));
         }
 
-        echo "Categoría no encontrada";
+        echo "Categoría no encontrada <br>";
+        echo "<a href='".url("/")."'>Volver a Home</a>";
+    }
+
+    public function create(int $category_id, string $nombre) {
+        $category = Category::find($category_id);
+
+        $product = $category->products()->create([
+            'nombre' => $nombre,
+        ]);
+
+        return $product;
+    }
+
+    // Model binding
+    public function show(Product $product) {
+        return view('products.show', compact('product'));
     }
 }
