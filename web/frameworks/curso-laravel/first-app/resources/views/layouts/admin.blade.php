@@ -32,19 +32,31 @@
       <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto ml-3" type="button" data-toggle="sidebar-show"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand" href="{{ route('admin.dashboard') }}"><b>MH</b><span>enriquez</span></a>
       <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show"><span class="navbar-toggler-icon"></span></button>
       <ul class="nav navbar-nav d-md-down-none">
-        <li class="nav-item px-3"><a class="nav-link" href="#">Dashboard</a></li>
-        <li class="nav-item px-3"><a class="nav-link" href="#">Users</a></li>
-        <li class="nav-item px-3"><a class="nav-link" href="#">Settings</a></li>
+        <li class="nav-item px-3"><a class="nav-link" href="admin#">Dashboard</a></li>
+        <li class="nav-item px-3"><a class="nav-link" href="admin#">Users</a></li>
+        <li class="nav-item px-3"><a class="nav-link" href="admin#">Settings</a></li>
       </ul>
       <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item d-md-down-none"><a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a></li>
-        <li class="nav-item d-md-down-none"><a class="nav-link" href="#"><i class="icon-list"></i></a></li>
-        <li class="nav-item d-md-down-none"><a class="nav-link" href="#"><i class="icon-location-pin"></i></a></li>
-        <li class="nav-item dropdown"><a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img class="img-avatar" src="img/avatars/6.jpg" alt="admin@bootstrapmaster.com"></a>
+        <li class="nav-item d-md-down-none"><a class="nav-link" href="admin#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a></li>
+        <li class="nav-item d-md-down-none"><a class="nav-link" href="admin#"><i class="icon-list"></i></a></li>
+        <li class="nav-item d-md-down-none"><a class="nav-link" href="admin#"><i class="icon-location-pin"></i></a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="admin#" role="button" aria-haspopup="true" aria-expanded="false">
+            {{ auth()->user()->email }}
+          </a>
           <div class="dropdown-menu dropdown-menu-right">
-            <div class="dropdown-header text-center"><strong>Account</strong></div><a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="badge badge-info">42</span></a><a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a><a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a><a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comments<span class="badge badge-warning">42</span></a>
-            <div class="dropdown-header text-center"><strong>Settings</strong></div><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a><a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a><a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-secondary">42</span></a><a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
-            <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a><a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+            <div class="dropdown-header text-center">
+              <strong>Account</strong>
+            </div>
+              <a class="dropdown-item" href="admin#"><i class="fa fa-bell-o"></i> Updates<span class="badge badge-info">42</span></a>
+              <a class="dropdown-item" href="admin#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
+              <a class="dropdown-item" href="admin#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
+              <a class="dropdown-item" href="admin#"><i class="fa fa-comments"></i> Comments<span class="badge badge-warning">42</span></a>
+            <div class="dropdown-header text-center">
+              <strong>Settings</strong>
+            </div>
+            <a class="dropdown-item" href="admin#"><i class="fa fa-user"></i> Profile</a><a class="dropdown-item" href="admin#"><i class="fa fa-wrench"></i> Settings</a><a class="dropdown-item" href="admin#"><i class="fa fa-usd"></i> Payments<span class="badge badge-secondary">42</span></a><a class="dropdown-item" href="admin#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
+            <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ url('/') }}"><i class="fa fa-shield"></i> Sitio web</a><a class="dropdown-item" href="{{ route('login.out') }}"><i class="fa fa-lock"></i> Logout</a>
           </div>
         </li>
       </ul>
@@ -61,11 +73,11 @@
         <!-- Breadcrumb-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">Home</li>
-          <li class="breadcrumb-item"><a href="#">Admin</a></li>
+          <li class="breadcrumb-item"><a href="admin#">Admin</a></li>
           <li class="breadcrumb-item active">Dashboard</li>
           <!-- Breadcrumb Menu-->
           <li class="breadcrumb-menu d-md-down-none">
-            <div class="btn-group" role="group" aria-label="Button group"><a class="btn" href="#"><i class="icon-speech"></i></a><a class="btn" href="./"><i class="icon-graph"></i>  Dashboard</a><a class="btn" href="#"><i class="icon-settings"></i>  Settings</a></div>
+            <div class="btn-group" role="group" aria-label="Button group"><a class="btn" href="admin#"><i class="icon-speech"></i></a><a class="btn" href="./"><i class="icon-graph"></i>  Dashboard</a><a class="btn" href="admin#"><i class="icon-settings"></i>  Settings</a></div>
           </li>
         </ol>
         <div class="container-fluid">
