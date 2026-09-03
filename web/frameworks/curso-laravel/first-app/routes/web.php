@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
@@ -22,4 +23,11 @@ Route::prefix('products')->name('products.')->controller(ProductController::clas
     Route::get('/{category?}', 'index')->name('index');
     Route::get('/show/{product}', 'show')->name('show');
     Route::get('/create/{category_id}/{name}/', 'create')->name('create');
+});
+
+// LOGIN
+Route::prefix('login')->name('login.')->controller(LoginController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/out', 'out')->name('out');
+    Route::post('/', 'in')->name('in');
 });

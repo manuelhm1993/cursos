@@ -27,6 +27,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('products.index') }}">Products</a>
                         </li>
+                        <li class="nav-item">
+                            @auth
+                            <a class="nav-link" href="{{ route('admin.dashboard') }}">Panel admin</a>
+                            @else
+                            <a class="nav-link" href="{{ route('login.index') }}">Login</a>
+                            @endauth
+                        </li>
                     </ul>
                 </div>
             </div>

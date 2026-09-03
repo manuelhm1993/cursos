@@ -41,4 +41,7 @@ docker build -t mh_php:8.3-dev .
 
 dexec mh_php:8.3-dev php artisan migrate
 ```
-
+### Uso de tinker
+```bash
+dexecit mh_php:8.3-dev env XDG_CONFIG_HOME=/tmp php artisan tinker
+```
