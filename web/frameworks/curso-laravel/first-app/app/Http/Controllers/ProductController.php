@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function show(?string $category = null) {
+    public function index(?string $category = null) {
         // Si la categoría no fue enviada, se muestran todos los productos
         if (is_null($category)) {
             $products = Product::all();
@@ -38,5 +38,10 @@ class ProductController extends Controller
         ]);
 
         return $product;
+    }
+
+    // Model binding
+    public function show(Product $product) {
+        return view('products.show', compact('product'));
     }
 }
