@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -31,7 +31,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => 'required|min:3'
+        ]);
+
+        Category::create($validated);
+
+        return to_route('admin.categories.index')->with([
+            'success' => 'La categoría ha sido creada'
+        ]);
     }
 
     /**
@@ -55,7 +63,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category->update($request->all());
+        // Cuando la validación es muy simple, se puede usar el método validate
+        $validated = $request->validate([
+            'nombre' => 'required|min:3'
+        ]);
+
+        $category->update($validated);
 
         return to_route('admin.categories.index');
     }
