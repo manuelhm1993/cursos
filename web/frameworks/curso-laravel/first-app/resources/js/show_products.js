@@ -1,4 +1,9 @@
 import { createApp } from 'vue';
 import ShowProducts from './components/Products/ShowProducts.vue';
 
-createApp(ShowProducts).mount('#ver_producto');
+const selector = '#ver_producto';
+const product = document.querySelector(selector);
+
+createApp(ShowProducts, {
+    id: parseInt(product.getAttribute('data-id')),
+}).mount(product);

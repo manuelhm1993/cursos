@@ -7,5 +7,5 @@
 @endpush
 
 @section('content')
-    <div id="ver_producto"></div>
+    <div id="ver_producto" data-id="{{ $product->id }}"></div>
 @endsection
