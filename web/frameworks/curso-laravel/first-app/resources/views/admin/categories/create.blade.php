@@ -5,23 +5,22 @@
     <div class="col-md">
         <div class="card">
             <div class="card-header">
-                <strong>Editar</strong> categoría
+                <strong>Crear</strong> categoría
             </div>
             <div class="card-body">
                 {{-- Mostrar los errores de validación --}}
                 @include('includes.errores')
 
-                <form action="{{ route('admin.categories.update', $category->id) }}" method="post" id="edit-form">
+                <form action="{{ route('admin.categories.store') }}" method="post" id="edit-form">
                     @csrf
-                    @method('PUT')
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input class="form-control" id="nombre" type="text" name="nombre" placeholder="Verduras" value="{{ old('nombre', $category->nombre) }}">
+                        <input class="form-control" id="nombre" type="text" name="nombre" placeholder="Verduras" value="{{ old('nombre') }}">
                     </div>
                 </form>
             </div>
             <div class="card-footer">
-                <button class="btn btn-sm btn-primary" type="submit" form="edit-form">Actualizar</button>
+                <button class="btn btn-sm btn-primary" type="submit" form="edit-form">Crear</button>
                 <button class="btn btn-sm btn-danger" type="reset" form="edit-form">Limpiar</button>
             </div>
         </div>

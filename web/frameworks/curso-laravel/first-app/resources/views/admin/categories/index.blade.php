@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+    @include('includes.success')
+
     <div class="row">
         <div class="col-lg">
             <div class="card">

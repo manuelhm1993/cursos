@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="base/breadcrumb.html">
+                <a class="nav-link" href="{{ route('admin.categories.create') }}">
                     <i class="nav-icon la la-lg la-puzzle"></i> Crear
                 </a>
             </li>

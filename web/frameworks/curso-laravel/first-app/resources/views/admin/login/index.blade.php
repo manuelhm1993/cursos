@@ -37,6 +37,10 @@
               <div class="card-body">
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
+
+                {{-- Mostrar los errores de validación --}}
+                @include('includes.errores')
+
                 <form id="login-form" action="{{ route('login.in') }}" method="POST">
                   @csrf
                   <div class="input-group mb-3">
