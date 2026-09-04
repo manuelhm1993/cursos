@@ -25,15 +25,7 @@
                     </div>
 
                     <div class="col-12 mt-3">
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-12 col-sm-6">
-                                <input type="number" placeholder="Ingrese la cantidad" class="form-control">
-                            </div>
-
-                            <div class="col-12 col-sm-6">
-                                <button class="btn btn-success" type="button">Agregar al carrito</button>
-                            </div>
-                        </div>
+                        <AgregarAlCarrito :id="props.id" :stock="stock" />
                     </div>
                 </div>
             </div>
@@ -45,7 +37,9 @@
     import { onMounted, ref } from 'vue';
     import axios from 'axios'; // Importación modular estéril
 
-    // Crear una propiedad para obtener el id del producto
+    import AgregarAlCarrito from '../Carrito/AgregarAlCarrito.vue';
+
+    // Props
     const props = defineProps({
         id: {
             type: Number,
@@ -54,11 +48,11 @@
     });
 
     // Data
-    const nombre = ref("");
-    const precio = ref(0);
-    const stock = ref(0);
+    const nombre   = ref("");
+    const precio   = ref(0);
+    const stock    = ref(0);
 
-    // Ejecutar el evento onMounted para hacer la petición a la API
+    // Eventos
     onMounted(async () => {
         try {
             // Pausa la ejecución hasta que tu Controlador de Laravel responda
