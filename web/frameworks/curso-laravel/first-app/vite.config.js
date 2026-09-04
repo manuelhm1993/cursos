@@ -7,7 +7,8 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            // input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: ['resources/js/show_products.js'],
             refresh: true,
             fonts: [
                 bunny('Instrument Sans', {
@@ -26,6 +27,10 @@ export default defineConfig({
         }),
     ],
     server: {
+        host: '0.0.0.0', // El contenedor escucha en todas sus interfaces
+        hmr: {
+            host: 'localhost', // El navegador en Windows buscará estrictamente aquí
+        },
         watch: {
             ignored: ['**/storage/framework/views/**'],
         },

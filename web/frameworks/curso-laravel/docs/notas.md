@@ -12,7 +12,7 @@ Para crear un proyecto con contenedores no se instala globalmente laravel, ni su
 4. Correr migraciones
 - dexec php:8.3-apache php artisan migrate"
 5. Exponer los puertos
-- dportit 8000 php:8.3-apache php artisan serve --host=0.0.0.0 --port=8000
+- dportit 8000 mh_php:8.3-dev php artisan serve --host=0.0.0.0 --port=8000
 6. Uso de vite online
 - dportit 5173 node:22.22.0-slim npm run dev -- --host 0.0.0.0
 ```
