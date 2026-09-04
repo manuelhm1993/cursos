@@ -25,6 +25,13 @@
                                     <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-info">
                                         Editar
                                     </a>
+                                    <button type="submit" role="button" class="btn btn-danger" form="borrar-id-{{ $category->id }}" onclick="return confirm('¿Está seguro que desea eliminar este elemento?')">
+                                        Borrar
+                                    </button>
+                                    <form id="borrar-id-{{ $category->id }}" action="{{ route('admin.categories.destroy', $category->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

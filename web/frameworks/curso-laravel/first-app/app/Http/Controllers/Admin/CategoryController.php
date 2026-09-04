@@ -70,7 +70,9 @@ class CategoryController extends Controller
 
         $category->update($validated);
 
-        return to_route('admin.categories.index');
+        return to_route('admin.categories.index')->with([
+            'success' => 'La categoría ha sido actualizada'
+        ]);
     }
 
     /**
@@ -78,6 +80,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $nombre = $category->nombre;
+
+        $category->delete();
+
+        return to_route('admin.categories.index')->with([
+            'success' => 'La categoría '.$nombre.' ha sido eliminada'
+        ]);
     }
 }
