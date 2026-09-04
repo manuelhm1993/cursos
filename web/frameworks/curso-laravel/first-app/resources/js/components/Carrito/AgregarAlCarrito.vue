@@ -1,7 +1,7 @@
 <template>
     <div class="row align-items-center justify-content-between">
         <div class="col-12 col-sm-6">
-            <input type="number" placeholder="Ingrese la cantidad" class="form-control" :max="stock" v-model="cantidad">
+            <input type="number" placeholder="Ingrese la cantidad" class="form-control" :max="props.product.stock" v-model="cantidad">
         </div>
 
         <div class="col-12 col-sm-6">
@@ -15,13 +15,9 @@
 
     // Props
     const props = defineProps({
-        id: {
-            type: Number,
-            default: 0,
-        },
-        stock: {
-            type: Number,
-            default: 0,
+        product: {
+            type: Object,
+            default: () => ({}),
         }
     });
 
@@ -31,17 +27,19 @@
     // Métodos
     const agregarAlCarrito = () => {
         // Validar stock
-        if(props.stock < cantidad.value) return;
+        if(props.product.stock < cantidad.value) return;
 
         // Obtener el carrito si existe en local storage o crear un array vacío
         const products = JSON.parse(localStorage.getItem("products")) || [];
 
-        const indexExisteProducto = products.findIndex((item) => parseInt(item.id) === parseInt(props.id));
+        const indexExisteProducto = products.findIndex((item) => parseInt(item.id) === parseInt(props.product.id));
 
         // Si no existe el producto se agrega al carrito
         if(indexExisteProducto === -1) {
             products.push({
-                id: props.id,
+                id: props.product.id,
+                nombre: props.product.nombre,
+                precio: props.product.precio,
                 cantidad: cantidad.value,
             });
         }
