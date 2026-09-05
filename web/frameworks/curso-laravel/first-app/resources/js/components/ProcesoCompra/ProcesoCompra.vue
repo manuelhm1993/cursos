@@ -2,9 +2,11 @@
     <div class="container my-3">
         <div class="row">
             <!-- Componentes de cada paso -->
-            <Productos v-if="paso === 1" />
-            <DatosCliente v-if="paso === 2" />
-            <MetodoEntrega v-if="paso === 3" />
+            <!--  -->
+            <!-- v-if destruye el componente al ser false, v-show le da d-none -->
+            <Productos v-show="paso === 1" /> 
+            <DatosCliente v-show="paso === 2" />
+            <MetodoEntrega v-show="paso === 3" />
         </div>
 
         <div class="d-flex justify-content-between mt-3">
