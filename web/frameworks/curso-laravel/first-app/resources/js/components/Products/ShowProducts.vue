@@ -9,7 +9,7 @@
             <div class="col-12 col-sm-6">
                 <div class="row">
                     <div class="col-12">
-                        <h1>{{ nombre }}</h1>
+                        <h1>{{ product.nombre }}</h1>
                     </div>
 
                     <div class="col-12">
@@ -17,23 +17,15 @@
                     </div>
 
                     <div class="col-12">
-                        <h6><strong>STOCK:</strong> {{ stock }}</h6>
+                        <h6><strong>STOCK:</strong> {{ product.stock }}</h6>
                     </div>
 
                     <div class="col-12">
-                        <h6><strong>PRECIO:</strong> ${{ precio }}</h6>
+                        <h6><strong>PRECIO:</strong> ${{ product.precio }}</h6>
                     </div>
 
                     <div class="col-12 mt-3">
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-12 col-sm-6">
-                                <input type="number" placeholder="Ingrese la cantidad" class="form-control">
-                            </div>
-
-                            <div class="col-12 col-sm-6">
-                                <button class="btn btn-success" type="button">Agregar al carrito</button>
-                            </div>
-                        </div>
+                        <AgregarAlCarrito :product="product" />
                     </div>
                 </div>
             </div>
@@ -45,7 +37,10 @@
     import { onMounted, ref } from 'vue';
     import axios from 'axios'; // Importación modular estéril
 
-    // Crear una propiedad para obtener el id del producto
+    import AgregarAlCarrito from '../Carrito/AgregarAlCarrito.vue';
+    import { useCarritoStore } from '../../stores/cart';
+
+    // Props
     const props = defineProps({
         id: {
             type: Number,
@@ -53,18 +48,19 @@
         },
     });
 
-    // Data
-    const nombre = ref("");
-    const precio = ref(0);
-    const stock = ref(0);
+    // Store
+    const store = useCarritoStore();
 
-    // Ejecutar el evento onMounted para hacer la petición a la API
+    // Data
+    const product = ref({});
+
+    // Eventos
     onMounted(async () => {
         try {
             // Pausa la ejecución hasta que tu Controlador de Laravel responda
             const response = await axios.get(`/api/products/${props.id}`);
             
-            const product = response.data;
+            product.value = response.data;
 
             /* Usando fetch
             // 1. Ejecución de la petición nativa
@@ -78,17 +74,12 @@
             // 3. Deserialización obligatoria (El paso que Axios hace automático)
             const product = await response.json();
             */
-
-            nombre.value = product.nombre;
-            precio.value = product.precio;
-            stock.value  = product.stock;
-
-            // Inspección táctica en la consola
-            // console.log('Payload del servidor:', product);
         } catch (error) {
             // Intercepta errores 404 o 500 de la API
             console.error('Fallo en la comunicación HTTP:', error);
         }
+
+        store.getProductos();
     });
 </script>
 
