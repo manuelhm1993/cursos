@@ -26,10 +26,39 @@
     import DatosCliente from './DatosCliente.vue';
     import MetodoEntrega from './MetodoEntrega.vue';
     import ResumenCompra from './ResumenCompra.vue';
+    import { useProcesoCompraStore } from '../../stores/proceso_compra/index.js';
+    import axios from 'axios';
+
+    // Store
+    const storeCarrito = useCarritoStore();
+    const storeProcesoDeCompra = useProcesoCompraStore();
+
+    // Data
+    const paso = ref(1);
 
     // Métodos
     const finalizarCompra = (e) => {
-        console.log(`Compra terminada`);
+
+        axios.post('/api/carrito/finalizar-compra', {
+			products: storeCarrito.products,
+
+			nombre: storeProcesoDeCompra.nombre,
+			apellido: storeProcesoDeCompra.apellido,
+			email: storeProcesoDeCompra.email,
+			telefono: storeProcesoDeCompra.telefono,
+
+			tipo_envio: storeProcesoDeCompra.tipo_envio,
+			direccion: storeProcesoDeCompra.direccion,
+			codigo_postal: storeProcesoDeCompra.codigo_postal,
+			estado: storeProcesoDeCompra.estado,
+			municipio: storeProcesoDeCompra.municipio,
+			pais: storeProcesoDeCompra.pais,
+		})
+		.then((response) => {
+			console.log("se finalizó la compra");
+		}).catch((err) => {
+			console.error(err);
+		});
     };
 
     const anteriorSiguiente = (e) => {
@@ -43,15 +72,9 @@
         }
     };
 
-    // Store
-    const store = useCarritoStore();
-
-    // Data
-    const paso = ref(1);
-
     // Eventos
     onMounted(() => {
-        store.getProductos();
+        storeCarrito.getProductos();
     });
 </script>
 

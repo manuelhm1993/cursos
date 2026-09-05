@@ -12,4 +12,7 @@ use Illuminate\Support\Facades\Route;
 // Devolver todos los productos en formato json
 Route::name('api')->apiResource('products', ProductController::class);
 
-Route::post('/carrito/calcular-total', [CarritoController::class, 'calcularTotal']);
+Route::prefix('carrito')->controller(CarritoController::class)->group(function () {
+    Route::post('/calcular-total','calcularTotal');
+    Route::post('/finalizar-compra', 'finalizarCompra');
+});
