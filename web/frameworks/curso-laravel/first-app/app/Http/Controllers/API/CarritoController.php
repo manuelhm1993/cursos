@@ -3,31 +3,22 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\CarritoControllerRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class CarritoController extends Controller
 {
-    private function calculoTotal(array $validatedProducts) {
+    private function calculoTotal(array $productsDTO) {
         $total = 0;
 
-        foreach($validatedProducts['products'] as $vp) {
-
-            $product = Product::find($vp['id']);
-
-            $total += ($product->precio * $vp['cantidad']);
+        foreach($productsDTO as $dto) {
+            $total += ($dto->product->precio * $dto->cantidad);
         }
 
         return $total;
     }
 
-    public function calcularTotal(Request $request) {
-        $validatedProducts = $request->validate([
-            'products'            => 'required|array',
-            'products.*.id'       => 'required|integer|exists:products,id',
-            'products.*.cantidad' => 'required|integer',
-        ]);
-
-        return response()->json(['total' => $this->calculoTotal($validatedProducts)]);
+    public function calcularTotal(CarritoControllerRequest $request) {
+        return response()->json(['total' => $this->calculoTotal($request->getProductsDTO())]);
     }
 }
