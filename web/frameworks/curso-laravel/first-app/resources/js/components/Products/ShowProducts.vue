@@ -38,6 +38,7 @@
     import axios from 'axios'; // Importación modular estéril
 
     import AgregarAlCarrito from '../Carrito/AgregarAlCarrito.vue';
+    import { useCarritoStore } from '../../stores/cart';
 
     // Props
     const props = defineProps({
@@ -46,6 +47,9 @@
             default: 0,
         },
     });
+
+    // Store
+    const store = useCarritoStore();
 
     // Data
     const product = ref({});
@@ -74,6 +78,8 @@
             // Intercepta errores 404 o 500 de la API
             console.error('Fallo en la comunicación HTTP:', error);
         }
+
+        store.getProductos();
     });
 </script>
 
