@@ -32,6 +32,9 @@
                             <a class="nav-link" href="{{ route('products.index') }}">Products</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('carrito.index') }}">Carrito</a>
+                        </li>
+                        <li class="nav-item">
                             @auth
                             <a class="nav-link" href="{{ route('admin.dashboard') }}">Panel admin</a>
                             @else

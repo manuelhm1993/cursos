@@ -1,7 +1,7 @@
 <template>
     <div class="row align-items-center justify-content-between">
         <div class="col-12 col-sm-6">
-            <input type="number" placeholder="Ingrese la cantidad" class="form-control" :max="props.product.stock" v-model="cantidad">
+            <input type="number" placeholder="Ingrese la cantidad" class="form-control" min="0" :max="props.product.stock" v-model="cantidad">
         </div>
 
         <div class="col-12 col-sm-6">
