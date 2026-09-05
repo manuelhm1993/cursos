@@ -7,11 +7,13 @@
             <Productos v-show="paso === 1" /> 
             <DatosCliente v-show="paso === 2" />
             <MetodoEntrega v-show="paso === 3" />
+            <ResumenCompra v-show="paso === 4" />
         </div>
 
         <div class="d-flex justify-content-between mt-3">
             <button type="button" class="btn btn-danger" @click="anteriorSiguiente" aria-btn="anterior" :disabled="paso === 1">Anterior</button>
-            <button type="button" class="btn btn-primary" @click="anteriorSiguiente" aria-btn="siguiente">Siguiente</button>
+            <button type="button" class="btn btn-primary" @click="anteriorSiguiente" aria-btn="siguiente" v-if="paso < 4">Siguiente</button>
+            <button type="button" class="btn btn-success" @click="finalizarCompra" aria-btn="finalizarCompra" v-if="paso === 4">Finalizar compra</button>
         </div>
     </div>
 </template>
@@ -23,8 +25,13 @@
     import Productos from './Productos.vue';
     import DatosCliente from './DatosCliente.vue';
     import MetodoEntrega from './MetodoEntrega.vue';
+    import ResumenCompra from './ResumenCompra.vue';
 
     // Métodos
+    const finalizarCompra = (e) => {
+        console.log(`Compra terminada`);
+    };
+
     const anteriorSiguiente = (e) => {
         const btn = e.target.getAttribute('aria-btn');
 
