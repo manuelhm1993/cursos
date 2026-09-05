@@ -24,4 +24,23 @@ export default {
         // Actualizar o crear el carrito en localStorage
         localStorage.setItem("products", JSON.stringify(this.products));
     },
+    setCantidad(productId, cantidad) {
+        // Buscar el index del producto
+        const indexExisteProducto = this.products.findIndex((item) => parseInt(item.id) === parseInt(productId));
+
+        // Si el producto existe, se edita la cantidad
+        if(indexExisteProducto === -1) {
+            return;
+        }
+
+        if(cantidad > 0) {
+            this.products[indexExisteProducto].cantidad = cantidad;
+        }
+        else {
+            this.products.splice(indexExisteProducto, 1);
+        }
+
+        // Actualizar o crear el carrito en localStorage
+        localStorage.setItem("products", JSON.stringify(this.products));
+    },
 };

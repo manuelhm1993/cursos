@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CarritoController;
 use App\Http\Controllers\API\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,3 +11,5 @@ use Illuminate\Support\Facades\Route;
 
 // Devolver todos los productos en formato json
 Route::name('api')->apiResource('products', ProductController::class);
+
+Route::post('/carrito/calcular-total', [CarritoController::class, 'calcularTotal']);

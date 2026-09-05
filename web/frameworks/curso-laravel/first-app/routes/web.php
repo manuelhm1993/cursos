@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\CarritoController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
@@ -31,3 +32,5 @@ Route::prefix('login')->name('login.')->controller(LoginController::class)->grou
     Route::get('/out', 'out')->name('out');
     Route::post('/', 'in')->name('in');
 });
+
+Route::get('/carrito', CarritoController::class)->name('carrito.index');
