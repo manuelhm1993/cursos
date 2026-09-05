@@ -4,6 +4,7 @@
             <!-- Componentes de cada paso -->
             <Productos v-if="paso === 1" />
             <DatosCliente v-if="paso === 2" />
+            <MetodoEntrega v-if="paso === 3" />
         </div>
 
         <div class="d-flex justify-content-between mt-3">
@@ -19,6 +20,7 @@
     import { useCarritoStore } from '../../stores/cart';
     import Productos from './Productos.vue';
     import DatosCliente from './DatosCliente.vue';
+    import MetodoEntrega from './MetodoEntrega.vue';
 
     // Métodos
     const anteriorSiguiente = (e) => {
