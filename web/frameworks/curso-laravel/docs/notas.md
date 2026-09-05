@@ -12,7 +12,7 @@ Para crear un proyecto con contenedores no se instala globalmente laravel, ni su
 4. Correr migraciones
 - dexec php:8.3-apache php artisan migrate"
 5. Exponer los puertos
-- dportit 8000 php:8.3-apache php artisan serve --host=0.0.0.0 --port=8000
+- dportit 8000 mh_php:8.3-dev php artisan serve --host=0.0.0.0 --port=8000
 6. Uso de vite online
 - dportit 5173 node:22.22.0-slim npm run dev -- --host 0.0.0.0
 ```
@@ -41,4 +41,24 @@ docker build -t mh_php:8.3-dev .
 
 dexec mh_php:8.3-dev php artisan migrate
 ```
+### Uso de tinker
+```bash
+dexecit mh_php:8.3-dev env XDG_CONFIG_HOME=/tmp php artisan tinker
+```
 
+### Uso de storage:link
+```bash
+dexec composer:2.9.4 composer require symfony/filesystem
+dexec php:8.3-apache php artisan storage:link --relative
+```
+
+### Vite viene por default al instalar npm. Instalación de Vue y pinea
+```bash
+dexecit node:22.22.0-slim npm install vue pinia
+dexecit node:22.22.0-slim npm install -D @vitejs/plugin-vue
+
+Se registra en vite
+Se agrega la etiqueta en html @vite(['resources/css/app.css', 'resources/js/app.js'])
+Se levanta el watch
+dportit 5173 node:22.22.0-slim npm run dev -- --host 0.0.0.0
+```
