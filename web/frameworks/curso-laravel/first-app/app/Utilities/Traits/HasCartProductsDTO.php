@@ -2,7 +2,7 @@
 
 namespace App\Utilities\Traits;
 
-use App\Data\CartProductData;
+use App\Utilities\Data\CartProductData;
 
 trait HasCartProductsDTO 
 {
