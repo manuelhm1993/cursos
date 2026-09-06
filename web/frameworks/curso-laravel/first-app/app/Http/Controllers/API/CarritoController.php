@@ -33,12 +33,15 @@ class CarritoController extends Controller
         // 2. Integración con Stripe (Generar la Intención de Pago)
         $intencionPago = $this->stripeService->crearIntencionDePago($compra->total, $compra->id);
 
+        // Carga los productos relacionados dentro de la compra
+        $dataCompra = $compra->load('products');
+
         // 3. Enviar mails (Pendiente para futura iteración)
-        // TODO: realizarlo en la siguiente jornada
+        $this->compraService->eviarMail($dataCompra);
 
         // 4. Retornar la data + la llave secreta para que Vue 3 monte el formulario
         return response()->json([
-            'compra'        => $compra->load('products'),
+            'compra'        => $dataCompra,
             'client_secret' => $intencionPago->client_secret
         ]);
     }
