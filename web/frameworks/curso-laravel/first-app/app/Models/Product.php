@@ -17,9 +17,8 @@ class Product extends Model
 
     public function compras(): BelongsToMany
     {
-        return $this->belongsToMany(Compra::class, 'compra_productos');
+        return $this->belongsToMany(Compra::class, 'compra_productos')->withTimestamps();
                     /*->using(CompraProducto::class)
-                    ->withPivot(['cantidad', 'precio'])
-                    ->withTimestamps(); */
+                    ->withPivot(['cantidad', 'precio']); */
     }
 }

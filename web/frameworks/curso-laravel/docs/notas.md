@@ -62,3 +62,9 @@ Se agrega la etiqueta en html @vite(['resources/css/app.css', 'resources/js/app.
 Se levanta el watch
 dportit 5173 node:22.22.0-slim npm run dev -- --host 0.0.0.0
 ```
+
+### Crear servicios
+```bash
+- Los servicios son simplemente clases donde se delegan tareas del controlador:
+dexec mh_php:8.3-dev php artisan make:class Services/CompraService
+```
