@@ -5,50 +5,38 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\CarritoControllerRequest;
 use App\Http\Requests\API\FinalizarCompraRequest;
-use App\Models\Compra;
-use App\Models\CompraProducto;
-use App\Models\Product;
+use App\Services\CarritoService;
+use App\Services\CompraService;
 
 class CarritoController extends Controller
 {
-    private function calculoTotal(array $productsDTO) {
-        $total = 0;
+    // Inyección de dependencias con el servicio de compras
+    public function __construct(
+        private CompraService $compraService,
+        private CarritoService $carritoService
+        ) {}
 
-        foreach($productsDTO as $dto) {
-            $total += ($dto->product->precio * $dto->cantidad);
-        }
-
-        return $total;
-    }
-
+    // Métodos de clase
     public function calcularTotal(CarritoControllerRequest $request) {
-        return response()->json(['total' => $this->calculoTotal($request->getProductsDTO())]);
+        $products = $request->getProductsDTO();
+        $total = $this->carritoService->calculoTotal($products);
+
+        return response()->json(['total' => $total]);
     }
 
     public function finalizarCompra(FinalizarCompraRequest $request) {
-        // Obtener los datos validados
-        $validated = $request->validated();
+        // 1. Obtener los datos validados
 
-        // Extraer el array de productos
-        $productsDTO = $request->getProductsDTO();
-        
-        // Borrar el array de productos de los datos validados
-        // unset($validated['products']);
+        // 2. Llamar al servicio para crear la compra y el detalle de la compra
+        $compra = $this->compraService->crearCompra($request);
 
-        // Guardar la compra
-        $compra = Compra::create($validated);
+        // 3. Integrar mercado pago
 
-        $data = [];
+        // 4. Enviar mails
 
-        foreach($productsDTO as $dto) {
-            $data[] = CompraProducto::create([
-                'compra_id'  => $compra->id,
-                'product_id' => $dto->id,
-                'cantidad'   => $dto->cantidad,
-                'precio'     => $dto->product->precio,
-            ]);
-        }
-
-        return response()->json(['data' => $data]);
+        // 5. Retornar la data
+        return response()->json([
+            'compra' => $compra->load('products')
+        ]);
     }
 }
