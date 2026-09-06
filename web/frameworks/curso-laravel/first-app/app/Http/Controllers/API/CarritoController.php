@@ -7,13 +7,15 @@ use App\Http\Requests\API\CarritoControllerRequest;
 use App\Http\Requests\API\FinalizarCompraRequest;
 use App\Services\CarritoService;
 use App\Services\CompraService;
+use App\Services\StripeService;
 
 class CarritoController extends Controller
 {
     // Inyección de dependencias con el servicio de compras
     public function __construct(
         private CompraService $compraService,
-        private CarritoService $carritoService
+        private CarritoService $carritoService,
+        private StripeService $stripeService
         ) {}
 
     // Métodos de clase
@@ -25,18 +27,19 @@ class CarritoController extends Controller
     }
 
     public function finalizarCompra(FinalizarCompraRequest $request) {
-        // 1. Obtener los datos validados
-
-        // 2. Llamar al servicio para crear la compra y el detalle de la compra
+        // 1. Llamar al servicio para crear la compra y su tabla pivot
         $compra = $this->compraService->crearCompra($request);
 
-        // 3. Integrar mercado pago
+        // 2. Integración con Stripe (Generar la Intención de Pago)
+        $intencionPago = $this->stripeService->crearIntencionDePago($compra->total, $compra->id);
 
-        // 4. Enviar mails
+        // 3. Enviar mails (Pendiente para futura iteración)
+        // TODO: realizarlo en la siguiente jornada
 
-        // 5. Retornar la data
+        // 4. Retornar la data + la llave secreta para que Vue 3 monte el formulario
         return response()->json([
-            'compra' => $compra->load('products')
+            'compra'        => $compra->load('products'),
+            'client_secret' => $intencionPago->client_secret
         ]);
     }
 }

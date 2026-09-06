@@ -1,0 +1,10 @@
+# MATRIZ ESTRATÉGICA: PASARELAS DE PAGO (VENEZUELA)
+
+| Pasarela | Pros | Contras | Veredicto Arquitectónico |
+| :--- | :--- | :--- | :--- |
+| **Binance Pay** | Liquidación directa en USDT. Cero bloqueos regionales. API moderna y oficial. Alineado con tu modelo de negocio. | Exige que el usuario final entienda y tenga fondos en el ecosistema cripto. | **Recomendado para Producción.** El rey indiscutible para cobrar en dólares localmente. Su API REST es perfecta para Angular y Laravel. |
+| **Stripe (Sandbox)** | La mejor API del mercado. Documentación impecable. Forja bases sólidas de arquitectura financiera. | Inoperable para cuentas bancarias e identidades radicadas en Venezuela. | **Exclusivo para Aprendizaje.** Domina sus Webhooks y entenderás el 90% de las pasarelas globales. |
+| **PayPal (Sandbox)** | Estándar global. Excelente entorno de pruebas para demostrar habilidades en pruebas técnicas. | Riesgo crítico de bloqueo de cuentas venezolanas (limitaciones de fondos). Comisiones destructivas. | **Exclusivo para Desarrollo.** Útil para validar requerimientos técnicos corporativos. Prohibido para producción local. |
+| **Zinli / Wally** | Fuerte adopción en Venezuela. Opera en dólares digitales. | APIs cerradas, exclusivas para grandes comercios, o inexistentes. Requiere comprobación manual. | Sirve como pasarela manual (el usuario transfiere y avisa), pero rompe el flujo automatizado de una SPA moderna. |
+| **Cryptomus** | API fácil de inyectar en tu backend. Acepta múltiples monedas. Sin KYC agresivo ni bloqueos por país. | Menor reconocimiento de marca frente a Binance. Interfaz de pago ligeramente más técnica. | **Plan B.** Tu mejor alternativa para automatizar cobros si decides no utilizar Binance Pay. |
+| **Locales (Instapago, etc.)**| Conectan con bancos venezolanos en bolívares. | APIs prehistóricas (SOAP/XML). Pésima documentación. Devaluación constante de la moneda de cobro. | **Descartadas.** Tecnológicamente incompatibles con la agilidad de tu *stack* moderno. |

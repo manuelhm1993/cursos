@@ -8,14 +8,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 #[Fillable([
     'nombre', 'apellido', 'email', 'telefono', 
-    'tipo_envio', 'direccion', 'codigo_postal', 'pais', 'estado', 'municipio'
+    'tipo_envio', 'direccion', 'codigo_postal', 'pais', 'estado', 'municipio', 
+    'total',
 ])]
 class Compra extends Model
 {
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'compra_productos')->withTimestamps();
-                    /*->using(CompraProducto::class)
-                    ->withPivot(['cantidad', 'precio']);*/
+        return $this->belongsToMany(Product::class, 'compra_productos')
+                ->withTimestamps()
+                ->withPivot(['cantidad', 'precio']);
+                    /*->using(CompraProducto::class);*/
     }
 }
