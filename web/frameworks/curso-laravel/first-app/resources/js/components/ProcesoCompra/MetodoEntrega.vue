@@ -9,7 +9,7 @@
                 <input class="form-check-input" type="radio" name="tipo_envio" id="tipo_envio2" value="Pick up" @change="store.setMetodoEnvio($event)">
                 <label class="form-check-label" for="tipo_envio2">Pick up</label>
             </div>
-            <div class="mt-3" v-if="store.tipo_envio === 'Delivery'">
+            <div class="mt-3" v-show="store.tipo_envio === 'Delivery'">
                 <div class="mb-3">
                     <label for="direccion" class="form-label">Dirección</label>
                     <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Calle 123" @change="store.setDireccion($event.target.value)">

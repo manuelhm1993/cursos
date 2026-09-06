@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Http\Requests\API\FinalizarCompraRequest;
+use App\Mail\CompraRealizada;
 use App\Models\Compra;
+use Illuminate\Support\Facades\Mail;
 
 class CompraService
 {
@@ -40,5 +42,10 @@ class CompraService
         $compra->update(['total' => $total]);
 
         return $compra;
+    }
+
+    public function eviarMail(Compra $compra): void
+    {
+        Mail::to($compra->email)->send(new CompraRealizada($compra));
     }
 }
