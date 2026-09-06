@@ -2,15 +2,17 @@
 
 namespace App\Http\Requests\API;
 
-use App\Data\CartProductData;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Override;
 
+use App\Utilities\Traits\HasCartProductsDTO;
+
 class CarritoControllerRequest extends FormRequest
 {
-    private array $productsDTO = [];
-
+    // Inyección de la lógica horizontal
+    use HasCartProductsDTO;
+    
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -31,20 +33,5 @@ class CarritoControllerRequest extends FormRequest
             'products.*.id'       => 'required|integer|exists:products,id',
             'products.*.cantidad' => 'required|integer',
         ];
-    }
-
-    #[Override]
-    public function passedValidation()
-    {
-        foreach($this->products as $product) {
-            $this->productsDTO[] = CartProductData::from([
-                'id'       => $product['id'],
-                'cantidad' => $product['cantidad'],
-            ]);
-        }
-    }
-
-    public function getProductsDTO(): array {
-        return $this->productsDTO;
     }
 }

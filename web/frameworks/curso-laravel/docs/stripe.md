@@ -38,3 +38,14 @@ Vincula tu consola local con tu cuenta de Stripe Sandbox ejecutando:
 ```bash
 stripe login
 ```
+
+### Tarjetas mágicas de Sandbox
+Stripe provee un arsenal de tarjetas de prueba que operan exclusivamente en tu entorno de desarrollo. La tarjeta estándar de la industria para simular pagos exitosos de forma instantánea es la 4242:
+
+Número: 4242 4242 4242 4242
+
+Vencimiento (MM/AA): Cualquier fecha en el futuro (ej. 12/34).
+
+CVC: Cualquier número de 3 dígitos (ej. 123).
+
+Código Postal: Cualquier número de 5 dígitos (si tu formulario lo exige).

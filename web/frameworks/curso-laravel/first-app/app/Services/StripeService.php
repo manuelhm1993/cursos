@@ -16,16 +16,20 @@ class StripeService
         Stripe::setApiKey(config('stripe.secret'));
     }
 
-    public function crearIntencionDePago(float $total, int $compraId): PaymentIntent
+    public function crearIntencionDePago(float $total, int $compraId): PaymentIntent 
     {
         return PaymentIntent::create([
-            // 2. Stripe exige el monto estrictamente en la unidad más pequeña (centavos)
-            'amount' => intval($total * 100),
+            // Multiplicamos por 100 y redondeamos para evitar pérdida de precisión en decimales
+            'amount' => (int) round($total * 100), /* La banca prefiere cobros en centavos para evitar el punto flotante */
             'currency' => 'usd',
-            // 3. Metadata crucial para rastrear la orden cuando llegue el Webhook asíncrono
             'metadata' => [
                 'compra_id' => $compraId,
             ],
         ]);
+    }
+
+    public function obtenerIntencionDePago(): void 
+    {
+
     }
 }

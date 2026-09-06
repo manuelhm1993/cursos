@@ -2,16 +2,18 @@
 
 namespace App\Http\Requests\API;
 
-use App\Data\CartProductData;
 use App\Rules\ValidarStockProducto;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+use App\Utilities\Traits\HasCartProductsDTO;
+
 class FinalizarCompraRequest extends FormRequest
 {
-    private array $productsDTO = [];
-
+    // Inyección de la lógica horizontal
+    use HasCartProductsDTO;
+    
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -44,19 +46,5 @@ class FinalizarCompraRequest extends FormRequest
             'estado'        => 'required_if:tipo_envio,Delivery|nullable|string',
             'municipio'     => 'required_if:tipo_envio,Delivery|nullable|string',
         ];
-    }
-
-    public function passedValidation()
-    {
-        foreach($this->products as $product) {
-            $this->productsDTO[] = CartProductData::from([
-                'id'       => $product['id'],
-                'cantidad' => $product['cantidad'],
-            ]);
-        }
-    }
-
-    public function getProductsDTO(): array {
-        return $this->productsDTO;
     }
 }
