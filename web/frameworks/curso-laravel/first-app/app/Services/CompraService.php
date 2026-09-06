@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\API\FinalizarCompraRequest;
 use App\Mail\CompraRealizada;
 use App\Models\Compra;
+use App\Models\Product;
 use Illuminate\Support\Facades\Mail;
 
 class CompraService
@@ -23,25 +24,28 @@ class CompraService
         // 2. Guardar la compra (tabla compras)
         $compra = Compra::create($validated);
 
-        // 3. Ensamblar datos pivot y calcular el total simultáneamente (O(n) en RAM)
+        // 3. Ensamblar datos pivot
         $pivotData = [];
-        $total = 0;
         foreach($productsDTO as $dto) {
             $pivotData[$dto->id] = [
                 'cantidad' => $dto->cantidad,
                 'precio'   => $dto->product->precio, 
             ];
-
-            $total += ($dto->cantidad * $dto->product->precio);
         }
 
         // 4. Inserción masiva en la tabla intermedia (compra_productos)
         $compra->products()->attach($pivotData);
 
-        // 5. Persistir el total calculado en el modelo padre
-        $compra->update(['total' => $total]);
-
         return $compra;
+    }
+
+    public function calcularTotal(Compra $compra): float 
+    {
+        $total = $compra->products->reduce(function(int $carry, Product $product) {
+            return $carry + ($product->pivot->precio * $product->pivot->cantidad);
+        }, 0);
+
+        return $total;
     }
 
     public function eviarMail(Compra $compra): void
