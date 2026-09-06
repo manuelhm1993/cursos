@@ -30,15 +30,13 @@ class CarritoController extends Controller
         // 1. Llamar al servicio para crear la compra y su tabla pivot
         $compra = $this->compraService->crearCompra($request);
 
-        // 2. Calcular el total leyendo tu DTO ya procesado
-        $total = $this->carritoService->calculoTotal($request->getProductsDTO());
+        // 2. Integración con Stripe (Generar la Intención de Pago)
+        $intencionPago = $this->stripeService->crearIntencionDePago($compra->total, $compra->id);
 
-        // 3. Integración con Stripe (Generar la Intención de Pago)
-        $intencionPago = $this->stripeService->crearIntencionDePago($total, $compra->id);
+        // 3. Enviar mails (Pendiente para futura iteración)
+        // TODO: realizarlo en la siguiente jornada
 
-        // 4. Enviar mails (Pendiente para futura iteración)
-
-        // 5. Retornar la data + la llave secreta para que Vue 3 monte el formulario
+        // 4. Retornar la data + la llave secreta para que Vue 3 monte el formulario
         return response()->json([
             'compra'        => $compra->load('products'),
             'client_secret' => $intencionPago->client_secret
