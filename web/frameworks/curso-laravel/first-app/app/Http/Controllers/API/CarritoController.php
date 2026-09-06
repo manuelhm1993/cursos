@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\CompraRealizada;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\CarritoControllerRequest;
 use App\Http\Requests\API\FinalizarCompraRequest;
@@ -30,16 +31,19 @@ class CarritoController extends Controller
         // 1. Llamar al servicio para crear la compra y su tabla pivot
         $compra = $this->compraService->crearCompra($request);
 
-        // 2. Integración con Stripe (Generar la Intención de Pago)
-        $intencionPago = $this->stripeService->crearIntencionDePago($compra->total, $compra->id);
-
-        // Carga los productos relacionados dentro de la compra
+        // 2. Cargar los productos en la compra
         $dataCompra = $compra->load('products');
 
-        // 3. Enviar mails (Pendiente para futura iteración)
+        // 3. Disparar el evento para calcular el total
+        CompraRealizada::dispatch($dataCompra);
+
+        // 4. Crear la intención de pago
+        $intencionPago = $this->stripeService->crearIntencionDePago($compra->total, $compra->id);
+
+        // 5. Enviar el mail de notificación
         $this->compraService->eviarMail($dataCompra);
 
-        // 4. Retornar la data + la llave secreta para que Vue 3 monte el formulario
+        // 6. Retornar la data + la llave secreta para que Vue 3 monte el formulario
         return response()->json([
             'compra'        => $dataCompra,
             'client_secret' => $intencionPago->client_secret
