@@ -17,10 +17,10 @@
                         <div class="form-group">
                             <label for="name">Pagado</label>
                             <select class="form-control" name="pagado">
-                                <option value="0" @if(!$compra->pagado) selected @endif>
+                                <option value="0" {{ (!$compra->pagado) ? 'selected' : ''}}>
                                     No
                                 </option>
-                                <option value="1" @if($compra->pagado) selected @endif>
+                                <option value="1" {{ ($compra->pagado) ? 'selected' : ''}}>
                                     Si
                                 </option>
                             </select>

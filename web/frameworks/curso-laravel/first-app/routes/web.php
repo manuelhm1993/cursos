@@ -8,6 +8,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Mail\CompraPagada;
+use App\Models\Compra;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 
 // HOME - USO DE CONTROLADOR PARA DELEGAR LA LÓGICA DEL NEGOCIO
@@ -35,14 +38,28 @@ Route::prefix('login')->name('login.')->controller(LoginController::class)->grou
     Route::post('/', 'in')->name('in');
 });
 
-// COMPRA Y CARRITO
+// CARRITO
 Route::get('/carrito', CarritoController::class)->name('carrito.index');
-Route::get('/compras/cancelar-compra/{compra}', [CompraController::class, 'cancelarCompra'])->name('compra.cancelar-compra');
 
-// URL CON HASH O FIRMA
-Route::get('signature', function() {
-    // Permite encriptar la url para evitar ataques de usuarios maliciosos
-    $url = URL::signedRoute('compra.cancelar-compra', ['compra' => 34]);
+// COMPRA
+Route::prefix('compras')->name('compras.')->group(function () {
+    Route::get('/cancelar-compra/{compra}', [CompraController::class, 'cancelarCompra'])->name('cancelar-compra');
 
-    dd($url);
+    // URL CON HASH O FIRMA
+    Route::get('/signature', function() {
+        // Permite encriptar la url para evitar ataques de usuarios maliciosos
+        $url = URL::signedRoute('cancelar-compra', ['compra' => 34]);
+
+        dd($url);
+    })->name('signature');
+
+    Route::post('/recibir-pago', function (string $id) {
+        $compra = Compra::find($id);
+
+        $compra->pagado = true;
+
+        $compra->save();
+
+        Mail::to($compra->email)->send(new CompraPagada($compra));
+    })->name('recibir-pago');
 });
