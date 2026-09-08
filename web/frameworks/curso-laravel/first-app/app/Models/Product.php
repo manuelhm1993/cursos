@@ -15,7 +15,8 @@ class Product extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        // Para devolver las categorías borradas se usa withTrashed
+        return $this->belongsTo(Category::class)->withTrashed();
     }
 
     public function compras(): BelongsToMany

@@ -13,6 +13,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
+                                <th>Categoría</th>
                                 <th>Precio</th>
                                 <th>Stock</th>
                                 <th>Acciones</th>
@@ -23,6 +24,7 @@
                             <tr>
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->nombre }}</td>
+                                <td>{{ $product->category->nombre }}</td>
                                 <td>{{ $product->precio }}</td>
                                 <td>{{ $product->stock }}</td>
                                 <td>
