@@ -81,7 +81,7 @@ class CarritoController extends Controller
         DB::commit();
 
         // 5. Enviar el mail de notificación
-        // $this->compraService->eviarMail($dataCompra);
+        $this->compraService->eviarMail($data['compra']);
 
         // 6. Retornar la data + la llave secreta para que Vue 3 monte el formulario
         return response()->json($data, (array_key_exists('error', $data) ? 500 : 200));
