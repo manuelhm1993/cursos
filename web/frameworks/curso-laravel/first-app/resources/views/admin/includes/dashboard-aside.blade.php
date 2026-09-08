@@ -5,6 +5,7 @@
         </a>
     </li>
     <li class="nav-title">Administrador</li>
+    {{-- Categorías --}}
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#">
             <i class="nav-icon la la-lg la-bank"></i> Categorías
@@ -22,6 +23,7 @@
             </li>
         </ul>
     </li>
+    {{-- Productos --}}
     <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#">
             <i class="nav-icon la la-lg la-bank"></i> Productos
@@ -35,6 +37,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.products.create') }}">
                     <i class="nav-icon la la-lg la-puzzle"></i> Crear
+                </a>
+            </li>
+        </ul>
+    </li>
+    {{-- Compras --}}
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <i class="nav-icon la la-lg la-bank"></i> Compras
+        </a>
+        <ul class="nav-dropdown-items">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.compras.index') }}">
+                    <i class="nav-icon la la-lg la-puzzle"></i> Ver
                 </a>
             </li>
         </ul>

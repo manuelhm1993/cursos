@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CompraController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -15,4 +16,8 @@ Route::resource('categories', CategoryController::class)->except([
 
 Route::resource('products', ProductController::class)->except([
     'show'
+]);
+
+Route::resource('compras', CompraController::class)->except([
+    'show', 'create', 'store'
 ]);

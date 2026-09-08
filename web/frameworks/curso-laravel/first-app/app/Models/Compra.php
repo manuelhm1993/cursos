@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 #[Fillable([
     'nombre', 'apellido', 'email', 'telefono', 
     'tipo_envio', 'direccion', 'codigo_postal', 'pais', 'estado', 'municipio', 
-    'total',
+    'total', 'pagado'
 ])]
 class Compra extends Model
 {
