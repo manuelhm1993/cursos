@@ -48,3 +48,12 @@ FORWARD_DB_PORT=33060
 - sail stop
 ```
 
+### Agregar servicios adicionales como mailpit
+```bash
+- sail php artisan sail:add
+```
+
+### Exigir la versión correcta que necesitas
+```bash
+- sail build --no-cache
+```
