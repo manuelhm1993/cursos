@@ -8,9 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
-use App\Mail\CompraPagada;
 use App\Models\Compra;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 
 // HOME - USO DE CONTROLADOR PARA DELEGAR LA LÓGICA DEL NEGOCIO
@@ -59,7 +57,5 @@ Route::prefix('compras')->name('compras.')->group(function () {
         $compra->pagado = true;
 
         $compra->save();
-
-        Mail::to($compra->email)->send(new CompraPagada($compra));
     })->name('recibir-pago');
 });

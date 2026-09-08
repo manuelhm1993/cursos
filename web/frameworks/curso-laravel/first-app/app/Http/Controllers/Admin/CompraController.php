@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Mail\CompraPagada;
 use App\Models\Compra;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class CompraController extends Controller
 {
@@ -38,10 +36,6 @@ class CompraController extends Controller
         ]);
 
         $compra->update($validated);
-
-        if($compra->pagado) {
-            Mail::to($compra->email)->send(new CompraPagada($compra));
-        }
 
         return to_route('admin.compras.index')->with([
             'success' => 'Compra actualizada exitosamente'
