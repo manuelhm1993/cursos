@@ -15,6 +15,10 @@ Para crear un proyecto con contenedores no se instala globalmente laravel, ni su
 - dportit 8000 mh_php:8.3-dev php artisan serve --host=0.0.0.0 --port=8000
 6. Uso de vite online
 - dportit 5173 node:22.22.0-slim npm run dev -- --host 0.0.0.0
+7. Detener, activar y destruir el servicio de db
+- docker stop mh_mysql_lv_app
+- docker start mh_mysql_lv_app
+- docker rm -f mh_mysql_lv_app
 ```
 
 ### Errores
