@@ -9,6 +9,7 @@ use App\Http\Requests\API\FinalizarCompraRequest;
 use App\Services\CarritoService;
 use App\Services\CompraService;
 use App\Services\StripeService;
+use Illuminate\Support\Facades\DB;
 
 class CarritoController extends Controller
 {
@@ -28,25 +29,30 @@ class CarritoController extends Controller
     }
 
     public function finalizarCompra(FinalizarCompraRequest $request) {
-        // 1. Llamar al servicio para crear la compra y su tabla pivot
-        $compra = $this->compraService->crearCompra($request);
+        // Proteger las operaciones de db con transacciones si son un bloque use(), rollback y commit se hacen automáticamente
+        $data = DB::transaction(function() use($request) {
+            // 1. Llamar al servicio para crear la compra y su tabla pivot
+            $compra = $this->compraService->crearCompra($request);
 
-        // 2. Cargar los productos en la compra
-        $dataCompra = $compra->load('products');
+            // 2. Cargar los productos en la compra
+            $dataCompra = $compra->load('products');
 
-        // 3. Disparar el evento para calcular el total
-        CompraRealizada::dispatch($dataCompra);
+            // 3. Disparar el evento para calcular el total
+            CompraRealizada::dispatch($dataCompra);
 
-        // 4. Crear la intención de pago
-        $intencionPago = $this->stripeService->crearIntencionDePago($compra->total, $compra->id);
+            // 4. Crear la intención de pago
+            $intencionPago = $this->stripeService->crearIntencionDePago($compra->total, $compra->id);
+
+            return [
+                'compra'        => $dataCompra,
+                'client_secret' => $intencionPago->client_secret
+            ];
+        });
 
         // 5. Enviar el mail de notificación
-        $this->compraService->eviarMail($dataCompra);
+        // $this->compraService->eviarMail($dataCompra);
 
         // 6. Retornar la data + la llave secreta para que Vue 3 monte el formulario
-        return response()->json([
-            'compra'        => $dataCompra,
-            'client_secret' => $intencionPago->client_secret
-        ]);
+        return response()->json($data);
     }
 }
