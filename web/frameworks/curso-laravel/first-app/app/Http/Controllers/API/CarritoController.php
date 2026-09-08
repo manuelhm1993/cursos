@@ -29,7 +29,7 @@ class CarritoController extends Controller
     }
 
     public function finalizarCompra(FinalizarCompraRequest $request) {
-        // Proteger las operaciones de db con transacciones si son un bloque use(), rollback y commit se hacen automáticamente
+        /*// Forma 1: Proteger las operaciones de db con transacciones si son un bloque use(), rollback y commit se hacen automáticamente
         $data = DB::transaction(function() use($request) {
             // 1. Llamar al servicio para crear la compra y su tabla pivot
             $compra = $this->compraService->crearCompra($request);
@@ -47,12 +47,43 @@ class CarritoController extends Controller
                 'compra'        => $dataCompra,
                 'client_secret' => $intencionPago->client_secret
             ];
-        });
+        });*/
+
+        // Forma 2: fomra manual
+        DB::beginTransaction();
+
+        try {
+            // 1. Llamar al servicio para crear la compra y su tabla pivot
+            $compra = $this->compraService->crearCompra($request);
+
+            // 2. Cargar los productos en la compra
+            $dataCompra = $compra->load('products');
+
+            // 3. Disparar el evento para calcular el total
+            CompraRealizada::dispatch($dataCompra);
+
+            // 4. Crear la intención de pago
+            $intencionPago = $this->stripeService->crearIntencionDePago($compra->total, $compra->id);
+
+            $data = [
+                'compra'        => $dataCompra,
+                'client_secret' => $intencionPago->client_secret
+            ]; 
+        } 
+        catch (\Exception $e) {
+            DB::rollBack();
+            $data = [
+                'error' => $e->getMessage()
+            ];
+        }
+
+        // El commit va fuera del try-catch
+        DB::commit();
 
         // 5. Enviar el mail de notificación
         // $this->compraService->eviarMail($dataCompra);
 
         // 6. Retornar la data + la llave secreta para que Vue 3 monte el formulario
-        return response()->json($data);
+        return response()->json($data, (array_key_exists('error', $data) ? 500 : 200));
     }
 }
