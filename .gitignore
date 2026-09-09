@@ -49,6 +49,9 @@ build/
 Thumbs.db
 
 # Laravel
+vendor/
+storage/
+
 /.phpunit.cache
 /node_modules
 /public/fonts-manifest.dev.json
