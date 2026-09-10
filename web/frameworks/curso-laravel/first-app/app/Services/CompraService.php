@@ -31,9 +31,18 @@ class CompraService
                 'cantidad' => $dto->cantidad,
                 'precio'   => $dto->product->precio, 
             ];
+
+            // 4. Restar el stock de forma atómica (Sin cargar los modelos a memoria)
+            $filasAfectadas = Product::where('id', $dto->id)
+                ->where('stock', '>=', $dto->cantidad) // Valida que el stock no sea negativo
+                ->decrement('stock', $dto->cantidad);
+
+            if ($filasAfectadas === 0) {
+                throw new \Exception("Stock insuficiente para el producto {$dto->id}");
+            }
         }
 
-        // 4. Inserción masiva en la tabla intermedia (compra_productos)
+        // 5. Inserción masiva en la tabla intermedia (compra_productos)
         $compra->products()->attach($pivotData);
 
         return $compra;
