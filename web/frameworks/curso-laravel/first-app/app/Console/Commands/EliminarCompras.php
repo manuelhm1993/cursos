@@ -8,7 +8,8 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
-#[Signature('mh:eliminar-compras')]
+// Uso de variables por defecto (no debe tener espacios en blanco)
+#[Signature('mh:eliminar-compras {dias=31}')]
 #[Description('Elimina las compras con más de 30 dias sin ser canceladas')]
 class EliminarCompras extends Command
 {
@@ -22,6 +23,9 @@ class EliminarCompras extends Command
         // $this->error('Mensaje');   // Letras rojas
         // $this->comment('Mensaje'); // Ídem watn
         // $this->line('Mensaje');    // Letras blancas
+
+        // Obtener el valor del parámetro dias
+        $dias = intval($this->argument('dias'));
 
         // Obtener la fecha de hoy
         $fechaDeHoy = Carbon::now();
@@ -37,8 +41,8 @@ class EliminarCompras extends Command
             // Obtener la fecha en dias
             $diferenciaDeDias = $fechaCompra->diffInDays($fechaDeHoy);
 
-            // Si la compra tiene más de 31 dias sin pagarse, se elimina la compra
-            if($diferenciaDeDias >= 31) {
+            // Si la compra tiene más de 31 dias (por defecto) sin pagarse, se elimina la compra
+            if($diferenciaDeDias >= $dias) {
                 $compra->delete();
                 $i++;
             }
