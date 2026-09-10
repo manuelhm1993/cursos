@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 // ----------------- Rutas únicas ----------------- //
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::get('/compras/eliminar-compras', [CompraController::class, 'eliminarCompras'])->name('compras.eliminar-compras');
+
 // ----------------- Rutas de recursos ----------------- //
 Route::resource('categories', CategoryController::class)->except([
     'show'

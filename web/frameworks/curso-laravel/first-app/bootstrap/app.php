@@ -22,6 +22,9 @@ return Application::configure(basePath: dirname(__DIR__))
         },
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        /* $middleware->preventRequestForgery(except: [
+            'admin/compras/eliminar-compras',
+        ]);*/ // Excluye la versificación csrf
         $middleware->alias([
             'mh.auth' => AdminLogin::class // Registrar el middleware
         ]);

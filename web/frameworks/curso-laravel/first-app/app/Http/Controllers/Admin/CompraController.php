@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Compra;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CompraController extends Controller
@@ -52,5 +53,36 @@ class CompraController extends Controller
         return to_route('admin.compras.index')->with([
             'success' => 'Compra eliminada exitosamente'
         ]);
+    }
+
+    /**
+     * Métodos fuera de los CRUDs
+     */
+    public function eliminarCompras()
+    {
+        // Obtener la fecha de hoy
+        $fechaDeHoy = Carbon::now();
+
+        // Obtener las compras no pagadas
+        $compras = Compra::where('pagado', false)->get();
+
+        $data = [];
+
+        foreach($compras as $compra) {
+            // Parsear la fecha de la compra
+            $fechaCompra = Carbon::parse($compra->created_at);
+
+            // Obtener la fecha en dias
+            $diferenciaDeDias = $fechaCompra->diffInDays($fechaDeHoy);
+
+            // Si la compra tiene más de 31 dias sin pagarse, se elimina la compra
+            if($diferenciaDeDias >= 31) {
+                $data[] = $compra;
+
+                $compra->delete();
+            }
+        }
+
+        return response()->json(['data' => $data]);
     }
 }
