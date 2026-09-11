@@ -75,7 +75,7 @@ class CarritoController extends Controller
         // Forma 2: fomra manual: DB::beginTransaction();
 
         // 5. Enviar el mail de notificación (Al implementar redis se usa un job para delegar a colas)
-        EnviarMailDeCompra::dispatch($data['compra']);
+        EnviarMailDeCompra::dispatch($data['compra'])->onQueue('emails');
 
         // 6. Retornar la data + la llave secreta para que Vue 3 monte el formulario
         return response()->json($data);

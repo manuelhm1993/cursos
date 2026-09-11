@@ -10,3 +10,6 @@ Artisan::command('inspire', function () {
 
 // Elimina mensualmente las compras que tengan más de 30 días
 Schedule::command('mh:eliminar-compra')->daily();
+
+// Ejecuta los procesos de la cosa emails cada 5 segundos
+// Schedule::command('queue:work -v --queue=emails')->everyFiveSeconds();
