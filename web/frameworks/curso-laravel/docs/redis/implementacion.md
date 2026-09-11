@@ -118,3 +118,29 @@ Consulta directamente las claves almacenadas en la RAM del contenedor para compr
 ```bash
 ./vendor/bin/sail exec redis redis-cli keys "*"
 ```
+
+---
+
+## Troubleshooting y Arquitectura Interna de Redis
+
+### 1. Partición de Bases de Datos Lógicas (`DB 0` vs `DB 1`)
+Laravel aísla los dominios de datos para proteger la persistencia:
+* **Base 0 (`DB 0`):** Almacena conexiones directas de la fachada `Redis`, colas de trabajo (*queues*) y sesiones. Es el destino por defecto al ejecutar `redis-cli`.
+* **Base 1 (`DB 1`):** Almacena exclusivamente el almacén de `Cache` (`REDIS_CACHE_DB=1`).
+* **Regla de inspección:** Para auditar claves de caché desde la terminal, es obligatorio declarar el flag `-n 1`:
+  ```bash
+  sail exec redis redis-cli -n 1 keys "*"
+  ```
+> **Beneficio:** Al ejecutar `sail artisan cache:clear`, Laravel dispara un `FLUSHDB` únicamente sobre la base 1, limpiando la memoria volátil sin destruir las sesiones activas de los usuarios ni los trabajos encolados en la base 0.
+
+### 2. Propagación de Variables de Entorno
+Modificar `CACHE_STORE=redis` o `SESSION_DRIVER=redis` en `.env` no surte efecto si la configuración de Laravel está cacheada. Es mandatorio refrescar el contenedor:
+```bash
+sail artisan config:clear
+```
+
+### 3. Anatomía del Doble Prefijo
+Al inspeccionar llaves crudas en Redis, Laravel concatena los prefijos por aislamiento de entornos:
+* Formato: `{database.prefix}_{cache.prefix}_{clave_usuario}`
+* Ejemplo: `mi-app-database-mi-app-cache-conexion_test`
+Esto previene colisiones si múltiples microservicios o aplicaciones comparten la misma instancia de Redis.
