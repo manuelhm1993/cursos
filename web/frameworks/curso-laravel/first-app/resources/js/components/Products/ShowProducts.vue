@@ -60,7 +60,8 @@
             // Pausa la ejecución hasta que tu Controlador de Laravel responda
             const response = await axios.get(`/api/products/${props.id}`);
             
-            product.value = response.data;
+            // Se debe acceder al campo data debido al ProductResource
+            product.value = response.data.data;
 
             /* Usando fetch
             // 1. Ejecución de la petición nativa
