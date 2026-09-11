@@ -10,6 +10,7 @@
     @vite('resources/js/carrito.js')
 
     @stack('vite-scripts')
+    @stack('js-scripts')
 </head>
 
 <body>

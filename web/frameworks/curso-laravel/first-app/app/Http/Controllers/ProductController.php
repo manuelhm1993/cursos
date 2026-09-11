@@ -8,26 +8,29 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(?string $category = null) {
-        // Si la categoría no fue enviada, se muestran todos los productos
+    public function index(Request $request, ?string $category = null) {
+        // 1. Obtención de productos segun la categoría
         if (is_null($category)) {
-            $products = Product::all();
+            $products = Product::with('category')->paginate(12);
+        } 
+        else {
+            $categoryModel = Category::where('nombre', $category)->first();
 
-            return view('products.index', compact('products'));
+            if (!$categoryModel) {
+                return response()->json(['message' => 'Categoría no encontrada'], 404);
+            }
+
+            // Paginación sobre la relación cargando la categoría para evitar N+1
+            $products = $categoryModel->products()->with('category')->paginate(12);
         }
 
-        $category = Category::where('nombre', $category)->first();
-        
-        // Si la categoría existe se muestran sus productos
-        if (!is_null($category)) {
-            // Obtener los productos que pertenecen a la categoría
-            $products = $category->products;
-
-            return view('products.index', compact('products'));
+        // 2. Si la petición viene por AJAX, retoma únicamente la partial con el HTML
+        if ($request->ajax()) {
+            return view('includes.products', compact('products'))->render();
         }
 
-        echo "Categoría no encontrada <br>";
-        echo "<a href='".url("/")."'>Volver a Home</a>";
+        // 3. Carga normal sincrónica
+        return view('products.index', compact('products'));
     }
 
     public function create(int $category_id, string $nombre) {

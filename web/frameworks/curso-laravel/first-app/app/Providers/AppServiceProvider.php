@@ -9,6 +9,7 @@ namespace App\Providers;
 // use App\Models\Compra;
 // use App\Observers\CompraObserver;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,5 +36,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Se puede registrar manualmente el observer de una clase, pero el atributo ObserverBy es el nuevo estándar
         // Compra::observe(CompraObserver::class);
+
+        // Paginación con bootstrap
+        Paginator::useBootstrapFive();
     }
 }
