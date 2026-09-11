@@ -41,8 +41,11 @@ class CarritoController extends Controller
     }
 
     public function finalizarCompra(Request $request) {
-        // La transacción se bloquea 10 segundos (semáforo)
-        $data = Cache::lock('finalizar_compra')->block(10, function () use ($request) {
+        // 1. Clave única por usuario/email para no bloquear a otros clientes
+        $lockKey = 'finalizar_compra_' . $request->input('email');
+
+        // 2. Definimos TTL de 10s (segundo parámetro) y tiempo máximo de espera de 5s en block()
+        $data = Cache::lock($lockKey, 10)->block(5, function () use ($request) {
             // Se hace la validación dentro del lock para impedir que el stock se procese en paralelo
             $request = app(FinalizarCompraRequest::class);
 
