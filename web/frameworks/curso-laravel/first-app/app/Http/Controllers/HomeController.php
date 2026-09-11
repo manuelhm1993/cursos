@@ -19,7 +19,8 @@ class HomeController extends Controller
 
         // dd($usuario);
 
-        $categories = Category::all();
+        // Traer todas las categorías con sus productos asociados
+        $categories = Category::with('products')->get();
 
         return view('home', compact('categories'));
     }
