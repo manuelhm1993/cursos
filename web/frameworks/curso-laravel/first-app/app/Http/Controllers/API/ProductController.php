@@ -14,8 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // Devolver 10 productos por página de forma ascendente
-        $products = Product::orderBy('precio', 'asc')
+        // Devolver 10 productos por página de forma ascendente con eager loading
+        $products = Product::with('category')
+                        ->orderBy('precio', 'asc')
                         ->paginate(10);
 
         return ProductResource::collection($products);
@@ -34,7 +35,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return new ProductResource($product);
+        // Carga las categorías explícitamente
+        return new ProductResource($product->load('category'));
     }
 
     /**

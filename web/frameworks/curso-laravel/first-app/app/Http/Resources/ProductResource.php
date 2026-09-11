@@ -16,11 +16,14 @@ class ProductResource extends JsonResource
     {
         // Transforma un modelo a un array y lo devuelve en json
         return [
-            'id'         => $this->id,
-            'nombre'     => $this->nombre,
-            'stock'      => $this->stock,
-            'precio'     => $this->precio,
-            'created_at' => $this->created_at,
+            'id'       => $this->id,
+            'nombre'   => $this->nombre,
+            'stock'    => $this->stock,
+            'precio'   => $this->precio,
+            // Solo se incluye si el controlador cargó la relación con eager loading
+            // make = 1:1 o N:1 (belongsTo o hasOne)
+            // collection = 1:N o N:M (hasMany o belongsToMany)
+            'category' => CategoryResource::make($this->whenLoaded('category')),
         ];
     }
 }
