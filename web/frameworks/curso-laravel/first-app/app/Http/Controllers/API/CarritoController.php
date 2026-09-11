@@ -2,16 +2,26 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Events\CompraRealizada;
+// Clases laravel
+use Illuminate\Http\Request;
+
+// Facades laravel
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+
+// Controladores
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\CarritoControllerRequest;
 use App\Http\Requests\API\FinalizarCompraRequest;
+
+// Servicios
 use App\Services\CarritoService;
 use App\Services\CompraService;
 use App\Services\StripeService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
+
+// Eventos y Jobs
+use App\Events\CompraRealizada;
+use App\Jobs\EnviarMailDeCompra;
 
 class CarritoController extends Controller
 {
@@ -62,41 +72,12 @@ class CarritoController extends Controller
             return $data;
         });
 
-        /*// Forma 2: fomra manual
-        DB::beginTransaction();
+        // Forma 2: fomra manual: DB::beginTransaction();
 
-        try {
-            // 1. Llamar al servicio para crear la compra y su tabla pivot
-            $compra = $this->compraService->crearCompra($request);
-
-            // 2. Cargar los productos en la compra
-            $dataCompra = $compra->load('products');
-
-            // 3. Disparar el evento para calcular el total
-            CompraRealizada::dispatch($dataCompra);
-
-            // 4. Crear la intención de pago
-            $intencionPago = $this->stripeService->crearIntencionDePago($compra->total, $compra->id);
-
-            $data = [
-                'compra'        => $dataCompra,
-                'client_secret' => $intencionPago->client_secret
-            ]; 
-        } 
-        catch (\Exception $e) {
-            DB::rollBack();
-            $data = [
-                'error' => $e->getMessage()
-            ];
-        }
-
-        // El commit va fuera del try-catch
-        DB::commit();*/
-
-        // 5. Enviar el mail de notificación
-        $this->compraService->eviarMail($data['compra']);
+        // 5. Enviar el mail de notificación (Al implementar redis se usa un job para delegar a colas)
+        EnviarMailDeCompra::dispatch($data['compra']);
 
         // 6. Retornar la data + la llave secreta para que Vue 3 monte el formulario
-        return response()->json($data, (array_key_exists('error', $data) ? 500 : 200));
+        return response()->json($data);
     }
 }
