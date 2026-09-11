@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,37 +16,9 @@ class ProductController extends Controller
     {
         // Devolver 10 productos por página de forma ascendente
         $products = Product::orderBy('precio', 'asc')
-                        ->select('id', 'nombre', 'stock', 'precio')
                         ->paginate(10);
 
-        return response()->json($products);
-
-        $products = Product::orderBy('precio', 'asc')
-                        ->paginate(10);
-
-        // Uso de colecciones y el método map
-        $data = $products->map(function (Product $product) {
-            return [
-                'id'         => $product->id,
-                'nombre'     => $product->nombre,
-                'stock'      => $product->stock,
-                'precio'     => $product->precio,
-            ];
-        });
-
-        // Uso de arrays y bucles
-        $data = [];
-
-        foreach($products as $product) {
-            $data[] = [
-                'id'         => $product->id,
-                'nombre'     => $product->nombre,
-                'stock'      => $product->stock,
-                'precio'     => $product->precio,
-            ];
-        }
-
-        return response()->json($data);
+        return ProductResource::collection($products);
     }
 
     /**
@@ -61,12 +34,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return response()->json([
-                'id'         => $product->id,
-                'nombre'     => $product->nombre,
-                'stock'      => $product->stock,
-                'precio'     => $product->precio,
-            ]);
+        return new ProductResource($product);
     }
 
     /**
