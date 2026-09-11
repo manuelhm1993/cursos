@@ -23,7 +23,7 @@ class CompraObserver
     {
         // Solo se ejecuta si un atributo del modelo es actualizado
         if($compra->pagado) {
-            Mail::to($compra->email)->send(new CompraPagada($compra));
+            // Mail::to($compra->email)->send(new CompraPagada($compra));
         }
     }
 
