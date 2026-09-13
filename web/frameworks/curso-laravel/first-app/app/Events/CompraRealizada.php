@@ -29,7 +29,9 @@ class CompraRealizada implements ShouldBroadcast
     public function broadcastOn(): array
     {
         // Crear un array de canales
-        $channels = [];
+        $channels = [
+            // new PrivateChannel('compras'),
+        ];
 
         foreach ($this->compra->products as $product) {
             // El nombre del canal varía según el id del producto y el oyente tiene el nombre de la clase
