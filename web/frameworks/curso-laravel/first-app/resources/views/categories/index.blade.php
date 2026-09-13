@@ -3,7 +3,9 @@
 @section('title', 'Products')
 
 @section('content')
-    <h1>CATEGORÍAS</h1>
+    <h1>HOME</h1>
+    
+    <h3>CATEGORIES</h3>
 
     @include('includes.categories')
 @endsection

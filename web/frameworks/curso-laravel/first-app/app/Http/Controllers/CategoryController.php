@@ -27,7 +27,9 @@ class CategoryController extends Controller
         return $category;
     }
 
-    public function categoryProducts(Request $request) {
-        return to_route('products.show', $request->nombre);
+    public function categoryProducts() {
+        $categories = Category::withCount('products')->get();
+
+        return view('categories.category-products', compact('categories'));
     }
 }
