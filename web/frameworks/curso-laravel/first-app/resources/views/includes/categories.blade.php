@@ -15,7 +15,7 @@
                                     <h5 class="card-title">{{ $product->nombre }}</h5>
                                     <h6 class="card-title">{{ $category->nombre }}</h6>
                                     <p class="card-text">Categoría que agrupa todo lo referente a {{ $product->nombre }}</p>
-                                    <a href="{{ route('products.index', $product->nombre) }}" class="btn btn-primary">Ver más</a>
+                                    <a href="{{ route('categories.category-products') }}" class="btn btn-primary">Ver más</a>
                                 </div>
                             </div>
                         </div>
