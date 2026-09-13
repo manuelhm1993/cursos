@@ -23,6 +23,8 @@ export default {
 
         // Actualizar o crear el carrito en localStorage
         localStorage.setItem("products", JSON.stringify(this.products));
+
+        alert('Producto agregado');
     },
     setCantidad(productId, cantidad) {
         // Buscar el index del producto

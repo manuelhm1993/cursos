@@ -19,7 +19,7 @@ class CompraRealizada implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct(private Compra $compra) {}
+    public function __construct(public Compra $compra) {}
 
     /**
      * Get the channels the event should broadcast on.
@@ -32,16 +32,11 @@ class CompraRealizada implements ShouldBroadcast
         $channels = [];
 
         foreach ($this->compra->products as $product) {
-            // El nombre del canal varía según el id del producto
+            // El nombre del canal varía según el id del producto y el oyente tiene el nombre de la clase
             $channels[] = new Channel("products.{$product->id}");
         }
 
         // Devolver los canales públicos
         return $channels;
-    }
-
-    public function getCompra(): Compra 
-    {
-        return $this->compra;
     }
 }

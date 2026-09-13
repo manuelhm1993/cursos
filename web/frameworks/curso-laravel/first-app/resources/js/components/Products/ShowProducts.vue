@@ -16,16 +16,21 @@
                         <p>DESCRIPCIÓN DEL PRODUCTO</p>
                     </div>
 
-                    <div class="col-12">
-                        <h6><strong>STOCK:</strong> {{ product.stock }}</h6>
+                    <div class="col-12" v-if="product.stock > 0">
+                        <div class="row">
+                            <div class="col-12">
+                                <h6><strong>STOCK:</strong> {{ product.stock }}</h6>
+                            </div>
+                            <div class="col-12">
+                                <h6><strong>PRECIO:</strong> ${{ product.precio }}</h6>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <AgregarAlCarrito :product="product" />
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="col-12">
-                        <h6><strong>PRECIO:</strong> ${{ product.precio }}</h6>
-                    </div>
-
-                    <div class="col-12 mt-3">
-                        <AgregarAlCarrito :product="product" />
+                    <div class="col-12" v-else>
+                        <h6 class="text-danger">No hay stock</h6>
                     </div>
                 </div>
             </div>
@@ -54,8 +59,32 @@
     // Data
     const product = ref({});
 
+    // Métodos
+    const cargarSocket = () => {
+        Echo.channel(`products.${product.value.id}`)
+            .listen('CompraRealizada', (e) => {
+                // getProduct();
+            });
+    };
+
+    /*const getProduct = () => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                // Pausa la ejecución hasta que tu Controlador de Laravel responda
+                const response = await axios.get(`/api/products/${props.id}`);
+                product.value = response.data.data;
+
+                resolve();
+            } catch (error) {
+                // Intercepta errores 404 o 500 de la API
+                console.error('Fallo en la comunicación HTTP:', error);
+            }
+        });
+    };*/
+
     // Eventos
     onMounted(async () => {
+        // Reemplazar por getProduct y cargarSocket
         try {
             // Pausa la ejecución hasta que tu Controlador de Laravel responda
             const response = await axios.get(`/api/products/${props.id}`);
@@ -75,6 +104,9 @@
             // 3. Deserialización obligatoria (El paso que Axios hace automático)
             const product = await response.json();
             */
+
+            // Escuchar eventos de sockets con laravel echo
+            cargarSocket();
         } catch (error) {
             // Intercepta errores 404 o 500 de la API
             console.error('Fallo en la comunicación HTTP:', error);

@@ -59,3 +59,18 @@ Al intentar ejecutar cualquier comando posterior de Artisan (incluyendo `reverb:
 ```bash
 sail npm install --save-dev laravel-echo pusher-js
 ```
+
+### Exponer el puerto 8080 para el cliente laravel-echo y pusher-js
+```yml
+services:
+    laravel.test:
+        ports:
+            - '${APP_PORT:-80}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+            - '${REVERB_SERVER_PORT:-8080}:8080'   # <-- Puerto para reverb
+```
+
+### Si se trabaja con redis se debe ejecutar el o los workers
+```bash
+sail artisan queue:work
+```
