@@ -19,9 +19,7 @@ class CalcularTotalCompra
      */
     public function handle(CompraRealizada $event): void
     {
-        $compra = $event->getCompra();
-
         // Calcular el total de la compra
-        $compra->update(['total' => $this->compraService->calcularTotal($compra)]);
+        $event->compra->update(['total' => $this->compraService->calcularTotal($event->compra)]);
     }
 }

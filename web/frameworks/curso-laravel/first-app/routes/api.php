@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CarritoController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\CompraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,6 @@ Route::prefix('carrito')->controller(CarritoController::class)->group(function (
     Route::post('/calcular-total','calcularTotal');
     Route::post('/finalizar-compra', 'finalizarCompra');
 });
+
+
+Route::get('/compras/ultimas-compras', [CompraController::class, 'ultimasCompras'])->name('compras.ultimas-compras');

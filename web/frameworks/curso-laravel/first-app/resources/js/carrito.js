@@ -1,3 +1,5 @@
+import './echo.js';
+
 import { createApp } from 'vue';
 import Carrito from './components/Carrito/Carrito.vue';
 

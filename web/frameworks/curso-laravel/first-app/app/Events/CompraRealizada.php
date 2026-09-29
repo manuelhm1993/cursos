@@ -11,14 +11,15 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CompraRealizada
+// Se implementa la interfaz ShouldBroadcast para activar el método broadcastOn
+class CompraRealizada implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(private Compra $compra) {}
+    public function __construct(public Compra $compra) {}
 
     /**
      * Get the channels the event should broadcast on.
@@ -27,13 +28,17 @@ class CompraRealizada
      */
     public function broadcastOn(): array
     {
-        return [
-            new PrivateChannel('channel-name'),
+        // Crear un array de canales
+        $channels = [
+            // new PrivateChannel('compras'),
         ];
-    }
 
-    public function getCompra(): Compra 
-    {
-        return $this->compra;
+        foreach ($this->compra->products as $product) {
+            // El nombre del canal varía según el id del producto y el oyente tiene el nombre de la clase
+            $channels[] = new Channel("products.{$product->id}");
+        }
+
+        // Devolver los canales públicos
+        return $channels;
     }
 }

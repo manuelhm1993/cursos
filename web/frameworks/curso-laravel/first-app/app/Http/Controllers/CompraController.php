@@ -15,4 +15,12 @@ class CompraController extends Controller
         
         dd('La compra no existe');
     }
+
+    public function ultimasCompras() {
+        $compras = Compra::orderBy('id', 'desc')
+                        ->take(10)
+                        ->get();
+
+        return response()->json($compras);
+    }
 }

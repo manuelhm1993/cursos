@@ -26,6 +26,8 @@
     <!-- Main styles for this application-->
     <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/pace.min.css') }}" rel="stylesheet">
+
+    @yield('librerias')
   </head>
   <body class="app aside-menu-fixed sidebar-lg-show">
     <header class="app-header bg-light border-0 navbar">
@@ -95,7 +97,7 @@
         <!-- Tab panes-->
         <div class="tab-content">
           <div class="tab-pane active" id="timeline" role="tabpanel">
-            <div class="list-group list-group-accent">
+            {{-- <div class="list-group list-group-accent">
               <div class="list-group-item list-group-item-accent-secondary bg-light text-center font-weight-bold text-muted text-uppercase small">Today</div>
               <div class="list-group-item list-group-item-accent-warning list-group-item-divider">
                 <div class="avatar float-right"><img class="img-avatar" src="img/avatars/7.jpg" alt="admin@bootstrapmaster.com"></div>
@@ -131,7 +133,7 @@
                   <div class="avatar avatar-xs"><img class="img-avatar" src="img/avatars/8.jpg" alt="admin@bootstrapmaster.com"></div>
                 </div>
               </div>
-            </div>
+            </div> 
           </div>
           <div class="tab-pane p-3" id="messages" role="tabpanel">
             <div class="message">
@@ -173,7 +175,7 @@
               <div><small class="text-muted">Lukasz Holeczek</small><small class="text-muted float-right mt-1">1:52 PM</small></div>
               <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div><small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
             </div>
-          </div>
+          </div>--}}
           <div class="tab-pane p-3" id="settings" role="tabpanel">
             <h6>Settings</h6>
             <div class="aside-options">
@@ -239,13 +241,5 @@
     <script src="{{ asset('assets/admin/js/pace.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/coreui.min.js') }}"></script>
-    <script src="node_modules/pnotify/dist/iife/Pnotify.js"></script>
-    <script src="node_modules/pnotify/dist/iife/PnotifyButtons.js"></script>
-    <script src="node_modules/pnotify/dist/iife/PnotifyConfirm.js"></script>
-    <script src="node_modules/pnotify/dist/iife/PnotifyMobile.js"></script>
-    <script src="node_modules/pnotify/dist/iife/PnotifyNonBlock.js"></script>
-    <script>
-      PNotify.defaults.styling = 'bootstrap4';
-    </script>
   </body>
 </html>
