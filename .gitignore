@@ -1,5 +1,7 @@
 # Nodejs
 node_modules/
+vendor/
+storage/
 
 # Python
 venv/

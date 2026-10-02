@@ -1,0 +1,13 @@
+Stack Fullstack MHenriquez Septiembre 2026
+- Frontend encargada Ana Mota
+	- React:      v19.x
+	- Next:       v16.x
+	- Typescript: ^v5.x
+- Backend encargado Manuel Henriquez
+	- PHP:      ^v8.3
+	- Laravel:  ^v13.x
+	- MySQL:    ^v8.4
+	- Resend:   ^v1.13
+	- Spatie:   ^PHPx
+	- Sail:     ^1.x
+	- Livewire: ^4.x
