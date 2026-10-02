@@ -1,0 +1,4 @@
+docker run --rm -u $(id -u):$(id -g) -v $(pwd)/client-app:/app -w /app composer:2.9.4 composer require vladimir-yuldashev/laravel-queue-rabbitmq
+docker run --rm -u $(id -u):$(id -g) -v $(pwd)/server-app:/app -w /app composer:2.9.4 composer require vladimir-yuldashev/laravel-queue-rabbitmq
+
+sudo chown -R $USER:$USER client-app server-app

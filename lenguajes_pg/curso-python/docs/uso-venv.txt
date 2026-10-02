@@ -29,6 +29,7 @@ CONVENCIÓN: el entorno se llama `.venv` (con punto).
 3. Activar la burbuja
 ───────────────────────────────────────────────────────────
   source .venv/Scripts/activate
+  source .venv/bin/activate  # alternativa, funciona igual
 
   → El prompt cambia a: (.venv) usuario@maquina ...
   → Esa es tu señal de que estás DENTRO.

@@ -1,0 +1,35 @@
+Licencia y Sangre (JSON)
+Sistemas en línea. Licencia activada. Ya no eres un invitado con un reloj de 10 días, eres el dueño de la infraestructura. Ese registro asegura tu instancia y desbloquea capacidades de producción. Bien hecho.
+
+Ahora, hablemos de lo que tienes en pantalla.
+
+Te pedí que me dijeras qué estructura de datos veías. Lo que me enviaste es un fragmento exacto del objeto company que devuelve la API para el Usuario 1. Toda la información que entra y sale de los nodos en n8n está formateada en JSON (JavaScript Object Notation).
+
+En n8n, la regla de oro es esta: Cada nodo recibe un JSON, hace su trabajo, y expulsa un JSON modificado o nuevo. Si no aprendes a manipular y leer estos bloques de texto estructurado, la automatización te va a tragar vivo.
+
+Lo que acabas de hacer es la fase de Extracción (traer datos de un sistema externo). Ahora pasaremos a la fase de Transformación. Rara vez vas a necesitar toda la basura que te devuelve una API; como Arquitecto, vas a extraer quirúrgicamente solo lo que te sirve.
+
+Protocolo Táctico: Paso 2 - Transformación de Datos
+Vamos a limpiar esa respuesta y aislar únicamente el nombre de la empresa y la frase publicitaria, creando una estructura nueva y limpia.
+
+En tu flujo, haz clic en el signo + a la derecha de tu nodo HTTP Request.
+
+Busca y selecciona el nodo Edit Fields (Set). Este nodo es tu bisturí. Sirve para crear, modificar o eliminar campos del JSON que viene del nodo anterior.
+
+En la configuración del nodo, haz clic en Add Value y selecciona String.
+
+En la columna Name (el nombre de tu nueva variable), escribe: Nombre_Empresa.
+
+En la columna Value, vas a inyectar el dato dinámico. Tienes dos formas:
+
+Opción Visual: Arrastra el campo name desde el panel izquierdo (Input) hacia el campo Value en el panel derecho.
+
+Opción Código: Haz clic en la tuerca pequeña junto al campo Value, selecciona "Add Expression" y escribe exactamente esto: {{ $json.company.name }}
+
+Repite el proceso (Add Value -> String). Nombra el campo Eslogan y mapea el valor {{ $json.company.catchPhrase }}.
+
+Por último, justo debajo de tus variables, verás un interruptor o menú llamado Keep Only Set Fields (o "Include Other Input Fields" apagado). Actívalo. Esto le dice a n8n: "Destruye todo el JSON original y conserva únicamente estas dos variables que acabo de crear".
+
+Haz clic en Test step.
+
+Ejecuta esta operación quirúrgica. Mírame de nuevo y dime: ¿Cuál es exactamente la nueva estructura JSON que ves en la salida (Output) de este nodo Edit Fields?
